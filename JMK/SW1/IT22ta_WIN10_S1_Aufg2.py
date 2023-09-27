@@ -1,15 +1,24 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
-vector = np.array([3, 2, 5, 3, 1])
-deriv_vector = np.array([])
-i = len(vector)
-position = 0
-while i > 0:
-    exponent = i - 1
-    vector[position] = vector[position] * exponent
+def task_two(a, xmin, xmax):
+    if len(a.shape) != 1 or a.size == 0:
+        raise ValueError("Error: a must be a non-empty row or column vector")
 
-    i = i - 1
-    position = position + 1
+    n = len(a) - 1
+    x = np.arange(xmin, xmax + 0.1, 0.1)
 
-print(deriv_vector)
+    p = np.zeros_like(x)
+    for i in range(n + 1):
+        p += a[i] * x ** (n - i)
+
+    dp = np.zeros_like(x)
+    for i in range(n + 1):
+        dp += (n - i) * a[i] * x ** (n - i - 1)
+
+    pint = np.zeros_like(x)
+    for i in range(n + 1):
+        pint += (a[i] / (n - i + 1)) * x ** (n - i + 1)
+
+    return (x, p, dp, pint)
+
+print(task_two(np.array([2, 4, 6]), -3, 3))
