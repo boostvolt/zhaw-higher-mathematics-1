@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def task_two(a, xmin, xmax):
     if len(a.shape) != 1 or a.size == 0:
         raise ValueError("Error: a must be a non-empty row or column vector")
@@ -20,5 +21,6 @@ def task_two(a, xmin, xmax):
         pint += (a[i] / (n - i + 1)) * x ** (n - i + 1)
 
     return (x, p, dp, pint)
+
 
 print(task_two(np.array([2, 4, 6]), -3, 3))
