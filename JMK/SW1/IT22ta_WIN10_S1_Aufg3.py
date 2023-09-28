@@ -15,7 +15,7 @@ def fact_rec(n):
 print(
     "Average execution time of fact_rec: {} seconds".format(
         np.mean(
-            timeit.repeat("fact_rec(500)", "from __main__ import fact_rec", number=100)
+            timeit.repeat("fact_rec(500)", "from __main__ import fact_rec", number=201)
         )
     )
 )
@@ -41,7 +41,13 @@ def fact_for(n):
 print(
     "Average execution time of fact_for: {} seconds".format(
         np.mean(
-            timeit.repeat("fact_for(500)", "from __main__ import fact_for", number=100)
+            timeit.repeat(
+                "fact_for(20000000)", "from __main__ import fact_for", number=100
+            )
         )
     )
 )
+
+
+# In Python 3, int is dynamically increased if the size of the result requires it.
+# This means that you can theoretically compute very large factorials as long as your memory and hardware allow.
