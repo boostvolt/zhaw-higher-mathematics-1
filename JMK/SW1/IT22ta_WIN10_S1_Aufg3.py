@@ -21,7 +21,12 @@ print(
 )
 
 
-# This for-loop function is faster than the recursive function by a factor of 6.846.
+# This for-loop function is faster than the recursive function by a factor of 5,2.
+#
+# Explanation:
+# For recursive functions, there is an overhead for each function call.
+# Each call to fact_rec creates a new function frame on the stack that requires memory.
+# This overhead is not present in the for loop because it calls only one function.
 def fact_for(n):
     if n < 0 or np.trunc(n) != n:
         raise ValueError("Error: The facotiral is defined only for positive integers")
