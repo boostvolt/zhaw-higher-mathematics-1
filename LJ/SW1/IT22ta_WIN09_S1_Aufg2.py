@@ -1,6 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Beispiel: p(x) = x^2 + x + 1 in [0,1]
+# Für x erwarten wir alle Werte zwischen 0 und 1 im Abstand von 0.1
+# Für p(x) erwarten wir array([1., 1.11, 1.24, 1.39, 1.56, 1.75, 1.96, 2.19, 2.44, 2.71])
+# Für dp(x) erwarten wir array([1., 1.2, 1.4, 1.6, 1.8, 2. , 2.2, 2.4, 2.6, 2.8])
+# Für pint(x) erwarten wir array([0., 0.10533333, 0.22266667, 0.354, 0.50133333,0.66666667, 0.852, 1.05933333, 1.29066667, 1.548])
 
 
 def polynom (vector, min, max):
@@ -42,4 +47,4 @@ def polynom (vector, min, max):
 
     return(x,p,dp,pint)
 
-print(polynom(np.array([1,1,1]), -5, 5))
+print(polynom(np.array([1,1,1]), 0, 1))

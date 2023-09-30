@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import timeit
 
+# Für die Fakultät von 5 erwarten wir das Resultat 120.
 
 def fact_rec(n):
 # y = fact_rec(n) berechnet die Fakultät von n als fact_rec(n) = n * fact_rec(n -1) mit fact_rec(0) = 1
