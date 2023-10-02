@@ -1,8 +1,8 @@
 def round_to_machine_number(x, n):
     if n == 3:
-        precision = 1e-3
+        precision = 1e-2
     elif n == 5:
-        precision = 1e-5
+        precision = 1e-4
     else:
         raise ValueError("Unsupported precision. Choose n = 3 or n = 5.")
 
@@ -44,3 +44,10 @@ print("s300 aufsteigend mit 3-stelliger Genauigkeit:", s300_ascending_3digits)
 print("s300 absteigend mit 3-stelliger Genauigkeit:", s300_descending_3digits)
 print("s300 aufsteigend mit 5-stelliger Genauigkeit:", s300_ascending_5digits)
 print("s300 absteigend mit 5-stelliger Genauigkeit:", s300_descending_5digits)
+
+
+# Lösung:
+# 5 auf: 1.6390
+# 5 ab: 1.6416
+# 3 auf: 1.59
+# 3 ab: 1.64
