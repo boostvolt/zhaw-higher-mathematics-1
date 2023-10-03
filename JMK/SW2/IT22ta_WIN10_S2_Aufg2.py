@@ -56,9 +56,13 @@ plt.plot(x2, g2)
 plt.xlabel("x axis")
 plt.ylabel("y axis")
 plt.title("Aufgabe 2 c)")
+plt.grid()
 plt.legend(
     [
-        "x / (sin(1 + x) - sin(1)))",
+        "x / 2(2 * cos((2 + x) / 2)) * sin(x / 2))",
     ]
 )
+plt.ylim(1, 2)
 plt.show()
+
+# Der Grenzwert beträgt 1.81 weil es keine Division durch Null mehr gibt.
