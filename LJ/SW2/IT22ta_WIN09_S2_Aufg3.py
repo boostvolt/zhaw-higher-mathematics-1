@@ -63,4 +63,5 @@ plt.legend()
 plt.grid()
 plt.show()
 
-# 
+# Der Graph von f1 wird zuerst immer genauer  bis er einen gewissen Wert erreicht, ab welchem die Aussage stark abweicht, bis sie dann auf 0 konvergiert.
+# Der Graph von f2 hingegen konvergiert immer mehr näher gegen 2 * pi.
