@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.logspace(1.1, 1.2)
+x = np.arange(1.00000001, 1.1, 10 ** (-7))
 h = ((100 * (x ** 2)) - (200 * x) + 99) ** (1/2)
 plt.loglog(x, h)
 
@@ -9,7 +9,6 @@ plt.xlabel('x axis')
 plt.ylabel('y axis')
 plt.title('Koordinatensystem mit logarhitmischer x- und y-Achse')
 plt.legend(['f(x)'])
-plt.xlim(0, 100)
 plt.grid()
 plt.show()
 
@@ -23,4 +22,5 @@ plt.title('Konditionszahl')
 plt.legend(['f(x)'])
 plt.grid()
 plt.show()
+
 
