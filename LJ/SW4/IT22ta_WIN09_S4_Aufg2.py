@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 
 # Aufgabe 2
 # a)
-# Für Werte von 0 bis 2.5 mit Abstand 0.5 liegt ein anziehender Fixpunkt vor.
-# Für Werte von 3.0 bis 4.0 liegt ein abstossender Fixpunkt vor.
+# Anziehende Fixpunkte für die folgenden Input-Werte mit 100 Iterationen:
+# 0, 1.5, 2.0, 2.5
+# Für Werte folgende Werte liegt ein abstossender Fixpunkt vor mit 100 Iterationen:
+# 0.5, 1.0, 3.0, 3.5, 4.0
 
 # b)
 # Für Werte nahe beim Fixpunkt kann ausgesagt werden, dass die Krankheitszahlen stagnieren.
@@ -32,5 +34,5 @@ alpahrange = np.arange(0,4.1,0.5)
 
 for x in alpahrange:
 
-    fixpunkt(x,k0,30)
+    fixpunkt(x,k0,100)
     print("-------")
