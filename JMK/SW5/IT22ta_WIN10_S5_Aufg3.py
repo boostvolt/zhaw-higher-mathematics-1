@@ -9,3 +9,5 @@ def secant(f, x0, x1, tol):
 
 
 print(secant(lambda x: np.e ** (x**2) + x ** (-3) - 10, -1.0, -1.2, 10 ** (-3)))
+
+#
