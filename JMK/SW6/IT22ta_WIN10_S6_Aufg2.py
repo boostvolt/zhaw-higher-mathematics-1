@@ -7,6 +7,7 @@ def gaussian_elimination_algorithm(matrix, result_vector):
 
     n = len(matrix)
     matrix_top_triangle = np.copy(matrix).astype(np.float64)
+    result_vector_b = np.copy(result_vector).astype(np.float64)
     det_a = 1
 
     for column in range(n):
@@ -16,8 +17,10 @@ def gaussian_elimination_algorithm(matrix, result_vector):
                 if matrix_top_triangle[row, column] == 0:
                     zero_columns += 1
                 else:
-                    current_row = np.copy(matrix_top_triangle[column, :])
                     for row_next_value in range(column + 1, n):
+                        current_row_matrix = np.copy(matrix_top_triangle[column, :])
+                        current_row_result = np.copy(result_vector_b[column])
+
                         if (
                             row_next_value >= column + 1
                             and matrix_top_triangle[row_next_value, column] != 0
@@ -25,7 +28,10 @@ def gaussian_elimination_algorithm(matrix, result_vector):
                             matrix_top_triangle[column, :] = matrix_top_triangle[
                                 row_next_value, :
                             ]
-                            matrix_top_triangle[row_next_value, :] = current_row
+                            matrix_top_triangle[row_next_value, :] = current_row_matrix
+                            result_vector_b[column] = result_vector_b[row_next_value]
+                            result_vector_b[row_next_value] = current_row_result
+
                             det_a *= -1
 
             if zero_columns == n - column - 1:
@@ -38,7 +44,7 @@ def gaussian_elimination_algorithm(matrix, result_vector):
             matrix_top_triangle[row, column:] -= (
                 factor * matrix_top_triangle[column, column:]
             )
-            result_vector[row] -= factor * result_vector[column]
+            result_vector_b[row] -= factor * result_vector_b[column]
 
     det_matrix = calc_det(matrix_top_triangle, det_a)
 
@@ -48,7 +54,7 @@ def gaussian_elimination_algorithm(matrix, result_vector):
     return (
         matrix_top_triangle,
         det_matrix,
-        reverse_substitution(matrix_top_triangle, result_vector),
+        reverse_substitution(matrix_top_triangle, result_vector_b),
     )
 
 

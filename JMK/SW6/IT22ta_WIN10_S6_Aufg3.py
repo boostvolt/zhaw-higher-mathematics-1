@@ -24,13 +24,10 @@ A4 = np.array(
 )
 b4 = np.array([-11, 103, 53, -20, 95, 78, 131, -26])
 
+simon = np.array([[0, -1, -5], [-12, 4, 17], [32, -10, -41]])
+bSimon = np.array([29, 43, 20])
 
-def calc_det(matrix):
-    result = 1
-    for diagonal in range(len(matrix) - 1, -1, -1):
-        result *= matrix[diagonal, diagonal]
-
-    return result
+print("Simon", gaussian_elimination_algorithm(simon, bSimon))
 
 print("A1", gaussian_elimination_algorithm(A1, b1))
 print("A2", gaussian_elimination_algorithm(A2, b2))
