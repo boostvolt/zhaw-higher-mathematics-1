@@ -35,8 +35,7 @@ def obereDreiecksMatrix(A,b):
 
         for j in range(i + 1, n):
             b[j] = b[j] - A[j,i]/A[i,i] * b[i] 
-            A[j] = A[j] - A[j,i]/A[i,i] * A[i] 
-            # evtl b korrigieren
+            A[j] = A[j] - A[j,i]/A[i,i] * A[i]
 
     A_triangle = A
 
