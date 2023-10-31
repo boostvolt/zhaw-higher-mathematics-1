@@ -1,8 +1,5 @@
 import numpy as np
 
-# i = row zeile
-# j = column spalte
-
 
 def gauss_algorithm(A, b):
     A = A.astype(np.float64)
@@ -10,7 +7,6 @@ def gauss_algorithm(A, b):
 
     n = len(A)
     A_triangle = np.copy(A).astype(np.float64)
-    detA = 1
 
     for column in range(n):
         if A_triangle[column, column] == 0:
@@ -35,9 +31,15 @@ def gauss_algorithm(A, b):
             factor = A_triangle[row, column] / A_triangle[column, column]
             A_triangle[row, column:] -= factor * A_triangle[column, column:]
             b[row] -= factor * b[column]
+
+    det = calc_det(A_triangle)
+
+    if det == 0:
+        raise ValueError("Error: det is zero")
+
     result = reverse_substitution(A_triangle, b)
 
-    return A_triangle, detA, result
+    return A_triangle, det, result
 
 
 def reverse_substitution(A, b):
@@ -50,6 +52,14 @@ def reverse_substitution(A, b):
         x[diagonal] = b[diagonal] / A[diagonal, diagonal]
 
     return x
+
+
+def calc_det(A):
+    result = 1
+    for diagonal in range(len(A) - 1, -1, -1):
+        result *= A[diagonal, diagonal]
+    return result
+
 
 Test = np.array([[1, 5, 6], [7, 9, 6], [2, 3, 4]])
 
