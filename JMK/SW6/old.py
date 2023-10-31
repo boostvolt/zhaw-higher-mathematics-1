@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def gaussian_elimination_algorithm(matrix, result_vector):
+def gaussian_algorithm(matrix, result_vector):
     matrix = matrix.astype(np.float64)
     result_vector = result_vector.astype(np.float64)
 

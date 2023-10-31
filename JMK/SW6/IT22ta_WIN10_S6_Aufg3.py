@@ -24,19 +24,19 @@ A4 = np.array(
 )
 b4 = np.array([-11, 103, 53, -20, 95, 78, 131, -26])
 
-ASimon = np.array([[0, -1, -5], [-12, 4, 17], [32, -10, -41]])
-bSimon = np.array([29, 43, 20])
-
-print("Simon", gaussian_algorithm(ASimon, bSimon))
+A5 = np.array([[0, -1, -5], [-12, 4, 17], [32, -10, -41]])
+b5 = np.array([29, 43, 20])
 
 print("A1", gaussian_algorithm(A1, b1))
 print("A2", gaussian_algorithm(A2, b2))
 print("A3", gaussian_algorithm(A3, b3))
 print("A4", gaussian_algorithm(A4, b4))
+print("A5", gaussian_algorithm(A5, b5))
 
 print("numpy A1", np.linalg.solve(A1, b1))
 print("numpy A2", np.linalg.solve(A2, b2))
 print("numpy A3", np.linalg.solve(A3, b3))
 print("numpy A4", np.linalg.solve(A4, b4))
+print("numpy A5", np.linalg.solve(A5, b5))
 
 # Numpy's linalg.solve uses partial pivoting, which can help maintain numerical stability. Our Gaussian elimination algorithm does not use pivoting, this can lead to large numerical errors.

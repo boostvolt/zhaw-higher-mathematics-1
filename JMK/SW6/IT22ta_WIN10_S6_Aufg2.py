@@ -5,6 +5,12 @@ def gaussian_algorithm(matrix, result_vector):
     matrix = np.copy(matrix.astype(np.float64))
     result_vector = np.copy(result_vector.astype(np.float64))
 
+    if len(matrix) != len(matrix[0]):
+        raise ValueError("Error: The matrix is not square")
+
+    if len(matrix) != len(result_vector):
+        raise ValueError("Error: The matrix and result vector have different sizes")
+
     n = len(matrix)
     det = 1
 
