@@ -34,4 +34,4 @@ print("numpy A2", np.linalg.solve(A2, b2))
 print("numpy A3", np.linalg.solve(A3, b3))
 print("numpy A4", np.linalg.solve(A4, b4))
 
-# TODO: check if the results are correct
+# Numpy's linalg.solve uses partial pivoting, which can help maintain numerical stability. Our Gaussian elimination algorithm does not use pivoting, this can lead to large numerical errors.
