@@ -5,8 +5,11 @@ import numpy as np
 
 
 def gauss_algorithm(A, b):
+    A = A.astype(np.float64)
+    b = b.astype(np.float64)
+
     n = len(A)
-    A_triangle = np.copy(A)
+    A_triangle = np.copy(A).astype(np.float64)
     detA = 1
 
     for column in range(n):
@@ -16,30 +19,41 @@ def gauss_algorithm(A, b):
                 if A_triangle[row, column] == 0:
                     zero_columns += 1
                 else:
-                    current_row = A_triangle[row, column]
+                    current_row = np.copy(A_triangle[column, :])
                     for row_next_value in range(column + 1, n):
                         if (
                             row_next_value >= column + 1
                             and A_triangle[row_next_value, column] != 0
                         ):
-                            A_triangle[row, column] = A_triangle[row_next_value, column]
-                            A_triangle[row_next_value, column] = current_row
-
-                # if A_triangle[row, column + 1] != 0:
-                #     initial_row = row
-                #     row = column + 1
-                #     while A_triangle[row, column] == 0:
-                #         row += 1
-
-                # A_triangle[initial_row:column]
+                            A_triangle[column, :] = A_triangle[row_next_value, :]
+                            A_triangle[row_next_value, :] = current_row
 
             if zero_columns == n - column - 1:
                 raise ValueError("Error: A column is all zero")
 
+        for row in range(column + 1, n):
+            factor = A_triangle[row, column] / A_triangle[column, column]
+            A_triangle[row, column:] -= factor * A_triangle[column, column:]
+            b[row] -= factor * b[column]
+    result = reverse_substitution(A_triangle, b)
 
-Test = np.array([[1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0], [0, 1, 0, 0]])
+    return A_triangle, detA, result
 
 
-b = np.array([150, 470, 2150])
+def reverse_substitution(A, b):
+    n = len(A)
+    x = np.zeros(n)
+    for diagonal in range(n - 1, -1, -1):
+        for column in range(diagonal + 1, n):
+            b[diagonal] -= A[diagonal, column] * x[column]
+
+        x[diagonal] = b[diagonal] / A[diagonal, diagonal]
+
+    return x
+
+Test = np.array([[1, 5, 6], [7, 9, 6], [2, 3, 4]])
+
+
+b = np.array([29, 43, 20])
 
 print(gauss_algorithm(Test, b))
