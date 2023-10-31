@@ -75,5 +75,3 @@ def calc_det(matrix, det_a):
         det_a *= matrix[diagonal, diagonal]
 
     return det_a
-
-

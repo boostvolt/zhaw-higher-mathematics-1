@@ -8,6 +8,7 @@ def gaussian_algorithm(matrix, result_vector):
 
     n = len(matrix)
     matrix_top_triangle = np.copy(matrix)
+    result_vector_b = np.copy(result_vector)
     det_a = 1
 
     for column in range(n):
@@ -22,6 +23,10 @@ def gaussian_algorithm(matrix, result_vector):
             matrix_top_triangle[[column, first_non_zero_row]] = matrix_top_triangle[
                 [first_non_zero_row, column]
             ]
+            result_vector_b[[column, first_non_zero_row]] = result_vector_b[
+                [first_non_zero_row, column]
+            ]
+            
             det_a *= -1
 
         # Make all rows below this one 0 in the current column
@@ -32,7 +37,7 @@ def gaussian_algorithm(matrix, result_vector):
             matrix_top_triangle[row, column:] -= (
                 factor * matrix_top_triangle[column, column:]
             )
-            result_vector[row] -= factor * result_vector[column]
+            result_vector_b[row] -= factor * result_vector_b[column]
 
     # Calculate the determinant
     det_matrix = det_a * np.prod(np.diag(matrix_top_triangle))
@@ -42,7 +47,7 @@ def gaussian_algorithm(matrix, result_vector):
         raise ValueError("Error: det is zero")
 
     # Perform back substitution to solve for x
-    x = reverse_substitution(matrix_top_triangle, result_vector)
+    x = reverse_substitution(matrix_top_triangle, result_vector_b)
 
     return matrix_top_triangle, det_matrix, x
 
@@ -83,19 +88,14 @@ A4 = np.array(
 )
 b4 = np.array([-11, 103, 53, -20, 95, 78, 131, -26])
 
-
-def calc_det(matrix):
-    result = 1
-    for diagonal in range(len(matrix) - 1, -1, -1):
-        result *= matrix[diagonal, diagonal]
-
-    return result
-
+simon = np.array([[0.0, -1.0, -5.0], [-12.0, 4.0, 17.0], [32.0, -10.0, -41.0]])
+bSimon = np.array([29, 43, 20])
 
 print("A1", gaussian_algorithm(A1, b1))
 print("A2", gaussian_algorithm(A2, b2))
 print("A3", gaussian_algorithm(A3, b3))
 print("A4", gaussian_algorithm(A4, b4))
+print("Simon", gaussian_algorithm(simon, bSimon))
 
 print("numpy A1", np.linalg.solve(A1, b1))
 print("numpy A2", np.linalg.solve(A2, b2))
