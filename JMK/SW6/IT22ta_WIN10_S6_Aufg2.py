@@ -1,59 +1,70 @@
 import numpy as np
 
 
-def gauss_algorithm(A, b):
-    A = A.astype(np.float64)
-    b = b.astype(np.float64)
+def gaussian_elimination_algorithm(matrix, result_vector):
+    matrix = matrix.astype(np.float64)
+    result_vector = result_vector.astype(np.float64)
 
-    n = len(A)
-    A_triangle = np.copy(A).astype(np.float64)
+    n = len(matrix)
+    matrix_top_triangle = np.copy(matrix).astype(np.float64)
 
     for column in range(n):
-        if A_triangle[column, column] == 0:
+        if matrix_top_triangle[column, column] == 0:
             zero_columns = 0
             for row in range(column + 1, n):
-                if A_triangle[row, column] == 0:
+                if matrix_top_triangle[row, column] == 0:
                     zero_columns += 1
                 else:
-                    current_row = np.copy(A_triangle[column, :])
+                    current_row = np.copy(matrix_top_triangle[column, :])
                     for row_next_value in range(column + 1, n):
                         if (
                             row_next_value >= column + 1
-                            and A_triangle[row_next_value, column] != 0
+                            and matrix_top_triangle[row_next_value, column] != 0
                         ):
-                            A_triangle[column, :] = A_triangle[row_next_value, :]
-                            A_triangle[row_next_value, :] = current_row
+                            matrix_top_triangle[column, :] = matrix_top_triangle[
+                                row_next_value, :
+                            ]
+                            matrix_top_triangle[row_next_value, :] = current_row
 
             if zero_columns == n - column - 1:
                 raise ValueError("Error: A column is all zero")
 
         for row in range(column + 1, n):
-            factor = A_triangle[row, column] / A_triangle[column, column]
-            A_triangle[row, column:] -= factor * A_triangle[column, column:]
-            b[row] -= factor * b[column]
+            factor = (
+                matrix_top_triangle[row, column] / matrix_top_triangle[column, column]
+            )
+            matrix_top_triangle[row, column:] -= (
+                factor * matrix_top_triangle[column, column:]
+            )
+            result_vector[row] -= factor * result_vector[column]
 
-    det = calc_det(A_triangle)
+    det_matrix = calc_det(matrix_top_triangle)
 
-    if det == 0:
+    if det_matrix == 0:
         raise ValueError("Error: det is zero")
 
-    return A_triangle, det, reverse_substitution(A_triangle, b)
+    return (
+        matrix_top_triangle,
+        det_matrix,
+        reverse_substitution(matrix_top_triangle, result_vector),
+    )
 
 
-def reverse_substitution(A, b):
-    n = len(A)
+def reverse_substitution(matrix, result_vector):
+    n = len(matrix)
     x = np.zeros(n)
     for diagonal in range(n - 1, -1, -1):
         for column in range(diagonal + 1, n):
-            b[diagonal] -= A[diagonal, column] * x[column]
+            result_vector[diagonal] -= matrix[diagonal, column] * x[column]
 
-        x[diagonal] = b[diagonal] / A[diagonal, diagonal]
+        x[diagonal] = result_vector[diagonal] / matrix[diagonal, diagonal]
 
     return x
 
 
-def calc_det(A):
+def calc_det(matrix):
     result = 1
-    for diagonal in range(len(A) - 1, -1, -1):
-        result *= A[diagonal, diagonal]
+    for diagonal in range(len(matrix) - 1, -1, -1):
+        result *= matrix[diagonal, diagonal]
+
     return result

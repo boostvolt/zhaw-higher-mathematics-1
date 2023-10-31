@@ -1,5 +1,5 @@
 import numpy as np
-from IT22ta_WIN10_S6_Aufg2 import gauss_algorithm
+from IT22ta_WIN10_S6_Aufg2 import gaussian_elimination_algorithm
 
 A1 = np.array([[4, -1, -5], [-12, 4, 17], [32, -10, -41]])
 b1 = np.array([6, -12, 48])
@@ -24,10 +24,10 @@ A4 = np.array(
 )
 b4 = np.array([-11, 103, 53, -20, 95, 78, 131, -26])
 
-print("A1", gauss_algorithm(A1, b1))
-print("A2", gauss_algorithm(A2, b2))
-print("A3", gauss_algorithm(A3, b3))
-print("A4", gauss_algorithm(A4, b4))
+print("A1", gaussian_elimination_algorithm(A1, b1))
+print("A2", gaussian_elimination_algorithm(A2, b2))
+print("A3", gaussian_elimination_algorithm(A3, b3))
+print("A4", gaussian_elimination_algorithm(A4, b4))
 
 print("numpy A1", np.linalg.solve(A1, b1))
 print("numpy A2", np.linalg.solve(A2, b2))
