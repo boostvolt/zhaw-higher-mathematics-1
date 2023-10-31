@@ -41,7 +41,7 @@ def obereDreiecksMatrix(A,b):
 
     # Determinante berechnen
 
-    detA = -1 ** numberOfRowSwaps
+    detA = (-1) ** numberOfRowSwaps
     for i in range(n):
         detA *= A[i,i]
     
