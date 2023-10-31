@@ -2,7 +2,6 @@ import numpy as np
 
 
 def gaussian_algorithm(matrix, result_vector):
-    # Convert inputs to float for precision
     matrix = np.copy(matrix.astype(np.float64))
     result_vector = np.copy(result_vector.astype(np.float64))
 
