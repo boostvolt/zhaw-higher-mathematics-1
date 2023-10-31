@@ -8,7 +8,7 @@ def obereDreiecksMatrix(A,b):
     n = len(A)
     numberOfRowSwaps = 0
 
-    for i in range(len(A[0])): 
+    for i in range(n): 
 
         # Nullen auf Diagonale eliminieren
 
