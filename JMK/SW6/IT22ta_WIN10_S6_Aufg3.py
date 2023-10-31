@@ -24,6 +24,14 @@ A4 = np.array(
 )
 b4 = np.array([-11, 103, 53, -20, 95, 78, 131, -26])
 
+
+def calc_det(matrix):
+    result = 1
+    for diagonal in range(len(matrix) - 1, -1, -1):
+        result *= matrix[diagonal, diagonal]
+
+    return result
+
 print("A1", gaussian_elimination_algorithm(A1, b1))
 print("A2", gaussian_elimination_algorithm(A2, b2))
 print("A3", gaussian_elimination_algorithm(A3, b3))

@@ -7,6 +7,7 @@ def gaussian_elimination_algorithm(matrix, result_vector):
 
     n = len(matrix)
     matrix_top_triangle = np.copy(matrix).astype(np.float64)
+    det_a = 1
 
     for column in range(n):
         if matrix_top_triangle[column, column] == 0:
@@ -25,6 +26,7 @@ def gaussian_elimination_algorithm(matrix, result_vector):
                                 row_next_value, :
                             ]
                             matrix_top_triangle[row_next_value, :] = current_row
+                            det_a *= -1
 
             if zero_columns == n - column - 1:
                 raise ValueError("Error: A column is all zero")
@@ -38,7 +40,7 @@ def gaussian_elimination_algorithm(matrix, result_vector):
             )
             result_vector[row] -= factor * result_vector[column]
 
-    det_matrix = calc_det(matrix_top_triangle)
+    det_matrix = calc_det(matrix_top_triangle, det_a)
 
     if det_matrix == 0:
         raise ValueError("Error: det is zero")
@@ -62,9 +64,8 @@ def reverse_substitution(matrix, result_vector):
     return x
 
 
-def calc_det(matrix):
-    result = 1
+def calc_det(matrix, det_a):
     for diagonal in range(len(matrix) - 1, -1, -1):
-        result *= matrix[diagonal, diagonal]
+        det_a *= matrix[diagonal, diagonal]
 
-    return result
+    return det_a
