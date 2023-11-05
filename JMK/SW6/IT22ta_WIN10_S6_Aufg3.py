@@ -34,4 +34,8 @@ print("numpy A2", np.linalg.solve(A2, b2), np.linalg.det(A2))
 print("numpy A3", np.linalg.solve(A3, b3), np.linalg.det(A3))
 print("numpy A4", np.linalg.solve(A4, b4), np.linalg.det(A4))
 
-# Numpy's linalg.solve uses partial pivoting, which can help maintain numerical stability. Our Gaussian elimination algorithm does not use pivoting, this can lead to large numerical errors.
+# Our result of A4 with our implementation is:
+# [ 1.00000000e+00, -1.00000000e+00, 5.81353147e-14, 2.00000000e+00, 3.00000000e+00, 3.00000000e+00, -8.00000000e+00, 1.50000000e+01] and
+# the result of A4 with np.linalg.solve is:
+# [ 1.00000000e+00, -1.00000000e+00, -1.76602918e-15, 2.00000000e+00, 3.00000000e+00, 3.00000000e+00, -8.00000000e+00, 1.50000000e+01]
+# It shows that the 3rd value is different because Numpy's linalg.solve uses partial pivoting, which can help maintain numerical stability. Our Gaussian elimination algorithm does not use pivoting, this can lead to large numerical errors.
