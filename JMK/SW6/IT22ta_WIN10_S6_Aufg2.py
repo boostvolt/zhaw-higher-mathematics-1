@@ -2,7 +2,6 @@ import numpy as np
 
 
 def gaussian_algorithm(matrix, result_vector):
-    print("mk")
     matrix = matrix.astype(np.float64)
     result_vector = result_vector.astype(np.float64)
 
