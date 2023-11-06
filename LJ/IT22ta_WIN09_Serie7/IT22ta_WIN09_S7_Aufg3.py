@@ -29,7 +29,6 @@ plt.show()
 x2 = np.arange(1997, 2011, 0.1)
 x3 = np.polyfit(np.array([1997, 1999, 2006, 2010]), np.array([150, 104, 172, 152]), 3)
 
-print(x1)
 plt.plot(x1 + 1997, np.polyval(x, x1))
 plt.plot(x2, np.polyval(x3, x2))
 plt.xlabel('Jahr')
