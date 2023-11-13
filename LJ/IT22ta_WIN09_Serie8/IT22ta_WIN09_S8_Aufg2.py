@@ -1,66 +1,50 @@
-import numpy as np
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov  7 13:26:09 2020
 
-def obereDreiecksMatrix(A,vector):
-    # überprüfen dass Matrix quadratisch ist:
-    if (len(A) != len(A[0])):
-        return
-    A = A.astype(np.float64)
-    A_triangle = np.copy(A).astype(np.float64)
-    b = np.copy(vector).astype(np.float64)
-    n = len(A_triangle)
-    numberOfRowSwaps = 0
+Höhere Mathematik 1, Serie 8, Gerüst für Aufgabe 2
 
-    for i in range(n): 
+Description: calculates the QR factorization of A so that A = QR
+Input Parameters: A: array, n*n matrix
+Output Parameters: Q : n*n orthogonal matrix
+                   R : n*n upper right triangular matrix            
+Remarks: none
+Example: A = np.array([[1,2,-1],[4,-2,6],[3,1,0]]) 
+        [Q,R]=Serie8_Aufg2(A)
 
-        # Nullen auf Diagonale eliminieren
+@author: knaa
+"""
 
-        if ((A_triangle[i,i] == 0)):
-            rowToSwapWith = -1
-            for j in range(i + 1, n):
-                if ((A_triangle[j,i] != 0) and (rowToSwapWith == -1)):
-                    rowToSwapWith = j
-
-            if(rowToSwapWith == -1):
-                print("invalid matrix")
-                return
-            
-            copyA = np.copy(A_triangle)
-            A_triangle[i] = copyA[rowToSwapWith]
-            A_triangle[rowToSwapWith] = copyA[i]
-
-            copyb = np.copy(b)
-            b[i] = copyb[rowToSwapWith]
-            b[rowToSwapWith] = copyb[i]
-
-            numberOfRowSwaps += 1
-
-        # Eliminationsschritt
-
-        for j in range(i + 1, n):
-            b[j] = b[j] - A_triangle[j,i]/A_triangle[i,i] * b[i] 
-            A_triangle[j] = A_triangle[j] - A_triangle[j,i]/A_triangle[i,i] * A_triangle[i]
-
-    # Determinante berechnen
-
-    detA = (-1) ** numberOfRowSwaps
-    for i in range(n):
-        detA *= A_triangle[i,i]
+def Serie8_Aufg2(A):
     
-    # auflösen nach x
+    import numpy as np
+    
+    A = np.copy(A)                       #necessary to prevent changes in the original matrix A_in
+    A = A.astype('float64')              #change to float
+    
+    n = np.shape(A)[0]
+    
+    if n != np.shape(A)[1]:
+        raise Exception('Matrix is not square') 
+    
+    Q = np.eye(n)
+    R = A
+    
+    for j in np.arange(0,n-1):
+        a = np.copy(???).reshape(n-j,1)     
+        e = np.eye(???)[:,0].reshape(n-j,1)
+        length_a = np.linalg.norm(a)
+        if a[0] >= 0: sig = ???
+        else: sig = ??? 
+        v = ???
+        u = ???
+        H = ???
+        Qi = np.eye(n)
+        Qi[j:,j:] = ???
+        R = ???
+        Q = ???
+        
+    return(Q,R)
 
-    x = np.zeros(n)
-    for i in range(n - 1, -1, -1):
-        for j in range(i + 1, n):
-            b[i] -= A_triangle[i,j] * x[j]
-
-        x[i] = b[i] / A_triangle[i,i]
-
-    return [A_triangle, detA, x]
 
 
-# Wird nur ausgeführt wenn explizit dieses Script ausgeführt wird. 
-if __name__ == "__main__":
-
-    A = np.array([[1, 5, 6], [7,9,6], [2,3,4]])
-    b = np.array([29,43,20], dtype=float)
-    print(obereDreiecksMatrix(A,b))
