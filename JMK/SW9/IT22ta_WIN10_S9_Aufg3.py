@@ -35,4 +35,4 @@ plt.legend()
 plt.grid()
 plt.show()
 
-# Ja, dx_max ist eine realistische obere Schranke für dx_obs. Weil dx_obs nie größer als dx_max ist.
+# Ja, dx_max ist eine realistische obere Schranke für dx_obs. Weil dx_obs nie grösser als dx_max ist.
