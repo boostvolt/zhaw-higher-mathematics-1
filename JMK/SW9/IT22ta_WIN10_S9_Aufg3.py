@@ -1,15 +1,16 @@
 import numpy as np
-import numpy.random as r
 import matplotlib.pyplot as plt
 from IT22ta_WIN10_S9_Aufg2 import serie_9
 
+rng = np.random.default_rng(42)
+
 
 def random_iteration():
-    A = r.rand(100, 100)
-    A_tilde = A + r.rand(100, 100) / 10**5
+    A = rng.random((100, 100))
+    A_tilde = A + rng.random((100, 100)) / 10**5
 
-    b = r.rand(100, 1)
-    b_tilde = b + r.rand(100, 1) / 10**5
+    b = rng.random((100, 1))
+    b_tilde = b + rng.random((100, 1)) / 10**5
 
     _, _, dx_max, dx_obs = serie_9(A, A_tilde, b, b_tilde)
 
