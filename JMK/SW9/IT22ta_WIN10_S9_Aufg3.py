@@ -38,4 +38,5 @@ plt.legend()
 plt.grid()
 plt.show()
 
-# Yes, dx_max is a realistic upper bound for dx_obs. Because dx_obs is never greater than dx_max.
+# Yes, dx_max is a realistic upper limit for dx_obs in this experimental set-up. 
+# Because dx_obs is never greater than dx_max.
