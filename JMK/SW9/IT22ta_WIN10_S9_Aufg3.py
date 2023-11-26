@@ -2,8 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from IT22ta_WIN10_S9_Aufg2 import serie_9
 
-rng = np.random.default_rng(42)
+rng = np.random.default_rng()
 
+# Use this to get the same random numbers every time (reproducibility)
+# rng = np.random.default_rng(42)
 
 def random_iteration():
     A = rng.random((100, 100))
