@@ -17,3 +17,4 @@ while (60003 / (1 - (60003 * 10 ** (-7)))) * (
     exponent += 1
 
 print(exponent)
+# e (epsilon) must not exceed 6.56583 * 10^(-8)
