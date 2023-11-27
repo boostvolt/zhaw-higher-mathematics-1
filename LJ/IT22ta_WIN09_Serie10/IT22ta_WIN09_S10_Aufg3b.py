@@ -1,39 +1,28 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from IT22ta_WIN09_S9_Aufg2 import serie_9
+import numpy.linalg as lin
+import timeit
 
-rng = np.random.default_rng(42)
-
-
-def random_iteration():
-    A = rng.random((100, 100))
-    A_tilde = A + rng.random((100, 100)) / 10**5
-
-    b = rng.random((100, 1))
-    b_tilde = b + rng.random((100, 1)) / 10**5
-
-    _, _, dx_max, dx_obs = serie_9(A, A_tilde, b, b_tilde)
-
-    return dx_max, dx_obs
+from sympy import false, true
+from IT22ta_WIN09_S10_Aufg3a import IT22ta_WIN09_S10_Aufg3a
+from IT22ta_WIN09_S6_Aufg2 import obereDreiecksMatrix
 
 
-dx_max_list = []
-dx_obs_list = []
-ratio_list = []
+dim = 3000
+A = np.diag(np.diag(np.ones((dim,dim))*4000))+np.ones((dim,dim))
+print(A)
+dum1 = np.arange(1,int(dim/2+1),dtype=np.float64).reshape((int(dim/2),1)) 
+dum2 = np.arange(int(dim/2),0,-1,dtype=np.float64).reshape((int(dim/2),1)) 
+x = np.append(dum1,dum2,axis=0)
 
-for _ in range(1000):
-    dx_max, dx_obs = random_iteration()
-    dx_max_list.append(dx_max)
-    dx_obs_list.append(dx_obs)
-    ratio_list.append(dx_max / dx_obs)
+b = A@x
+x0 = np.zeros((dim,1))
+tol = 1e-4
+opt = false
 
-x = np.arange(1, 1001)
-plt.figure()
-plt.semilogy(x, dx_max_list, label="dx_max")
-plt.semilogy(x, dx_obs_list, label="dx_obs")
-plt.semilogy(x, ratio_list, label="ratio")
-plt.legend()
-plt.grid()
-plt.show()
-
-# Ja, dx_max ist eine realistische obere Schranke für dx_obs. Weil dx_obs nie grösser als dx_max ist.
+#t3=timeit("Serie8_Aufg2(Test)", "from __main__ import Serie8_Aufg2, Test") 
+#t4=timeit("np.linalg.qr(Test)", "from __main__ import np, Test")
+#t1 = timeit.timeit("IT22ta_WIN09_S10_Aufg3a(A, b, x0, tol, opt)", "from __main__ import IT22ta_WIN09_S10_Aufg3a, A, b, x0, tol, opt")
+#t2 = timeit.timeit(lambda: np.linalg.solve(A, b), number=1)
+#t3 = timeit.timeit("np.linalg.solve(A, b)", "from __main__ import np, A, b")
+#print(t2)
