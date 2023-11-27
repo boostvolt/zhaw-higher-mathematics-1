@@ -28,3 +28,5 @@ b = np.array([5720, 3300, 836])
 b_tilde = np.array([5820, 3400, 936])
 
 print(serie_9(A, A_tilde, b, b_tilde))
+
+# Die mit Python berechneten Resultate stimmen mit den Resultaten aus Aufgabe 3 der Serie 8 überein.
