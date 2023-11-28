@@ -1,7 +1,8 @@
+import numpy.linalg as l
 import numpy as np
 import matplotlib.pyplot as plt
 import timeit
-from IT22ta_WIN10_S6_Aufg2 import gaussian_algorithm
+from IT22ta_WIN10_S6_Aufg2 import solve_linalg_sys
 from IT22ta_WIN10_S10_Aufg3a import aufgabe_3_a
 
 dim = 3000
@@ -15,36 +16,35 @@ tol = 1e-4
 
 # Jacobi
 start = timeit.default_timer()
-aufgabe_3_a(A, b, x_0, tol)
+#jacobi_result = aufgabe_3_a(A, b, x_0, tol)
 end = timeit.default_timer()
 print(f"Jacobi: {end - start} s")
 # 142.94855400000233 s
 
 # Gauss-Seidel
 start = timeit.default_timer()
-aufgabe_3_a(A, b, x_0, tol, "gauss-seidel")
+#gauss_seidel_result = aufgabe_3_a(A, b, x_0, tol, "gauss-seidel")
 end = timeit.default_timer()
 print(f"Gauss-Seidel: {end - start} s")
 # 83.91509779200715 s
 
 # Gaussian
 start = timeit.default_timer()
-gaussian_algorithm(A, b)
+gaussian_result = solve_linalg_sys(A, b) #TODO: fix overflow
 end = timeit.default_timer()
 print(f"Gaussian: {end - start} s")
-# TODO: Fix overflow
 
-# np.linalg.solve
+# l.solve
 start = timeit.default_timer()
-np.linalg.solve(A, b)
+#l.solve(A, b)
 end = timeit.default_timer()
-print(f"np.linalg.solve: {end - start} s")
+print(f"l.solve: {end - start} s")
 # 0.21959929099830333 s
 
 plt.figure()
-plt.plot(np.abs(gaussian_algorithm(A, b) - x), label="Gauss")  # TODO: Fix overflow
-plt.plot(np.abs(aufgabe_3_a(A, b, x_0, tol) - x), label="Jacobi")
-plt.plot(np.abs(aufgabe_3_a(A, b, x_0, tol, "gauss-seidel") - x), label="Gauss-Seidel")
+# plt.plot(np.abs(gaussian_result - x), label="Gauss")  # TODO: Fix overflow
+# plt.plot(np.abs(jacobi_result[0] - x), label="Jacobi")
+# plt.plot(np.abs(gauss_seidel_result[0] - x), label="Gauss-Seidel")
 plt.legend()
 plt.xlabel("Vector Element")
 plt.ylabel("Absolute Error")

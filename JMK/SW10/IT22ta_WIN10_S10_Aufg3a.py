@@ -1,11 +1,6 @@
 import numpy.linalg as l
 import numpy as np
 
-A = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
-b = np.array([19, 5, 34])
-x_0 = np.array([1, -1, 3])
-tol = 10 ** (-4)
-
 
 def aufgabe_3_a(A, b, x_0, tol, opt="jacobi"):
     x_initial = np.copy(x_0)
@@ -58,5 +53,10 @@ def a_priori(diagonal, upper, lower, method, tol, x_0, b):
     return n_2
 
 
-print(aufgabe_3_a(A, b, x_0, tol, "zv"))
-# TODO: Add Gauss-Seidel demo
+A = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
+b = np.array([19, 5, 34])
+x_0 = np.array([1, -1, 3])
+tol = 10 ** (-4)
+
+print(aufgabe_3_a(A, b, x_0, tol))
+print(aufgabe_3_a(A, b, x_0, tol, "gauss-seidel"))
