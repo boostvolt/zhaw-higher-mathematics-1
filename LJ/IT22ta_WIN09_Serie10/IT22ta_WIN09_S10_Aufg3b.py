@@ -55,6 +55,6 @@ plt.title("Absoluter Fehler pro Vektorelement")
 plt.grid()
 plt.show()
 
-#Die Jacobi Funktion hat konstant einen absoluten Fehler von 4.1 * 10^-5
+#Die Jacobi Funktion hat konstant einen absoluten Fehler von ungefähr 4.1 * 10^-5
 #Die Gauss-Seidel Funktion schwankt stark zwischen 7.8 * 10^-6 und 0.
 #Das heisst die Gauss-Seidel Funktion berechnet das Ergebnis genauer als die Jacobi-Funktion.
