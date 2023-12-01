@@ -2,7 +2,7 @@ import numpy.linalg as l
 import numpy as np
 import matplotlib.pyplot as plt
 import timeit
-from IT22ta_WIN10_S6_Aufg2 import solve_linalg_sys
+from IT22ta_WIN10_S6_Aufg2 import gaussian_algorithm
 from IT22ta_WIN10_S10_Aufg3a import aufgabe_3_a
 
 dim = 3000
@@ -30,7 +30,7 @@ print(f"Gauss-Seidel: {end - start} s")
 
 # Gaussian
 start = timeit.default_timer()
-gaussian_result = solve_linalg_sys(A, b) #TODO: fix overflow
+gaussian_result = gaussian_algorithm(A, b) #TODO: fix overflow
 end = timeit.default_timer()
 print(f"Gaussian: {end - start} s")
 

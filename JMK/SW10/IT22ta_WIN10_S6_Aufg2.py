@@ -1,58 +1,62 @@
 import numpy as np
 
 
-def insert_backwards(A, b):
-    x = np.zeros((len(A), 1))
-    for i in range(len(A) - 1, -1, -1):  # start at the end and go backwards
-        x[i] = (b[i] - np.dot(A[i, i + 1 :], x[i + 1 :])) / A[i, i]
-    return x
+def gaussian_algorithm(matrix, result_vector):
+    matrix = np.copy(matrix.astype(np.float64))
+    result_vector = np.copy(result_vector.astype(np.float64))
 
+    if len(matrix) != len(matrix[0]):
+        raise ValueError("Error: The matrix is not square")
 
-def solve_linalg_sys(A, b):
-    if A.shape[0] != A.shape[1] or A.shape[0] != b.shape[0]:
-        raise Exception(
-            "Matrix must be a square matrix and dim of rows must match between A and b."
-        )
+    if len(matrix) != len(result_vector):
+        raise ValueError("Error: The matrix and result vector have different sizes")
 
-    for i in range(0, len(A)):
-        if np.count_nonzero(A[:, i]) == 0:
-            raise Exception("Matrix is not regular due to all zero row.")
-
-    count_of_row_switches = 0
-    for i in range(0, len(A)):
-        count_of_row_switches += sort_column(A, b, i)
-        elimination_step(A, b, i)
-
+    n = len(matrix)
     det = 1
-    for i in range(0, len(A)):
-        det *= A[i, i]
-    det = ((-1) ** count_of_row_switches) * det
 
-    x = insert_backwards(A, b)
+    for column in range(n):
+        # Find the row with the lowest index which is not zero in the current column
+        non_zero_rows = np.nonzero(matrix[column:, column])[0]
+        if non_zero_rows.size == 0:
+            raise ValueError("Error: A column is all zero")
+        first_non_zero_row = column + non_zero_rows[0]
 
-    return [A, det, x]
+        # If the first non-zero row is not the current row, swap them
+        if column != first_non_zero_row:
+            matrix[[column, first_non_zero_row]] = matrix[[first_non_zero_row, column]]
+            result_vector[[column, first_non_zero_row]] = result_vector[
+                [first_non_zero_row, column]
+            ]
+
+            det *= -1
+
+        # Make all rows below this one 0 in the current column
+        for row in range(column + 1, n):
+            factor = matrix[row, column] / matrix[column, column]
+            matrix[row, column:] -= factor * matrix[column, column:]
+            result_vector[row] -= factor * result_vector[column]
+
+    # Calculate the determinant
+    det_matrix = det * np.prod(np.diag(matrix))
+
+    # Check if the determinant is zero
+    if det_matrix == 0:
+        raise ValueError("Error: det is zero")
+
+    # Perform back substitution to solve for x
+    x = reverse_substitution(matrix, result_vector)
+
+    return matrix, det_matrix, x
 
 
-def sort_column(A, b, i):
-    if A[i, i] == 0:
-        for j in range(0, len(A)):
-            if A[j, i] != 0:
-                break
-        A[[i, j]] = A[[j, i]]
-        b[[i, j]] = b[[j, i]]
-        return 1
-    return 0
+def reverse_substitution(matrix, result_vector):
+    n = len(matrix)
+    x = np.zeros(n)
 
+    for diagonal in range(n - 1, -1, -1):
+        x[diagonal] = (
+            result_vector[diagonal]
+            - np.dot(matrix[diagonal, diagonal + 1 :], x[diagonal + 1 :])
+        ) / matrix[diagonal, diagonal]
 
-def elimination_step(A, b, diag_idx):
-    curr_diagonal_number = A[diag_idx, diag_idx]
-    for row_idx in range(diag_idx + 1, len(A)):
-        curr_lambda = A[row_idx, diag_idx] / curr_diagonal_number
-        A[row_idx, :] = calc_new_row(curr_lambda, A[row_idx, :], A[diag_idx, :])
-        b[row_idx] = calc_new_row(curr_lambda, b[row_idx], b[diag_idx])
-
-
-def calc_new_row(curr_lambda, curr_row, comp_row):
-    for i in range(0, len(curr_row)):
-        curr_row[i] = curr_row[i] - curr_lambda * comp_row[i]
-    return curr_row
+    return x
