@@ -9,9 +9,9 @@ def ableitung(funktion):
 x = symbols("x")  # Unbekannten hier definieren
 
 # Beispielaufrufe
-# funktion = sympy.exp(x)  # Für e^x
-# funktion = sympy.sin(x)
-# funktion = sympy.cos(x)
+# funktion = exp(x)  # Für e^x
+# funktion = sin(x)
+# funktion = cos(x)
 # funktion = log(x)
 # funktion = log(x, 2) # Mit Basis 2
 funktion = (x**3 + 4) ** -2  # Für (x^3 + 4)^(-2)
