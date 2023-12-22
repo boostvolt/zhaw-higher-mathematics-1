@@ -2,8 +2,7 @@ from sympy import symbols, diff, cos, sin, pi, log
 
 
 def ableitung(funktion):
-    ableitung = diff(funktion, x)
-    return ableitung
+    return diff(funktion, x)
 
 
 x = symbols("x")  # Unbekannten hier definieren
