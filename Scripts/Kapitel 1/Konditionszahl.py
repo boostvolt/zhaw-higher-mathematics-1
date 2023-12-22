@@ -19,7 +19,7 @@ def konditionszahl(funktion, variable, punkt):
 variable = symbols("x")  # Unbekannte hier definieren (x, y, z etc.)
 funktion = sin(
     variable
-)  # Die Funktion hier angeben, beachte mit sympy Sachen wie cos, sin, exp zu benutzen!
+)  # Die Funktion hier angeben, beachte mit sympy Sachen wie cos, sin, exp zu benutzen! Einige sind schon oben importiert
 # funktion = exp(variable)
 punkt = 2  # Der Punkt (x), an dem du die Konditionszahl berechnen möchtest
 
