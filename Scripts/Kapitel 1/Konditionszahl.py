@@ -1,5 +1,4 @@
-from sympy import symbols, diff, pi
-import sympy
+from sympy import symbols, diff, pi, exp, log, cos, sin
 
 
 def konditionszahl(funktion, variable, punkt):
@@ -18,8 +17,10 @@ def konditionszahl(funktion, variable, punkt):
 # Beispielaufruf
 
 variable = symbols("x")  # Unbekannte hier definieren (x, y, z etc.)
-# funktion = sympy.sin(variable)  # Die Funktion hier angeben, beachte mit sympy Sachen wie cos, sin, exp zu benutzen!
-funktion = sympy.exp(variable)
+funktion = sin(
+    variable
+)  # Die Funktion hier angeben, beachte mit sympy Sachen wie cos, sin, exp zu benutzen!
+# funktion = exp(variable)
 punkt = 2  # Der Punkt (x), an dem du die Konditionszahl berechnen möchtest
 
 
