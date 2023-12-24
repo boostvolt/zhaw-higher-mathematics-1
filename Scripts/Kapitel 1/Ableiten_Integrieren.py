@@ -1,4 +1,4 @@
-from sympy import symbols, diff, cos, sin, pi, log
+from sympy import symbols, diff, cos, sin, pi, log, exp
 
 
 def ableitung(funktion):
@@ -13,7 +13,8 @@ x = symbols("x")  # Unbekannten hier definieren
 # funktion = cos(x)
 # funktion = log(x)
 # funktion = log(x, 2) # Mit Basis 2
-funktion = (x**3 + 4) ** -2  # Für (x^3 + 4)^(-2)
+# funktion = (x**3 + 4) ** -2  # Für (x^3 + 4)^(-2)
+funktion = 1 - exp(x)
 
 resultat = ableitung(funktion)
 print(f"Die Ableitung von {funktion} ist: {resultat}")
