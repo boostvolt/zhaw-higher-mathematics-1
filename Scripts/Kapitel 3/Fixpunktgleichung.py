@@ -41,7 +41,6 @@ toleranz = 10**-6
 start_fixpunktiteration_toleranz(startwert, toleranz)
 start_fixpunktiteration_anzahl_iterationen(startwert, 5)
 
-
 # x = symbols("x")
 # Funktion muss schon nach x auflöst sein!
 # funktion = exp(x) - exp(1)
