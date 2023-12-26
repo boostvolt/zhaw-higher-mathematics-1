@@ -1,5 +1,5 @@
-import numpy.linalg as l
 import numpy as np
+import numpy.linalg as l
 
 
 def serie_9(A, A_tilde, b, b_tilde):

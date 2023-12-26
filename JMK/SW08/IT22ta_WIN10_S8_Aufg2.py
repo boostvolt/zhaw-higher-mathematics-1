@@ -15,8 +15,9 @@ Example: A = np.array([[1,2,-1],[4,-2,6],[3,1,0]])
 @author: knaa
 """
 
-import numpy as np
 import timeit
+
+import numpy as np
 
 
 def Serie8_Aufg2(A):

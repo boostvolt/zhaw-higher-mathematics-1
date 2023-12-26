@@ -16,5 +16,5 @@ while 1.0 + q_min != q_min:
 print("Maschinengenauigkeit (q_min) beträgt:", q_min)
 
 # Wir erhalten ein q_min von: 9007199254740992.0
-# Diese Zahl hat ebenfalls 16 signifikante Stellen.  
+# Diese Zahl hat ebenfalls 16 signifikante Stellen.
 # Sowohl q_min und 1 als auch eps und 1 liegen also 16 Stellen auseinander.

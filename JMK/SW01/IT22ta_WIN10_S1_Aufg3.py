@@ -1,5 +1,6 @@
-import numpy as np
 import timeit
+
+import numpy as np
 
 # Factorial of 6 is 720
 
