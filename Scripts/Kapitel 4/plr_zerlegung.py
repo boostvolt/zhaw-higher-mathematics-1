@@ -4,7 +4,9 @@ import numpy as np
 def a_in_plr_zerlegen(A, debug=False):
     A = np.array(A)
     if len(A.shape) != 2 or A.shape[0] != A.shape[1]:
-        raise ValueError("A muss eine quadratische Matrix sein, also die Form (n,n) haben.")
+        raise ValueError(
+            "A muss eine quadratische Matrix sein, also die Form (n,n) haben."
+        )
 
     n = len(A)
 
@@ -84,9 +86,13 @@ def lgs_nach_y_loesen(L, P, b, debug=False):
     P = np.array(P)
     b = np.array(b)
     if len(L.shape) != 2 or L.shape[0] != L.shape[1]:
-        raise ValueError("L muss eine quadratische Matrix sein, also die Form (n,n) haben.")
+        raise ValueError(
+            "L muss eine quadratische Matrix sein, also die Form (n,n) haben."
+        )
     if len(P.shape) != 2 or P.shape[0] != P.shape[1]:
-        raise ValueError("P muss eine quadratische Matrix sein, also die Form (n,n) haben.")
+        raise ValueError(
+            "P muss eine quadratische Matrix sein, also die Form (n,n) haben."
+        )
     if len(b.shape) != 2 or b.shape[1] != 1:
         raise ValueError("b muss ein Vektor der Form (n,1) sein.")
     if P.shape[0] != L.shape[0] or P.shape[0] != b.shape[0]:
@@ -115,7 +121,9 @@ def lgs_nach_x_loesen(R, y, debug=False):
     R = np.array(R)
     y = np.array(y)
     if len(R.shape) != 2 or R.shape[0] != R.shape[1]:
-        raise ValueError("R muss eine quadratische Matrix sein, also die Form (n,n) haben.")
+        raise ValueError(
+            "R muss eine quadratische Matrix sein, also die Form (n,n) haben."
+        )
     if len(y.shape) != 2 or y.shape[1] != 1:
         raise ValueError("y muss ein Vektor der Form (n,1) sein.")
     if R.shape[0] != b.shape[0]:
