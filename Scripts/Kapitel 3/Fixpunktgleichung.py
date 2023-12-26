@@ -35,6 +35,7 @@ def start_fixpunktiteration_anzahl_iterationen(startwert, anzahl_iterationen):
         print(f"x_{i} = {previous_value} -> {next_x_value}")
 
 def abstossender_anziehender_fixpunkt_mit_x0(funktion, x, value):
+    #Ableitung einer Funktion
     abgeleitete_funktion = diff(funktion, x)
     result = abgeleitete_funktion.subs(x, value)
     print ("Die abgeleitete Funktion ist {} und ergibt {} mit dem Startwert {}".format(abgeleitete_funktion, result.evalf(), value))
