@@ -42,7 +42,7 @@ start_fixpunktiteration_toleranz(startwert, toleranz)
 start_fixpunktiteration_anzahl_iterationen(startwert, 5)
 
 # x = symbols("x")
-# Funktion muss schon nach x auflöst sein!
+# Funktion muss schon nach x aufgelöst sein!
 # funktion = exp(x) - exp(1)
 # startwert = -2.5
 # toleranz = 10**-5
