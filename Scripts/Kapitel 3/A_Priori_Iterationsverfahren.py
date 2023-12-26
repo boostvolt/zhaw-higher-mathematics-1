@@ -21,10 +21,11 @@ def a_priori_mit_bekannter_toleranz(alpha, x0, x1, tol):
 
 
 x = symbols("x")
-funktion = exp(x)
+funktion = exp(x) - exp(1)
+abgeleitete_funktion = diff(funktion, x)
 start_intervall = -3
 end_intervall = -2
-alpha = getAlpha(funktion, start_intervall, end_intervall)
+alpha = getAlpha(abgeleitete_funktion, start_intervall, end_intervall)
 
 # Funktion mit x0 eingesetzt bzw 1 Iterationsschritt
 x1 = np.exp(-2.5) - np.exp(1)
