@@ -1,0 +1,28 @@
+name: Integration
+
+on: [workflow_dispatch, push]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+
+      - name: Set up Conda
+        uses: s-weigand/setup-conda@v1
+
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff --output-format=github .
+        continue-on-error: true
