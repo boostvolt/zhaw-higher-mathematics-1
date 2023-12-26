@@ -34,7 +34,7 @@ def start_fixpunktiteration_anzahl_iterationen(startwert, anzahl_iterationen):
 
 # Hier Funktion definieren
 x = symbols("x")
-# Funktion muss schon nach x auflöst sein!
+# Funktion muss schon nach x aufgelöst sein!
 funktion = (230 * x**4 + 18 * x**3 + 9 * x**2 - 9) / 221
 startwert = 0
 toleranz = 10**-6
