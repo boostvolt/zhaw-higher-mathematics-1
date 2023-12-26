@@ -2,6 +2,7 @@ import numpy as np
 from sympy import diff, exp, symbols, log
 
 
+# Das Alpha, welches beim 2. Schritt vom Banach berechnet wird. Auch genannt Lipschitz-Konstante L.
 def getAlpha(funktion, start, end):
     y = diff(funktion, x)
     y_werte = np.array([])
