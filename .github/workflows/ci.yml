@@ -26,6 +26,9 @@ jobs:
           pip install ruff
           ruff --output-format=github .
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         continue-on-error: true
 >>>>>>> 5d5bdf9 (chore: add health files)
+=======
+>>>>>>> 6df3d02 (refactor: apply ruff format and lint)
