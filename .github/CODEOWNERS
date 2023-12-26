@@ -1,10 +1,2 @@
 # Scripts owners
-<<<<<<< HEAD
-<<<<<<< HEAD
 Scripts/**              @boostvolt @M1nhKh4nh @sunnyfisch
-=======
-Scripts/*               @boostvolt @M1nhKh4nh @sunnyfisch
->>>>>>> 5d5bdf9 (chore: add health files)
-=======
-Scripts/**              @boostvolt @M1nhKh4nh @sunnyfisch
->>>>>>> 6df3d02 (refactor: apply ruff format and lint)
