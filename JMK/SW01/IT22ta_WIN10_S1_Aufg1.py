@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 x = np.arange(-10, 10, 0.1)
 f = (x**5) - (5 * (x**4)) - (30 * (x**3)) + (110 * (x**2)) + (29 * x) - 105

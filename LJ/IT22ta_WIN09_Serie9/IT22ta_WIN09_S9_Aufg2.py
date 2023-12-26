@@ -1,5 +1,5 @@
-import numpy.linalg as lin
 import numpy as np
+import numpy.linalg as lin
 
 
 def serie_9(A, A_tilde, b, b_tilde):
@@ -12,8 +12,10 @@ def serie_9(A, A_tilde, b, b_tilde):
 
     dx_max = np.nan
 
-    if lin.cond(A, np.inf) * (lin.norm((A - A_tilde), np.inf) / lin.norm(A, np.inf)) < 1:
-
+    if (
+        lin.cond(A, np.inf) * (lin.norm((A - A_tilde), np.inf) / lin.norm(A, np.inf))
+        < 1
+    ):
         dx_max = condARel * (relA + bRel)
 
     dx_obs = xRel
