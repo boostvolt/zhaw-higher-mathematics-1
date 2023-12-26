@@ -1,4 +1,4 @@
-from sympy import symbols, diff, cos, sin, pi, log, exp
+from sympy import diff, exp, symbols
 
 
 def ableitung(funktion):
