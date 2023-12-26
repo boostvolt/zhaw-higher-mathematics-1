@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from IT22ta_WIN09_S9_Aufg2 import serie_9
 
 rng = np.random.default_rng(42)
