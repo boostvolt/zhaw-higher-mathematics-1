@@ -1,4 +1,4 @@
-from sympy import symbols, diff, pi, exp, log, cos, sin
+from sympy import symbols, diff, exp
 import numpy as np
 
 
