@@ -55,7 +55,7 @@ def abstossender_anziehender_fixpunkt_mit_fixpunkt(funktion, x, startwert, endwe
         print("Beweis: 0 < f'(x̄) <= f'({}) = {} < 1".format(startwert, result_ableitung_startwert))
     elif (1 < result_ableitung_startwert and result_ableitung_startwert <= result_ableitung_fixpunkt and result_ableitung_fixpunkt <= result_ableitung_endwert):
         print("Abstossender Fixpunkt mit Startwert {} und Endwert {}".format(startwert, endwert))
-        print("Beweis: 1 < f'({}) <= f'(x̄) <= f'({})".format(startwert, result_ableitung_startwert, endwert))
+        print("Beweis: 1 < f'({}) <= f'(x̄) <= f'({})".format(startwert, endwert))
 
 # Variable definieren
 x = symbols("x")
@@ -88,3 +88,4 @@ abstossender_anziehender_fixpunkt_mit_fixpunkt(funktion, x, -3, -2, fixpunkt)
 # Abstossender Fixpunkt
 abstossender_anziehender_fixpunkt_mit_x0(funktion, x, 2)
 abstossender_anziehender_fixpunkt_mit_fixpunkt(funktion, x, 1, 2, 2)
+funktion = log(x)
