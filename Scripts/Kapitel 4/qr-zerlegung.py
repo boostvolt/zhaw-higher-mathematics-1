@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 
 
@@ -9,6 +11,10 @@ def householder(u):
     u_tilde = u / np.linalg.norm(u)
 
     return np.identity(u.shape[0]) - 2 * np.matmul(u_tilde, u_tilde.T)
+
+
+def sign(x):
+    return int(math.copysign(1, x))
 
 
 def a_in_qr_zerlegen(A, debug=False):
@@ -29,7 +35,7 @@ def a_in_qr_zerlegen(A, debug=False):
         a = R[i:, i].reshape((n - i, 1))
         e = np.zeros((n - i, 1))
         e[0, 0] = 1
-        v = a + a[0, 0] / np.abs(a[0, 0]) * np.linalg.norm(a) * e
+        v = a + sign(a[0, 0]) * np.linalg.norm(a) * e
         u = v / np.linalg.norm(v)
         H = householder(u)
         Q_i = np.identity(n)
