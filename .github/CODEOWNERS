@@ -1,2 +1,6 @@
 # Scripts owners
+<<<<<<< HEAD
 Scripts/**              @boostvolt @M1nhKh4nh @sunnyfisch
+=======
+Scripts/*               @boostvolt @M1nhKh4nh @sunnyfisch
+>>>>>>> 5d5bdf9 (chore: add health files)

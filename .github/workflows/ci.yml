@@ -25,3 +25,7 @@ jobs:
         run: |
           pip install ruff
           ruff --output-format=github .
+<<<<<<< HEAD
+=======
+        continue-on-error: true
+>>>>>>> 5d5bdf9 (chore: add health files)
