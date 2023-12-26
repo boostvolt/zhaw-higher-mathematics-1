@@ -1,5 +1,5 @@
 import numpy as np
-from sympy import diff, exp, symbols, log
+from sympy import symbols
 
 
 def fixpunktiteration(value):
