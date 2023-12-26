@@ -1,5 +1,5 @@
 import numpy as np
-from sympy import symbols
+from sympy import diff, exp, log, symbols
 
 
 def fixpunktiteration(value):
@@ -18,6 +18,8 @@ def start_fixpunktiteration_toleranz(startwert, toleranz):
         next_x_value = fixpunktiteration(previous_value)
         print(f"x_{iteration_count} = {previous_value} -> {next_x_value}")
         iteration_count = iteration_count + 1
+    # Gebe Fixpunkt zurück
+    return next_x_value
 
 
 def start_fixpunktiteration_anzahl_iterationen(startwert, anzahl_iterationen):
@@ -32,18 +34,80 @@ def start_fixpunktiteration_anzahl_iterationen(startwert, anzahl_iterationen):
         print(f"x_{i} = {previous_value} -> {next_x_value}")
 
 
-# Hier Variable für Funktion definieren
-x = symbols("x")
-# Hier Funktion definieren, welche schon nach x aufgelöst sein muss!
-funktion = (230 * x**4 + 18 * x**3 + 9 * x**2 - 9) / 221
-startwert = 0
-toleranz = 10**-6
-start_fixpunktiteration_toleranz(startwert, toleranz)
-start_fixpunktiteration_anzahl_iterationen(startwert, 5)
+def abstossender_anziehender_fixpunkt_mit_gegebenem_fixpunkt(funktion, x, fixpunkt):
+    # Ableitung einer Funktion
+    abgeleitete_funktion = diff(funktion, x)
+    result = abgeleitete_funktion.subs(x, fixpunkt)
+    print(
+        "Die abgeleitete Funktion ist {} und ergibt {} mit dem Fixpunkt {}".format(
+            abgeleitete_funktion, result.evalf(), fixpunkt
+        )
+    )
+    if abs(result) < 1:
+        print("Es handelt sich hier um einen anziehenden Fixpunkt")
+    else:
+        print("Es handelt sich hier um einen abstossenden Fixpunkt")
 
-# x = symbols("x")
-# Funktion muss schon nach x aufgelöst sein!
-# funktion = exp(x) - exp(1)
-# startwert = -2.5
-# toleranz = 10**-5
-# start_fixpunktiteration(startwert, toleranz)
+
+def abstossender_anziehender_fixpunkt_mit_intervall(
+    funktion, x, startwert, endwert
+):
+    # Ableitung einer Funktion
+    abgeleitete_funktion = diff(funktion, x)
+    result_ableitung_startwert = abgeleitete_funktion.subs(x, startwert)
+    result_ableitung_endwert = abgeleitete_funktion.subs(x, endwert)
+    if (
+        result_ableitung_startwert < 1
+        and result_ableitung_endwert.evalf() < 1
+    ):
+        print("Anziehender Fixpunkt im Intervall [{}, {}]".format(startwert, endwert))
+        print(
+            "Beweis: f'({}) = {} <= f'(x̄) <= f'({}) = {} < 1".format(
+                startwert, result_ableitung_startwert, endwert, result_ableitung_endwert
+            )
+        )
+    elif (
+        1 < result_ableitung_startwert and 1 < result_ableitung_endwert
+    ):
+        print(
+            "Abstossender Fixpunkt im Intervall [{}, {}]".format(
+                startwert, endwert
+            )
+        )
+        print("Beweis: 1 < f'({}) = {} <= f'(x̄) <= f'({}) = {}".format(startwert, result_ableitung_startwert, endwert, result_ableitung_endwert))
+
+
+# Variable definieren
+x = symbols("x")
+# Funktion definieren
+# Funktion muss schon nach x auflöst sein!
+funktion = (230 * x**4 + 18 * x**3 + 9 * x**2 - 9) / 221
+# Startwert & Endwert definieren
+startwert = 0
+endwert = 1
+# Toleranz definieren
+toleranz = 10**-6
+# Fixpunkt mit Toleranz berechnen
+fixpunkt = start_fixpunktiteration_toleranz(startwert, toleranz)
+# Herausfinden ob Fixpunkt anziehend oder abstossend mit x0 Wert
+abstossender_anziehender_fixpunkt_mit_gegebenem_fixpunkt(funktion, x, startwert)
+# Herausfinden ob Fixpunkt anziehend oder abstossend mit Fixpunkt
+abstossender_anziehender_fixpunkt_mit_intervall(
+    funktion, x, startwert, endwert, fixpunkt
+)
+# Berechne Fixpunkt mit angegebener Anzahl Iterationen
+start_fixpunktiteration_anzahl_iterationen(startwert, 10)
+
+
+# Beispiel 1
+funktion = exp(x) - exp(1)
+startwert = -3
+toleranz = 10**-5
+# Anziehender Fixpunkt
+fixpunkt = start_fixpunktiteration_toleranz(startwert, toleranz)
+abstossender_anziehender_fixpunkt_mit_gegebenem_fixpunkt(funktion, x, startwert)
+abstossender_anziehender_fixpunkt_mit_intervall(funktion, x, -3, -2, fixpunkt)
+# Abstossender Fixpunkt
+abstossender_anziehender_fixpunkt_mit_gegebenem_fixpunkt(funktion, x, 2)
+abstossender_anziehender_fixpunkt_mit_intervall(funktion, x, 1, 2, 2)
+funktion = log(x)
