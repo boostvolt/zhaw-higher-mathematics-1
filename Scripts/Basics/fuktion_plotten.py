@@ -3,8 +3,8 @@ import numpy as np
 
 # 100 Werte für x von 0 bis 1 gleichmässig verteilt
 x = np.linspace(0, 1, 100)
-# Werte für x eingeben 0 bis 100
-#x = np.arange(0, 1)
+# Werte für x eingeben 0 bis 1 mit Schrittlänge 0.1
+#x = np.arange(0, 1, 0.1)
 f1 = (x + np.log(x))
 #f2 = (x - 2) ** 7
 
