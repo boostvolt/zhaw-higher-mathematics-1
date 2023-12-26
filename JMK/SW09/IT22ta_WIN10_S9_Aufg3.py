@@ -1,11 +1,12 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from IT22ta_WIN10_S9_Aufg2 import serie_9
 
 rng = np.random.default_rng()
 
 # Use this to get the same random numbers every time (reproducibility)
 # rng = np.random.default_rng(42)
+
 
 def random_iteration():
     A = rng.random((100, 100))
@@ -38,5 +39,5 @@ plt.legend()
 plt.grid()
 plt.show()
 
-# Yes, dx_max is a realistic upper limit for dx_obs in this experimental set-up. 
+# Yes, dx_max is a realistic upper limit for dx_obs in this experimental set-up.
 # Because dx_obs is never greater than dx_max.

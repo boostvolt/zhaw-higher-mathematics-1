@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from IT22ta_WIN10_S6_Aufg2 import gaussian_algorithm
 
 A = np.array(
