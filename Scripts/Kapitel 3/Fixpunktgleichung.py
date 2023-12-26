@@ -1,5 +1,5 @@
 import numpy as np
-from sympy import diff, exp, symbols, log
+from sympy import diff, exp, log, symbols
 
 
 def fixpunktiteration(value):
@@ -22,7 +22,6 @@ def start_fixpunktiteration_toleranz(startwert, toleranz):
     return next_x_value
 
 
-
 def start_fixpunktiteration_anzahl_iterationen(startwert, anzahl_iterationen):
     previous_value = startwert
     next_x_value = -100
@@ -34,28 +33,53 @@ def start_fixpunktiteration_anzahl_iterationen(startwert, anzahl_iterationen):
         next_x_value = fixpunktiteration(previous_value)
         print(f"x_{i} = {previous_value} -> {next_x_value}")
 
+
 def abstossender_anziehender_fixpunkt_mit_x0(funktion, x, value):
-    #Ableitung einer Funktion
+    # Ableitung einer Funktion
     abgeleitete_funktion = diff(funktion, x)
     result = abgeleitete_funktion.subs(x, value)
-    print ("Die abgeleitete Funktion ist {} und ergibt {} mit dem Startwert {}".format(abgeleitete_funktion, result.evalf(), value))
-    if (abs(result) < 1):
-        print ("Es handelt sich hier um einen anziehenden Fixpunkt")
+    print(
+        "Die abgeleitete Funktion ist {} und ergibt {} mit dem Startwert {}".format(
+            abgeleitete_funktion, result.evalf(), value
+        )
+    )
+    if abs(result) < 1:
+        print("Es handelt sich hier um einen anziehenden Fixpunkt")
     else:
-        print ("Es handelt sich hier um einen abstossenden Fixpunkt")
+        print("Es handelt sich hier um einen abstossenden Fixpunkt")
 
-def abstossender_anziehender_fixpunkt_mit_fixpunkt(funktion, x, startwert, endwert, fixpunkt):
-    #Ableitung einer Funktion
+
+def abstossender_anziehender_fixpunkt_mit_fixpunkt(
+    funktion, x, startwert, endwert, fixpunkt
+):
+    # Ableitung einer Funktion
     abgeleitete_funktion = diff(funktion, x)
     result_ableitung_fixpunkt = abgeleitete_funktion.subs(x, fixpunkt)
     result_ableitung_startwert = abgeleitete_funktion.subs(x, startwert)
     result_ableitung_endwert = abgeleitete_funktion.subs(x, endwert)
-    if (0 < result_ableitung_fixpunkt.evalf() and result_ableitung_fixpunkt.evalf() <= result_ableitung_endwert.evalf() and result_ableitung_endwert.evalf() < 1):
+    if (
+        0 < result_ableitung_fixpunkt.evalf()
+        and result_ableitung_fixpunkt.evalf() <= result_ableitung_endwert.evalf()
+        and result_ableitung_endwert.evalf() < 1
+    ):
         print("Anziehender Fixpunkt mit Startwert {}".format(startwert))
-        print("Beweis: 0 < f'(x̄) <= f'({}) = {} < 1".format(startwert, result_ableitung_startwert))
-    elif (1 < result_ableitung_startwert and result_ableitung_startwert <= result_ableitung_fixpunkt and result_ableitung_fixpunkt <= result_ableitung_endwert):
-        print("Abstossender Fixpunkt mit Startwert {} und Endwert {}".format(startwert, endwert))
+        print(
+            "Beweis: 0 < f'(x̄) <= f'({}) = {} < 1".format(
+                startwert, result_ableitung_startwert
+            )
+        )
+    elif (
+        1 < result_ableitung_startwert
+        and result_ableitung_startwert <= result_ableitung_fixpunkt
+        and result_ableitung_fixpunkt <= result_ableitung_endwert
+    ):
+        print(
+            "Abstossender Fixpunkt mit Startwert {} und Endwert {}".format(
+                startwert, endwert
+            )
+        )
         print("Beweis: 1 < f'({}) <= f'(x̄) <= f'({})".format(startwert, endwert))
+
 
 # Variable definieren
 x = symbols("x")
@@ -72,12 +96,14 @@ fixpunkt = start_fixpunktiteration_toleranz(startwert, toleranz)
 # Herausfinden ob Fixpunkt anziehend oder abstossend mit x0 Wert
 abstossender_anziehender_fixpunkt_mit_x0(funktion, x, startwert)
 # Herausfinden ob Fixpunkt anziehend oder abstossend mit Fixpunkt
-abstossender_anziehender_fixpunkt_mit_fixpunkt(funktion, x, startwert, endwert, fixpunkt)
+abstossender_anziehender_fixpunkt_mit_fixpunkt(
+    funktion, x, startwert, endwert, fixpunkt
+)
 # Berechne Fixpunkt mit angegebener Anzahl Iterationen
 start_fixpunktiteration_anzahl_iterationen(startwert, 10)
 
 
-#Beispiel 1
+# Beispiel 1
 funktion = exp(x) - exp(1)
 startwert = -3
 toleranz = 10**-5
