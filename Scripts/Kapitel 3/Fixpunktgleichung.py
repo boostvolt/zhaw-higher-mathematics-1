@@ -50,7 +50,7 @@ def abstossender_anziehender_fixpunkt_mit_x0(funktion, x, value):
 
 
 def abstossender_anziehender_fixpunkt_mit_fixpunkt(
-    funktion, x, startwert, endwert, fixpunkt
+    funktion, x, startwert, endwert
 ):
     # Ableitung einer Funktion
     abgeleitete_funktion = diff(funktion, x)
@@ -58,20 +58,17 @@ def abstossender_anziehender_fixpunkt_mit_fixpunkt(
     result_ableitung_startwert = abgeleitete_funktion.subs(x, startwert)
     result_ableitung_endwert = abgeleitete_funktion.subs(x, endwert)
     if (
-        0 < result_ableitung_fixpunkt.evalf()
-        and result_ableitung_fixpunkt.evalf() <= result_ableitung_endwert.evalf()
+        result_ableitung_startwert < 1
         and result_ableitung_endwert.evalf() < 1
     ):
         print("Anziehender Fixpunkt mit Startwert {}".format(startwert))
         print(
-            "Beweis: 0 < f'(x̄) <= f'({}) = {} < 1".format(
-                startwert, result_ableitung_startwert
+            "Beweis: f'({}) = {} <= f'(x̄) <= f'({}) = {} < 1".format(
+                startwert, result_ableitung_startwert, endwert, result_ableitung_endwert
             )
         )
     elif (
-        1 < result_ableitung_startwert
-        and result_ableitung_startwert <= result_ableitung_fixpunkt
-        and result_ableitung_fixpunkt <= result_ableitung_endwert
+        1 < result_ableitung_startwert and 1 < result_ableitung_endwert
     ):
         print(
             "Abstossender Fixpunkt mit Startwert {} und Endwert {}".format(
