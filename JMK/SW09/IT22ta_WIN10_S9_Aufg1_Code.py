@@ -1,5 +1,5 @@
-import numpy.linalg as l
 import numpy as np
+import numpy.linalg as l
 
 A = np.array([[1, 0, 2], [0, 1, 0], [10 ** (-4), 0, 10 ** (-4)]])
 bTilde = np.array([1, 1, 1.66658 * 10 ** (-7)])

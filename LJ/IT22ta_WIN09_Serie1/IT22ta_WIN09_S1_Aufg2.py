@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 # Beispiel: p(x) = x^2 + x + 1 in [0,1]
 # Für x erwarten wir alle Werte zwischen 0 und 1 im Abstand von 0.1
@@ -8,7 +7,7 @@ import matplotlib.pyplot as plt
 # Für pint(x) erwarten wir array([0., 0.10533333, 0.22266667, 0.354, 0.50133333,0.66666667, 0.852, 1.05933333, 1.29066667, 1.548])
 
 
-def polynom (vector, min, max):
+def polynom(vector, min, max):
     if len(vector.shape) != 1 or vector.size == 0:
         raise ValueError("Error: a must be a non-empty row or column vector")
 
@@ -23,7 +22,7 @@ def polynom (vector, min, max):
     i = 0
     vector_p = np.arange(len(vector) - 1, dtype="float64")
     while i < len(vector) - 1:
-        vector_p[i] =  vector[i] * (len(vector) - i - 1)
+        vector_p[i] = vector[i] * (len(vector) - i - 1)
         i += 1
 
     dp = 0
@@ -32,12 +31,12 @@ def polynom (vector, min, max):
         dp += vector_p[i] * x ** (len(vector_p) - i - 1)
         i += 1
 
-    vector_p_int = np.arange(len(vector) + 1,  dtype="float64")
+    vector_p_int = np.arange(len(vector) + 1, dtype="float64")
     i = 0
     while i < len(vector):
         vector_p_int[i] = vector[i] / (len(vector) - i)
         i += 1
-    vector_p_int[len(vector_p_int) -1] = 0
+    vector_p_int[len(vector_p_int) - 1] = 0
 
     pint = 0
     i = 0
@@ -45,6 +44,7 @@ def polynom (vector, min, max):
         pint += vector_p_int[i] * x ** (len(vector_p_int) - i - 1)
         i += 1
 
-    return(x,p,dp,pint)
+    return (x, p, dp, pint)
 
-print(polynom(np.array([1,1,1]), 0, 1))
+
+print(polynom(np.array([1, 1, 1]), 0, 1))

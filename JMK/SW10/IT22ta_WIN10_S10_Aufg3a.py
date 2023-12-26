@@ -1,5 +1,5 @@
-import numpy.linalg as l
 import numpy as np
+import numpy.linalg as l
 
 
 def aufgabe_3_a(A, b, x_0, tol, opt="jacobi"):

@@ -1,25 +1,21 @@
-import numpy as np
 import matplotlib.pyplot as plt
-import numpy.linalg as lin
-import timeit
-
-from sympy import false, true
+import numpy as np
 from IT22ta_WIN09_S10_Aufg3a import IT22ta_WIN09_S10_Aufg3a
-from IT22ta_WIN09_S6_Aufg2 import obereDreiecksMatrix
+from sympy import false, true
 
-#Aufgabe 3b
+# Aufgabe 3b
 dim = 3000
-A = np.diag(np.diag(np.ones((dim,dim))*4000))+np.ones((dim,dim))
+A = np.diag(np.diag(np.ones((dim, dim)) * 4000)) + np.ones((dim, dim))
 print(A)
-dum1 = np.arange(1,int(dim/2+1),dtype=np.float64).reshape((int(dim/2),1)) 
-dum2 = np.arange(int(dim/2),0,-1,dtype=np.float64).reshape((int(dim/2),1)) 
-x = np.append(dum1,dum2,axis=0)
-b = A@x
-x0 = np.zeros((dim,1))
+dum1 = np.arange(1, int(dim / 2 + 1), dtype=np.float64).reshape((int(dim / 2), 1))
+dum2 = np.arange(int(dim / 2), 0, -1, dtype=np.float64).reshape((int(dim / 2), 1))
+x = np.append(dum1, dum2, axis=0)
+b = A @ x
+x0 = np.zeros((dim, 1))
 tol = 1e-4
 opt = true
 
-#Linalg.solve() Laufzeit
+# Linalg.solve() Laufzeit
 # t1 = timeit.timeit(lambda: np.linalg.solve(A, b), number=1)
 # #Jacobi Laufzeit
 # t2 = timeit.timeit(lambda: IT22ta_WIN09_S10_Aufg3a(A, b, x0, tol, opt), number=1)
@@ -42,7 +38,7 @@ opt = true
 # Jedoch bricht unsere Gauss-Funktion schon nach 28 Sekunden ab aufgrund eines Overflows.
 # In Realität würde unsere Funktion daher noch deutlich länger benötigen als die eben berechnete Zeit.
 
-#Aufgabe 3c
+# Aufgabe 3c
 [xJacobi, _, _] = IT22ta_WIN09_S10_Aufg3a(A, b, x0, tol, true)
 [xGaussSeidel, _, _] = IT22ta_WIN09_S10_Aufg3a(A, b, x0, tol, false)
 plt.figure()
@@ -55,6 +51,6 @@ plt.title("Absoluter Fehler pro Vektorelement")
 plt.grid()
 plt.show()
 
-#Die Jacobi Funktion hat konstant einen absoluten Fehler von ungefähr 4.1 * 10^-5
-#Die Gauss-Seidel Funktion schwankt stark zwischen 7.8 * 10^-6 und 0.
-#Das heisst die Gauss-Seidel Funktion berechnet das Ergebnis genauer als die Jacobi-Funktion.
+# Die Jacobi Funktion hat konstant einen absoluten Fehler von ungefähr 4.1 * 10^-5
+# Die Gauss-Seidel Funktion schwankt stark zwischen 7.8 * 10^-6 und 0.
+# Das heisst die Gauss-Seidel Funktion berechnet das Ergebnis genauer als die Jacobi-Funktion.

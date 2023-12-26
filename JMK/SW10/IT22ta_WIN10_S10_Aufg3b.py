@@ -1,8 +1,10 @@
-import numpy.linalg as l
-import numpy as np
-import matplotlib.pyplot as plt
 import timeit
+
+import matplotlib.pyplot as plt
+import numpy as np
+import numpy.linalg as l
 from IT22ta_WIN10_S6_Aufg2 import gaussian_algorithm
+
 # from IT22ta_WIN10_S6_Aufg2_optimized import gaussian_algorithm
 from IT22ta_WIN10_S10_Aufg3a import aufgabe_3_a
 
