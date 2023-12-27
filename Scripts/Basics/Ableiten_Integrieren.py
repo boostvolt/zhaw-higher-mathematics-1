@@ -19,8 +19,9 @@ x = symbols("x")  # Unbekannten hier definieren
 # funktion = 1 - x**2
 funktion = sqrt(1 - x)
 
-resultat = ableitung(funktion)
-print(f"Die Ableitung von {funktion} ist: {resultat}")
+abgeleitete_funktion = ableitung(funktion)
+print(f"Die Ableitung von {funktion} ist: {abgeleitete_funktion}")
 
-# Hier X einsetzen und das Ergebnis für die abgeleitete Funktion erhalten
-print(resultat.subs(x, 0.5))
+# Hier X einsetzen und das Ergebnis für die (abgeleitete) Funktion erhalten
+print(abgeleitete_funktion.subs(x, 0.8))
+print(funktion.subs(x, 0.8))
