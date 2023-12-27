@@ -51,3 +51,15 @@ a_priori_mit_bekannter_toleranz(alpha, -2.5, x1, 10**-5)
 # x1 = funktion.subs(x, x0)
 # toleranz = 10**-6
 # a_priori_mit_bekannter_toleranz(alpha, x0, x1, toleranz)
+
+# Beispiel 3
+# x = symbols("x")
+# funktion = 2 * exp(-x / 2)
+# start_intervall = 0.8
+# end_intervall = 1.4
+# alpha = getAlpha(funktion, start_intervall, end_intervall)
+
+# # Funktion mit x0 eingesetzt um x1 zu bekommen
+# x1 = funktion.subs(x, 0.8)
+# print(x1)
+# a_priori_mit_bekannter_toleranz(alpha, 0.8, x1, 10**-6)

@@ -6,7 +6,6 @@ def ableitung(funktion):
 
 
 x = symbols("x")  # Unbekannten hier definieren
-
 # Beispielaufrufe
 # funktion = exp(x)  # Für e^x
 # funktion = sin(x)
@@ -25,3 +24,10 @@ print(f"Die Ableitung von {funktion} ist: {abgeleitete_funktion}")
 # Hier X einsetzen und das Ergebnis für die (abgeleitete) Funktion erhalten
 print(abgeleitete_funktion.subs(x, 0.8))
 print(funktion.subs(x, 0.8))
+
+
+# Beispiel mehrere Variablen
+# x, e, t = symbols("x, e. t")  # Unbekannten hier definieren
+# funktion = x - e * sin(x) - t
+# abgeleitete_funktion = ableitung(funktion)
+# print(f"Die Ableitung von {funktion} ist: {abgeleitete_funktion}")
