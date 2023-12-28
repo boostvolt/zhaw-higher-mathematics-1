@@ -42,17 +42,17 @@ def abstossender_anziehender_fixpunkt_mit_intervall(funktion, x, startwert, endw
         )
 
 
-# # Variable definieren
+# Variable definieren
 x = symbols("x")
 
-# # Funktion definieren
-# # Funktion muss schon nach x auflöst sein!
+# Funktion definieren
+# Funktion muss schon nach x auflöst sein!
 funktion = (230 * x**4 + 18 * x**3 + 9 * x**2 - 9) / 221
 
 # Bekannter Fixpunkt
 fixpunkt = 0
 
-# # Herausfinden ob Fixpunkt anziehend oder abstossend mit gegebenem Fixpunkt
+# Herausfinden ob Fixpunkt anziehend oder abstossend mit gegebenem Fixpunkt
 abstossender_anziehender_fixpunkt_mit_gegebenem_fixpunkt(funktion, x, fixpunkt)
 
 funktion = exp(x) - exp(1)
@@ -74,3 +74,9 @@ abstossender_anziehender_fixpunkt_mit_intervall(funktion, x, -3, -2)
 # startwert = -3
 # endwert = -2
 # abstossender_anziehender_fixpunkt_mit_intervall(funktion, x, 1, 2)
+
+# funktion = sqrt(2 - exp(x))
+# abstossender_anziehender_fixpunkt_mit_gegebenem_fixpunkt(funktion, x, 0.53727)
+
+# funktion = log(2 - x**2)
+# abstossender_anziehender_fixpunkt_mit_gegebenem_fixpunkt(funktion, x, 0.53727)
