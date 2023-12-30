@@ -1,4 +1,4 @@
-from sympy import diff, exp, symbols
+from sympy import diff, sqrt, symbols
 
 
 def ableitung(funktion):
@@ -6,7 +6,6 @@ def ableitung(funktion):
 
 
 x = symbols("x")  # Unbekannten hier definieren
-
 # Beispielaufrufe
 # funktion = exp(x)  # Für e^x
 # funktion = sin(x)
@@ -14,7 +13,21 @@ x = symbols("x")  # Unbekannten hier definieren
 # funktion = log(x)
 # funktion = log(x, 2) # Mit Basis 2
 # funktion = (x**3 + 4) ** -2  # Für (x^3 + 4)^(-2)
-funktion = 1 - exp(x)
+# funktion = 1 - exp(x)
+# funktion = 1 + (1 / x) + (1 / x**2)
+# funktion = 1 - x**2
+funktion = sqrt(1 - x)
 
-resultat = ableitung(funktion)
-print(f"Die Ableitung von {funktion} ist: {resultat}")
+abgeleitete_funktion = ableitung(funktion)
+print(f"Die Ableitung von {funktion} ist: {abgeleitete_funktion}")
+
+# Hier X einsetzen und das Ergebnis für die (abgeleitete) Funktion erhalten
+print(abgeleitete_funktion.subs(x, 0.8))
+print(funktion.subs(x, 0.8))
+
+
+# Beispiel mehrere Variablen
+# x, e, t = symbols("x, e. t")  # Unbekannten hier definieren
+# funktion = x - e * sin(x) - t
+# abgeleitete_funktion = ableitung(funktion)
+# print(f"Die Ableitung von {funktion} ist: {abgeleitete_funktion}")
