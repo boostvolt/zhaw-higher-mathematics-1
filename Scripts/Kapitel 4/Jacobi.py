@@ -51,5 +51,5 @@ toleranz = 10**-4
 
 # Fixpunkt mit Toleranz berechnen
 fixpunkt = jacobi_mit_toleranz(startvektor)
-# start_fixpunktiteration_anzahl_iterationen(startvektor, 5)
+# jacobi_mit_anzahl_iterationen(startvektor, 5)
 print("Fixpunkt: ", fixpunkt)
