@@ -50,6 +50,6 @@ b = np.array([19, 5, 34])
 [L, R, D] = A_Matrix_in_D_L_R_unterteilen.unterteilen(A)
 
 # Fixpunkt mit Toleranz berechnen
-# fixpunkt = start_fixpunktiteration_toleranz(startvektor)
+# fixpunkt = gauss_seidel_mit_toleranz(startvektor)
 # Fixpunkt mit Anzahl Iterationsschritten berechnen
 gauss_seidel_mit_anzahl_iterationen(startvektor, 4)
