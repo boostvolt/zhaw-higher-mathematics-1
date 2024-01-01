@@ -4,7 +4,7 @@ from sympy import false, true
 import A_Matrix_in_D_L_R_unterteilen
 
 
-def fixpunktiteration(prev_x):
+def gs_fixpunktiteration(prev_x):
     return -lin.inv(D + L).dot(R).dot(prev_x) + lin.inv(D + L).dot(b)
 
 def vergleiche_toleranz(prev_value, next_value):
@@ -13,7 +13,7 @@ def vergleiche_toleranz(prev_value, next_value):
             return false
     return true
     
-def start_fixpunktiteration_toleranz(startvektor):
+def gs_start_fixpunktiteration_toleranz(startvektor):
     previous_value = startvektor
     next_x_value = np.full(len(previous_value), -100)
     iteration_count = 0
@@ -22,7 +22,7 @@ def start_fixpunktiteration_toleranz(startvektor):
         # Nur für die erste Iteration nicht machen
         if iteration_count > 0:
             previous_value = next_x_value
-        next_x_value = fixpunktiteration(previous_value)
+        next_x_value = gs_fixpunktiteration(previous_value)
         print(f"x^{iteration_count} = {previous_value} -> {next_x_value}")
         iteration_count = iteration_count + 1
     print("Fixpunkt: ", next_x_value)
@@ -31,7 +31,7 @@ def start_fixpunktiteration_toleranz(startvektor):
     
 
 
-def start_fixpunktiteration_anzahl_iterationen(startvektor, anzahl_iterationen):
+def gs_start_fixpunktiteration_anzahl_iterationen(startvektor, anzahl_iterationen):
     previous_value = startvektor
     next_x_value = -100
 
@@ -39,7 +39,7 @@ def start_fixpunktiteration_anzahl_iterationen(startvektor, anzahl_iterationen):
         # Nur für die erste Iteration nicht machen
         if i > 0:
             previous_value = next_x_value
-        next_x_value = fixpunktiteration(previous_value)
+        next_x_value = gs_fixpunktiteration(previous_value)
         print(f"x^{i} = {previous_value} -> {next_x_value}")
 
 # Variablen definieren
@@ -52,4 +52,4 @@ b = np.array([19, 5, 34])
 # Fixpunkt mit Toleranz berechnen
 # fixpunkt = start_fixpunktiteration_toleranz(startvektor)
 # Fixpunkt mit Anzahl Iterationsschritten berechnen
-start_fixpunktiteration_anzahl_iterationen(startvektor, 4)
+gs_start_fixpunktiteration_anzahl_iterationen(startvektor, 4)
