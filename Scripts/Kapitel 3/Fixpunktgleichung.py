@@ -25,16 +25,13 @@ def start_fixpunktiteration_toleranz(startwert, toleranz):
 def start_fixpunktiteration_anzahl_iterationen(startwert, anzahl_iterationen):
     previous_value = startwert
     next_x_value = -100
-    x_list = [startwert]
 
     for i in range(anzahl_iterationen):
         # Nur für die erste Iteration nicht machen
         if i > 0:
             previous_value = next_x_value
         next_x_value = fixpunktiteration(previous_value)
-        x_list.append(next_x_value)
         print(f"x_{i} = {previous_value} -> {next_x_value}")
-    return x_list
 
 
 # Variable definieren
