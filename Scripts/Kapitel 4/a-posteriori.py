@@ -1,4 +1,3 @@
-from math import ceil
 import numpy as np
 import numpy.linalg as lin
 from sympy import false
@@ -36,7 +35,7 @@ def a_posteriori(B, x_n_1, x_n, debug=false):
 
     if debug:
         
-        print(f"||x^(n) - x̄||∞ ≤ ((||B||∞)^n / (1-||B||∞)) * ||x^(n) - x^(n-1)||∞")
+        print("||x^(n) - x̄||∞ ≤ ((||B||∞)^n / (1-||B||∞)) * ||x^(n) - x^(n-1)||∞")
         print(f"||x^({anzahl_iterationen}) - x̄||∞ ≤ (||B||∞ / (1-||B||∞)) * ||x^({anzahl_iterationen}) - x^({anzahl_iterationen-1})||∞")
         print(f"||x^({anzahl_iterationen}) - x̄||∞ ≤ ({B_norm} / (1-{B_norm})) * ||{x_n} - {x_n_1}||∞")
         print(f"||x^({anzahl_iterationen}) - x̄||∞ ≤ ({B_norm} / {1-B_norm}) * ||{x_n-x_n_1}||∞")
@@ -52,7 +51,6 @@ def a_posteriori(B, x_n_1, x_n, debug=false):
 # Variablen definieren
 x_0 = np.array([1, -1, 3])
 anzahl_iterationen = 3
-toleranz = 10**(-4)
 A = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
 b = np.array([19, 5, 34])
 [L, R, D] = A_Matrix_in_D_L_R_unterteilen.unterteilen(A)
