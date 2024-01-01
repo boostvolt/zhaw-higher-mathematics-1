@@ -27,8 +27,11 @@ def a_in_qr_zerlegen(A, debug=False):
     n = A.shape[0]
     R = np.copy(A)
     Q = np.identity(n)
+    A_i = np.copy(A)
 
     if debug:
+        R_result_print = ""
+        Q_result_print = "Q = "
         print("-- A in A =  Q · R zerlegen")
 
     for i in range(n - 1):
@@ -41,25 +44,42 @@ def a_in_qr_zerlegen(A, debug=False):
         Q_i = np.identity(n)
         Q_i[i:, i:] = H
 
-        R = np.matmul(Q_i, R)
+        R = np.matmul(Q_i.T, R)
         Q = np.matmul(Q, Q_i.T)
+        A_i = np.matmul(Q_i, A_i)
 
         if debug:
+            np.set_printoptions(
+                suppress=True
+            )  # Unterdrückt die wissenschaftliche Schreibweise
             print()
-            print("---- Iteration {}".format(i + 1))
-            print("a_{}:".format(i + 1))
-            print(a)
-            print("e_{}:".format(i + 1))
-            print(e)
-            print("v_{}:".format(i + 1))
-            print(v)
-            print("u_{}:".format(i + 1))
-            print(u)
-            print("H_{}:".format(i + 1))
-            print(H)
-            print("Q_{}:".format(i + 1))
-            print(Q_i)
+            print("--------------------- Iteration {}".format(i + 1))
+            print(f"a_{i + 1}: \n {a}")
+            print(f"e_{i + 1}: \n {e}")
+            print("---------------------")
+            betragPrint = "sqrt(" + " + ".join([f"({elem}^2)" for elem in a]) + ")"
+            print(
+                f"v_{i + 1} = \n{a}\n + sign({a[0,0]}) * {betragPrint}\n * \n{e}\n = \n{v}"
+            )
+            print("---------------------")
+            betragPrint = "sqrt(" + " + ".join([f"({elem}^2)" for elem in v]) + ")"
+            print(f"u_{i + 1} = 1 / {betragPrint} * \n{v}\n = \n {u}")
+            print("---------------------")
+            print(
+                f"H_{i + 1} = \n {np.identity(u.shape[0])} \n - 2 * \n{u}\n * \n{u.T}\n =\n {H} "
+            )
+            print("---------------------")
+            print(f"Q_{i + 1} = \n{Q_i}")
+            print("---------------------")
+            print(f"Q_{i + 1} * A_{i + 1} = \n {A_i} = A_{i + 2}")
+            print("---------------------")
 
+            Q_result_print += f"Q_{i + 1}.T * "
+            R_result_print = "".join([f"Q_{i + 1} * ", R_result_print])
+
+    if debug:
+        print(f"{Q_result_print} = \n {Q}")
+        print(f"R = {R_result_print} A = \n {R}")
     return Q, R
 
 
@@ -106,3 +126,17 @@ def qr_zerlegung(A, b, debug=False):
 A = np.array([[2, 2, -1], [1, -1, 0], [2, 0, 1]])
 b = np.array([[-1 / 3], [-11 / 3], [2 / 3]])
 qr_zerlegung(A, b, debug=True)
+
+# A = np.array([[4, 1, 0], [3, 2, 1], [5, 2, -1]])
+# A = np.array([[1, 2, -1], [4, -2, 6], [3, 1, 0]])
+# A = np.array([[0, 1], [2, 3]])
+# A = np.array([[3, 1], [4, 2]])
+# A = np.array([[1, 0, 0], [1, 2, 0], [-np.sqrt(2), -np.sqrt(2), np.sqrt(2)]])
+# a_in_qr_zerlegen(A, debug=True)
+
+# Zur Überprüfung von Q und R
+# Q, R = np.linalg.qr(A)
+# print("Matrix Q:")
+# print(Q)
+# print("\nMatrix R:")
+# print(R)
