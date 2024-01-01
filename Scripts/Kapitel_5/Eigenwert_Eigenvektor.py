@@ -32,7 +32,7 @@ def charakteristisches_polynom(A):
     print(f"det(A - λI) = det({A - λ * E})")
     try:
         print(f"Polynom p(x) = {polynom} = {factorized_polynom}".replace("lambda", "λ"))
-    except:
+    except:  # noqa: E722
         print(f"Polynom p(x) = {polynom} = {factorized_polynom}")
 
     return polynom, factorized_polynom
@@ -49,7 +49,7 @@ def berechne_eigenwert_mit_charakteristischem_polynom(A):
         expr = "".join(expr)
         expr = expr.removesuffix(", ")
         print(f"{expr}")
-    except:
+    except:  # noqa: E722
         print("λ = ", lambda_aka_eigenwerte)
     print("=> Eigenwerte = ", lambda_aka_eigenwerte)
 
