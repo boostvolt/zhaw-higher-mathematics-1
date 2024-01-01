@@ -4,7 +4,7 @@ from sympy import false, true
 import A_Matrix_in_D_L_R_unterteilen
 
 
-def jacobi_fixpunktiteration(prev_x):
+def jacobi(prev_x):
     return -lin.inv(D).dot(L+R).dot(prev_x) + lin.inv(D).dot(b)
 
 def vergleiche_toleranz(prev_value, next_value):
@@ -13,7 +13,7 @@ def vergleiche_toleranz(prev_value, next_value):
             return false
     return true
     
-def jacobi_start_fixpunktiteration_toleranz(startvektor):
+def jacobi_mit_toleranz(startvektor):
     previous_value = startvektor
     next_x_value = np.full(len(previous_value), -100)
     iteration_count = 0
@@ -22,14 +22,14 @@ def jacobi_start_fixpunktiteration_toleranz(startvektor):
         # Nur für die erste Iteration nicht machen
         if iteration_count > 0:
             previous_value = next_x_value
-        next_x_value = fixpunktiteration(previous_value)
+        next_x_value = jacobi(previous_value)
         print(f"x^{iteration_count} = {previous_value} -> {next_x_value}")
         iteration_count = iteration_count + 1
     # Gebe Fixpunkt zurück
     return next_x_value
 
 
-def jacobi_start_fixpunktiteration_anzahl_iterationen(startvektor, anzahl_iterationen):
+def jacobi_mit_anzahl_iterationen(startvektor, anzahl_iterationen):
     previous_value = startvektor
     next_x_value = -100
 
@@ -37,7 +37,7 @@ def jacobi_start_fixpunktiteration_anzahl_iterationen(startvektor, anzahl_iterat
         # Nur für die erste Iteration nicht machen
         if i > 0:
             previous_value = next_x_value
-        next_x_value = fixpunktiteration(previous_value)
+        next_x_value = jacobi(previous_value)
         print(f"x^{i} = {previous_value} -> {next_x_value}")
 
 # Variablen definieren
@@ -50,6 +50,6 @@ toleranz = 10**-4
 
 
 # Fixpunkt mit Toleranz berechnen
-fixpunkt = jacobi_start_fixpunktiteration_toleranz(startvektor)
+fixpunkt = jacobi_mit_toleranz(startvektor)
 # start_fixpunktiteration_anzahl_iterationen(startvektor, 5)
 print("Fixpunkt: ", fixpunkt)
