@@ -34,13 +34,16 @@ def gauss_seidel_mit_toleranz(startvektor):
 def gauss_seidel_mit_anzahl_iterationen(startvektor, anzahl_iterationen):
     previous_value = startvektor
     next_x_value = -100
+    x_values = [previous_value]
 
     for i in range(anzahl_iterationen):
         # Nur für die erste Iteration nicht machen
         if i > 0:
             previous_value = next_x_value
         next_x_value = gauss_seidel(previous_value)
+        x_values.append(next_x_value)
         print(f"x^{i} = {previous_value} -> {next_x_value}")
+    return x_values
 
 # Variablen definieren
 toleranz = 10**-4
