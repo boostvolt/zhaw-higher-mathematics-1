@@ -10,12 +10,18 @@ from Gauss_Seidel import gauss_seidel_mit_anzahl_iterationen
 def jacobi_a_priori(debug=false):
     B = -lin.inv(D).dot(L+R)
     x_1 = jacobi_mit_anzahl_iterationen(x_0, 2)[1]
+    if debug:
+        print("")
+        print("A-Priori von Jacobi mit einzelnen Schritten")
     a_priori(B, x_0, x_1, debug)
 
 # Gauss-Seidel a-priori
 def gauss_seidel_a_priori(x_1, debug=false):
     B = -lin.inv(D+L).dot(R)
     x_1 = gauss_seidel_mit_anzahl_iterationen(x_0, 2)[1]
+    if debug:
+        print("")
+        print("A-Priori von Gauss-Seidel mit einzelnen Schritten")
     a_priori(B, x_0, x_1, debug)
 
 # Allgemeines a-priori Verfahren
@@ -25,8 +31,6 @@ def a_priori(B, x_0, x_1, debug=false):
     n = np.log(((1-B_norm) / x_norm) * toleranz) / np.log(B_norm)
 
     if debug:
-        print("")
-        print("A-Priori von Jacobi mit einzelnen Schritten")
         print(f"||x^(n) - x̄||∞ ≤ ((||B||∞)^n / (1-||B||∞)) * ||x^(1) - x^(0)||∞ ≤ {toleranz}")
         print(f"||x^(n) - x̄||∞ ≤ (({B_norm})^n / (1-{B_norm})) * ||{x_1} - {x_0}||∞ ≤ {toleranz}")
         print(f"||x^(n) - x̄||∞ ≤ (({B_norm})^n / {1-B_norm}) * ||{x_1-x_0}||∞ ≤ {toleranz}")
