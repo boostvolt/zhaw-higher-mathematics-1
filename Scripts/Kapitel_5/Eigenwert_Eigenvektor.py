@@ -41,9 +41,10 @@ def charakteristisches_polynom(A):
 def berechne_eigenwert_mit_charakteristischem_polynom(A):
     polynom, factorized_polynom = charakteristisches_polynom(A)
     lambda_aka_eigenwerte = sp.solvers.solve(polynom, sp.symbols("lambda"))
+    roots = sp.roots(polynom)
     try:
         expr = [
-            f"({i + 1}) λ = {lambda_aka_eigenwerte[i]}, "
+            f"({i + 1}) λ = {lambda_aka_eigenwerte[i]} mit algebraischer Vielfachheit {roots[lambda_aka_eigenwerte[i]]} \n"
             for i in range(len(lambda_aka_eigenwerte))
         ]
         expr = "".join(expr)
@@ -51,14 +52,14 @@ def berechne_eigenwert_mit_charakteristischem_polynom(A):
         print(f"{expr}")
     except:  # noqa: E722
         print("λ = ", lambda_aka_eigenwerte)
-    print("=> Eigenwerte = ", lambda_aka_eigenwerte)
+    print(f"=> Eigenwerte = {lambda_aka_eigenwerte}")
 
 
 def ev_zum_ew(A, eigenwert):
     b = np.zeros(A.shape[0])
     A_new = A - eigenwert * np.eye(A.shape[0])
-    R = a_in_obere_dreicksmatrix(A_new, True)
-    geometrische_vielfachheit(R, eigenwert)
+    R = a_in_obere_dreicksmatrix(A_new)
+    geometrische_vielfachheit(R)
     try:
         # Solve the system of equations
         solution = np.linalg.solve(A_new, b)
@@ -125,12 +126,14 @@ def geometrische_vielfachheit(R):
 
 # A = np.array([[0, -1], [1, 0]])
 # A = np.array([[2, 5], [-1, -2]])
-A = np.array([[0, 1, 1], [1, 0, 1], [1, 1, 0]])
+# A = np.array([[4, -1], [1, 2]])
+# A = np.array([[3, 0, -2], [-2, 0, 1], [2, 1, 0]])
+A = np.array([[1, 1, 1], [0, 2, 0], [1, -1, 1]])
 
 berechne_eigenwert_mit_charakteristischem_polynom(A)
 
 # Wenn Eigenwert keine komplexe Zahl ist
-# ev_zum_ew(A, -1)
+ev_zum_ew(A, 2)
 
 # Wenn Eigenwert eine komplexe Zahl ist, dann manuell die diagonale Matrix mit der komplexen Zahl subtrahieren
 # A = sp.Matrix([[2 - 1j, 5], [-1, -2 - 1j]])
@@ -139,7 +142,7 @@ berechne_eigenwert_mit_charakteristischem_polynom(A)
 # Wichtig! Eigenraum selber von Eigenvektoren ablesen, parametrisierte Lösung kann momentan nicht weiterverarbeitet werden um den Raum zu bestimmen
 
 # Zur Überprüfung der Eigenwerte
-eigenwert(A)
+# eigenwert(A)
 
 # Zur Überprüfung der Eigenvektoren
-eigenvektor(A)
+# eigenvektor(A)
