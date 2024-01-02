@@ -2,6 +2,13 @@ import numpy as np
 from sympy import diff, sympify
 
 
+def konditionszahl_bewertung(konditionszahl):
+    if konditionszahl <= 10:
+        return "Gut konditioniert"
+
+    return "Schlecht konditioniert"
+
+
 def konditionszahl(funktion, werte):
     funktion = sympify(funktion)
     symbols = list(funktion.free_symbols)
@@ -31,3 +38,4 @@ funktion = "1 - exp(x)"
 werte = {"x": 1}
 
 print(f"Konditionszahl: {konditionszahl(funktion, werte).evalf()}")
+print(f"Bewertung: {konditionszahl_bewertung(konditionszahl(funktion, werte))}")

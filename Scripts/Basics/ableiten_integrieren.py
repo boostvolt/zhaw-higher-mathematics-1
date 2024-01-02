@@ -7,7 +7,7 @@ def ableiten(funktion):
 
     if len(symbols) == 0:
         raise ValueError("Keine Unbekannte in Funktion gefunden.")
-    
+
     return diff(funktion, symbols[0])
 
 
