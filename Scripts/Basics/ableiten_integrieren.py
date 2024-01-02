@@ -1,17 +1,16 @@
 from sympy import diff, sympify
 
 
-def ableiten(funktion, symbols=None):
+def ableiten(funktion, symbol=None):
     funktion = sympify(funktion)
 
-    if symbols is None:
-        symbols = list(funktion.free_symbols)
+    if symbol is None:
+        return diff(funktion)
 
-    if len(symbols) == 0:
-        raise ValueError("Keine Unbekannte in Funktion gefunden.")
+    return diff(funktion, symbol)
 
-    return diff(funktion, symbols[0])
 
+########################################################################################
 
 # Funktion definieren
 funktion = "sqrt(1 - x)"

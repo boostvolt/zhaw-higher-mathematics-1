@@ -16,7 +16,7 @@ def konditionszahl(funktion, werte):
     if len(symbols) == 0:
         raise ValueError("Keine Unbekannte in Funktion gefunden.")
 
-    abgeleitete_funktion = diff(funktion, symbols[0])
+    abgeleitete_funktion = diff(funktion)
 
     funktion_wert = funktion.subs(werte).evalf()
     abgeleitete_funktion_wert = abgeleitete_funktion.subs(werte).evalf()
@@ -30,6 +30,8 @@ def konditionszahl(funktion, werte):
         funktion_wert
     )
 
+
+########################################################################################
 
 # Funktion definieren
 funktion = "1 - exp(x)"
