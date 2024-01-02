@@ -1,3 +1,5 @@
+from math import ceil
+
 import numpy as np
 from sympy import diff, log, sympify
 
@@ -41,9 +43,13 @@ interval = [-3, -2]
 toleranz = 10**-5
 
 print(f"α = {get_alpha(funktion, interval)}")
-print(
-    f"Anzahl Iterationsschritte: {a_priori_mit_bekannter_toleranz(get_alpha(funktion, interval), x_0[list(x_0.keys())[0]], sympify(funktion).subs(x_0).evalf(), toleranz)}"
+anzahl_schritte = a_priori_mit_bekannter_toleranz(
+    get_alpha(funktion, interval),
+    x_0[list(x_0.keys())[0]],
+    sympify(funktion).subs(x_0).evalf(),
+    toleranz,
 )
+print(f"Anzahl Iterationsschritte: {anzahl_schritte} bzw. {ceil(anzahl_schritte)}")
 
 # Andere Beispiele aus den Aufgaben
 # Beispiel 1
