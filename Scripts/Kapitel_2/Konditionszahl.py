@@ -1,29 +1,33 @@
-from sympy import symbols, diff, exp
 import numpy as np
+from sympy import diff, sympify
 
 
-def konditionszahl(funktion, x, punkt):
-    ableitung_funktion = diff(funktion, x)
+def konditionszahl(funktion, werte):
+    funktion = sympify(funktion)
+    symbols = list(funktion.free_symbols)
 
-    f_wert = funktion.subs(x, punkt).evalf()
-    f_ableitung_wert = ableitung_funktion.subs(x, punkt).evalf()
+    if len(symbols) == 0:
+        raise ValueError("Keine Unbekannte in Funktion gefunden.")
 
-    if f_ableitung_wert != 0:
-        konditionszahl_wert = (np.abs(f_ableitung_wert) * abs(punkt)) / abs(f_wert)
-        return konditionszahl_wert
-    else:
-        return "Konditionszahl kann nicht berechnet werden (Ableitung an diesem Punkt ist Null)."
+    abgeleitete_funktion = diff(funktion, symbols[0])
+
+    funktion_wert = funktion.subs(werte).evalf()
+    abgeleitete_funktion_wert = abgeleitete_funktion.subs(werte).evalf()
+
+    if abgeleitete_funktion_wert == 0:
+        raise ValueError(
+            "Konditionszahl kann nicht berechnet werden (Ableitung an diesem Punkt ist Null)."
+        )
+
+    return (np.abs(abgeleitete_funktion_wert) * abs(werte[str(symbols[0])])) / abs(
+        funktion_wert
+    )
 
 
-# Beispielaufrufe
+# Funktion definieren
+funktion = "1 - exp(x)"
 
-x = symbols("x")
-# funktion = sin(x)  # Die Funktion hier angeben, beachte mit sympy Sachen wie cos, sin, exp zu benutzen! Einige sind schon oben importiert
-# funktion = exp(x)
+# Werte für Unbekannte definieren
+werte = {"x": 1}
 
-funktion = 1 - exp(x)
-punkt = 1  # Der Punkt (x), an dem du die Konditionszahl berechnen möchtest
-resultat = konditionszahl(funktion, x, punkt)
-print(
-    f"Die Konditionszahl der Funktion {funktion} an x = {punkt} ist: {resultat.evalf()}"
-)
+print(f"Konditionszahl: {konditionszahl(funktion, werte).evalf()}")
