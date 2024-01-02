@@ -1,9 +1,11 @@
 from sympy import diff, sympify
 
 
-def ableiten(funktion):
+def ableiten(funktion, symbols=None):
     funktion = sympify(funktion)
-    symbols = list(funktion.free_symbols)
+
+    if symbols is None:
+        symbols = list(funktion.free_symbols)
 
     if len(symbols) == 0:
         raise ValueError("Keine Unbekannte in Funktion gefunden.")
@@ -24,6 +26,7 @@ funktion = "sqrt(1 - x)"
 # funktion = "1 - x**2"
 
 print(f"Ableitung: {ableiten(funktion)}")
+# print(f"Ableitung: {ableiten(funktion, 'x')}") # Für Ableitung nach x (bei mehreren freien Variablen
 
 # Werte für Unbekannte definieren
 werte = {"x": 0.8}
