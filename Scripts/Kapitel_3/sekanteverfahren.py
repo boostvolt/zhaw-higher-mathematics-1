@@ -38,10 +38,10 @@ funktion_1 = sympify("(x**2 + 1) ** 2 - 10")
 funktion_2 = sympify("5 / ((x - 1) ** 2 + 1)")
 funktion = funktion_1 - funktion_2
 
-# Wert x_0 definieren
+# Wert für x_0 definieren
 x_0 = {"x": 1.6}
 
-# Wert x_1 definieren
+# Wert für x_1 definieren
 x_1 = {"x": 1.7}
 
 # Anzahl der Iterationen

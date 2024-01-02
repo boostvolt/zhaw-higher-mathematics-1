@@ -32,7 +32,7 @@ def newtonverfahren_anzahl_iterationen(funktion, x_0, iterationen, debug=False):
 # Funktion definieren
 funktion = "exp(x**2) + x**-3 - 10"
 
-# Wert x_0 definieren
+# Wert für x_0 definieren
 x_0 = {"x": 2}
 
 # Anzahl der Iterationen
