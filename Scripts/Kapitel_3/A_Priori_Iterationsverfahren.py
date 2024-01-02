@@ -26,11 +26,13 @@ def a_priori_mit_bekannter_toleranz(alpha, x_0, x_1, toleranz):
     return log((toleranz * (1 - alpha)) / (np.abs(x_1 - x_0))) / log(alpha)
 
 
+########################################################################################
+
 # Funktion definieren
 funktion = "exp(x) - exp(1)"
 
-# Werte für Unbekannte definieren
-werte = {"x": -2.5}
+# Wert für x_0 definieren
+x_0 = {"x": -2.5}
 
 # Intervall definieren
 interval = [-3, -2]
@@ -40,37 +42,24 @@ toleranz = 10**-5
 
 print(f"α = {get_alpha(funktion, interval)}")
 print(
-    f"Anzahl Iterationsschritte: {a_priori_mit_bekannter_toleranz(get_alpha(funktion, interval), werte['x'], sympify(funktion).subs(werte).evalf(), toleranz)}"
+    f"Anzahl Iterationsschritte: {a_priori_mit_bekannter_toleranz(get_alpha(funktion, interval), x_0[list(x_0.keys())[0]], sympify(funktion).subs(x_0).evalf(), toleranz)}"
 )
 
 # Andere Beispiele aus den Aufgaben
-
 # Beispiel 1
-# x = symbols("x")
-# funktion = (230 * x**4 + 18 * x**3 + 9 * x**2 - 9) / 221
-# alpha = getAlpha(funktion, -0.5, 0.5)
-# a_priori_mit_bekannter_toleranz(alpha, 0, -0.0407239819004525, 10**-9)
+# funktion = "(230 * x**4 + 18 * x**3 + 9 * x**2 - 9) / 221"
+# werte = {"x": 0}
+# interval = [-0.5, 0.5]
+# toleranz = 10**-9
 
 # Beispiel 2
-# x = symbols("x")
-# funktion = sqrt(1 - x)
-# start_intervall = 0.5
-# end_intervall = 0.71
-# alpha = getAlpha(funktion, start_intervall, end_intervall)
-
-# x0 = 0.5
-# x1 = funktion.subs(x, x0)
+# funktion = "sqrt(1 - x)"
+# werte = {"x": 0.5}
+# interval = [0.5, 0.71]
 # toleranz = 10**-6
-# a_priori_mit_bekannter_toleranz(alpha, x0, x1, toleranz)
 
 # Beispiel 3
-# x = symbols("x")
-# funktion = 2 * exp(-x / 2)
-# start_intervall = 0.8
-# end_intervall = 1.4
-# alpha = getAlpha(funktion, start_intervall, end_intervall)
-
-# # Funktion mit x0 eingesetzt um x1 zu bekommen
-# x1 = funktion.subs(x, 0.8)
-# print(x1)
-# a_priori_mit_bekannter_toleranz(alpha, 0.8, x1, 10**-6)
+# funktion = "2 * exp(-x / 2)"
+# werte = {"x": 0.8}
+# interval = [0.8, 1.4]
+# toleranz = 10**-6
