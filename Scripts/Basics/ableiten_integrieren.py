@@ -1,14 +1,14 @@
 from sympy import diff, sympify
 
 
-def ableitung(funktion):
+def ableiten(funktion):
     funktion = sympify(funktion)
     symbols = list(funktion.free_symbols)
 
     if len(symbols) == 0:
         raise ValueError("Keine Unbekannte in Funktion gefunden.")
-    else:
-        return diff(funktion, symbols[0])
+    
+    return diff(funktion, symbols[0])
 
 
 # Funktion definieren
@@ -23,10 +23,10 @@ funktion = "sqrt(1 - x)"
 # funktion = "1 + (1 / x) + (1 / x**2)"
 # funktion = "1 - x**2"
 
-print(f"Ableitung: {ableitung(funktion)}")
+print(f"Ableitung: {ableiten(funktion)}")
 
 # Werte für Unbekannte definieren
-values = {"x": 0.8}
+werte = {"x": 0.8}
 
-print(f"Ergebniss von Ableitung: {ableitung(funktion).subs(values)}")
-print(f"Ergebniss von Funktion: {sympify(funktion).subs(values)}")
+print(f"Ergebniss von Ableitung: {ableiten(funktion).subs(werte)}")
+print(f"Ergebniss von Funktion: {sympify(funktion).subs(werte)}")
