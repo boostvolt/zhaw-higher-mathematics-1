@@ -1,36 +1,47 @@
-from math import ceil
-
 import numpy as np
-from sympy import diff, exp, log, symbols
+from sympy import diff, log, sympify
 
 
 # Das Alpha, welches beim 2. Schritt vom Banach berechnet wird. Auch genannt Lipschitz-Konstante L.
-def getAlpha(funktion, start, end):
-    y = diff(funktion, x)
-    y_werte = np.array([])
-    for i in np.linspace(start, end, 100):
-        y_werte = np.append(y_werte, y.subs(x, i).evalf())
+def get_alpha(funktion, interval):
+    funktion = sympify(funktion)
+    symbols = list(funktion.free_symbols)
 
-    print("α = ", np.max(np.abs(y_werte)))
+    if len(symbols) == 0:
+        raise ValueError("Keine Unbekannte in Funktion gefunden.")
+
+    if len(interval) != 2:
+        raise ValueError("Intervall muss aus zwei Werten bestehen.")
+
+    y_werte = np.array([])
+    for i in np.linspace(interval[0], interval[1], 100):
+        y_werte = np.append(
+            y_werte, diff(funktion, symbols[0]).subs(symbols[0], i).evalf()
+        )
+
     return np.max(np.abs(y_werte))
 
 
-def a_priori_mit_bekannter_toleranz(alpha, x0, x1, tol):
-    iterationen = log((tol * (1 - alpha)) / (np.abs(x1 - x0))) / log(alpha)
-    print(
-        f"Anzahl Iterationsschritte mit Toleranz {tol}: {iterationen.evalf()} bzw. {ceil(iterationen.evalf())}"
-    )
+def a_priori_mit_bekannter_toleranz(alpha, x_0, x_1, toleranz):
+    return log((toleranz * (1 - alpha)) / (np.abs(x_1 - x_0))) / log(alpha)
 
 
-x = symbols("x")
-funktion = exp(x) - exp(1)
-start_intervall = -3
-end_intervall = -2
-alpha = getAlpha(funktion, start_intervall, end_intervall)
+# Funktion definieren
+funktion = "exp(x) - exp(1)"
 
-# Funktion mit x0 eingesetzt um x1 zu bekommen
-x1 = funktion.subs(x, -2.5)
-a_priori_mit_bekannter_toleranz(alpha, -2.5, x1, 10**-5)
+# Werte für Unbekannte definieren
+werte = {"x": -2.5}
+
+# Intervall definieren
+interval = [-3, -2]
+
+# Toleranz definieren
+toleranz = 10**-5
+
+print(f"α = {get_alpha(funktion, interval)}")
+print(
+    f"Anzahl Iterationsschritte: {a_priori_mit_bekannter_toleranz(get_alpha(funktion, interval), werte['x'], sympify(funktion).subs(werte).evalf(), toleranz)}"
+)
 
 # Andere Beispiele aus den Aufgaben
 
