@@ -136,9 +136,9 @@ qr_zerlegung(A, b, debug=True)
 # A = np.array([[4, 1, 0], [3, 2, 1], [5, 2, -1]])
 # A = np.array([[1, 2, -1], [4, -2, 6], [3, 1, 0]])
 # A = np.array([[0, 1], [2, 3]])
-# A = np.array([[3, 1], [4, 2]])
+A = np.array([[3, 1], [4, 2]])
 # A = np.array([[1, 0, 0], [1, 2, 0], [-np.sqrt(2), -np.sqrt(2), np.sqrt(2)]])
-# a_in_qr_zerlegen(A, debug=True)
+a_in_qr_zerlegen(A, debug=True)
 
 # Zur Überprüfung von Q und R
 # Q, R = np.linalg.qr(A)
