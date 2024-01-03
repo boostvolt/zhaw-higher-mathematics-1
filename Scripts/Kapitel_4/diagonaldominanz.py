@@ -1,30 +1,46 @@
 import numpy as np
 
-def is_diagonally_dominant(matrix):
+
+def is_diagonaldominant(matrix, debug=False):
     rows, cols = matrix.shape
-    if (check_zeilendominanz(rows) or check_spaltendominanz(cols)):
-        print("Die Matrix ist diagonaldominant.")
+
+    if check_zeilendominanz(rows, debug) or check_spaltendominanz(cols, debug):
         return True
-    print("Die Matrix ist nicht diagonaldominant.")
+
     return False
 
-def check_zeilendominanz(rows):
+
+def check_zeilendominanz(rows, debug=False):
     for i in range(rows):
         diagonal = abs(matrix[i, i])
         non_diagonal_sum = np.sum(abs(matrix[i, :])) - diagonal
         if diagonal < non_diagonal_sum:
             return False
-    print("Die Matrix ist zeilendominant.")
+
+    if debug:
+        print("Zeilendominant")
+        print()
+
     return True
-def check_spaltendominanz(cols):
+
+
+def check_spaltendominanz(cols, debug=False):
     for i in range(cols):
         diagonal = abs(matrix[i, i])
         non_diagonal_sum = np.sum(abs(matrix[:, i])) - diagonal
         if diagonal < non_diagonal_sum:
             return False
-    print("Die Matrix ist spaltendominant.")
+
+    if debug:
+        print("Spaltendominant")
+        print()
+
     return True
-        
-# Variablen definieren und Funktionsaufruf
+
+
+########################################################################################
+
+# Matrix definieren
 matrix = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
-is_diagonally_dominant(matrix)
+
+print(f"Diagonaldominanz: {is_diagonaldominant(matrix, True)}")
