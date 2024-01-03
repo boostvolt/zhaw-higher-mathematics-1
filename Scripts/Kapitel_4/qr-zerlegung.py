@@ -59,27 +59,33 @@ def a_in_qr_zerlegen(A, debug=False):
             print("---------------------")
             betragPrint = "sqrt(" + " + ".join([f"({elem}^2)" for elem in a]) + ")"
             print(
-                f"v_{i + 1} = \n{a}\n + sign({a[0,0]}) * {betragPrint}\n * \n{e}\n = \n{v}"
+                f"v_{i + 1}: \n {a} \n + sign({a[0,0]}) * {betragPrint} * \n {e} \n = \n {v}"
             )
             print("---------------------")
             betragPrint = "sqrt(" + " + ".join([f"({elem}^2)" for elem in v]) + ")"
-            print(f"u_{i + 1} = 1 / {betragPrint} * \n{v}\n = \n {u}")
+            print(f"u_{i + 1}: \n 1 / {betragPrint} * \n {v} \n = \n {u}")
             print("---------------------")
             print(
-                f"H_{i + 1} = \n {np.identity(u.shape[0])} \n - 2 * \n{u}\n * \n{u.T}\n =\n {H} "
+                f"H_{i + 1}: \n {np.identity(u.shape[0])} \n - 2 * \n {u} \n * \n {u.T} \n = \n {H}"
             )
             print("---------------------")
-            print(f"Q_{i + 1} = \n{Q_i}")
+            print(f"Q_{i + 1}: \n {Q_i}")
             print("---------------------")
-            print(f"Q_{i + 1} * A_{i + 1} = \n {A_i} = A_{i + 2}")
-            print("---------------------")
+            print(f"Q_{i + 1} * A_{i + 1} = A_{i + 2}: \n {A_i}")
 
-            Q_result_print += f"Q_{i + 1}.T * "
+            if i == 0:
+                Q_result_print += f"Q_{i + 1}.T"
+            else:
+                Q_result_print += f" * Q_{i + 1}.T"
+            
             R_result_print = "".join([f"Q_{i + 1} * ", R_result_print])
 
     if debug:
-        print(f"{Q_result_print} = \n {Q}")
-        print(f"R = {R_result_print} A = \n {R}")
+        print()
+        print("--------------------- Abgeschlossene Zerlegung")
+        print(f"{Q_result_print}: \n {Q}")
+        print(f"R = {R_result_print}A: \n {R}")
+
     return Q, R
 
 
