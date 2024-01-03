@@ -70,12 +70,11 @@ print(f"Fixpunkt: {start_fixpunktiteration_toleranz(funktion, x_0, toleranz)}")
 
 # Fixpunkt mit angegebener Anzahl Iterationen berechnen
 # Anzahl der Iterationen
-iterationen = 10
+# iterationen = 10
 
-print()
-print(
-    f"Fixpunkt: {start_fixpunktiteration_anzahl_iterationen(funktion, x_0, iterationen)}"
-)
+# print(
+#     f"Fixpunkt: {start_fixpunktiteration_anzahl_iterationen(funktion, x_0, iterationen)}"
+# )
 
 # Beispiel 1
 # funktion = "exp(-x)"
