@@ -35,7 +35,6 @@ def a_in_lr_zerlegen(A, debug=False):
                     print()
 
     if debug:
-        print()
         print("--------------------- Abgeschlossene Zerlegung")
         print(f"R: \n {R}")
         print(f"L: \n {L}")
@@ -108,17 +107,41 @@ def lgs_nach_x_loesen(R, y, debug=False):
     return x
 
 
-def lr_zerlegung(L, R, b, debug=False):
-    return lgs_nach_x_loesen(R, lgs_nach_y_loesen(L, b, debug), debug)
+def lr_zerlegung(A, b, debug=False):
+    A = np.array(A)
+    b = np.array(b)
+
+    if len(A.shape) != 2 or A.shape[0] != A.shape[1]:
+        raise ValueError(
+            "A muss eine quadratische Matrix sein, also die Form (n,n) haben."
+        )
+    if len(b.shape) != 2 or b.shape[1] != 1:
+        raise ValueError("b muss ein Vektor der Form (n,1) sein.")
+    if A.shape[0] != b.shape[0]:
+        raise ValueError("A und b müssen die gleiche Höhe haben")
+
+    L, R = a_in_lr_zerlegen(A, debug)
+    y = lgs_nach_y_loesen(L, b, debug)
+    x = lgs_nach_x_loesen(R, y, debug)
+
+    return L, R, y, x
 
 
+########################################################################################
+
+# Matrix A definieren
 A = np.array([[20, 30, 10], [10, 17, 6], [2, 3, 2]])
-b = np.array([[5200], [3000], [760]])
-b_neu = np.array([[5720], [3300], [836]])
 
-L, R = a_in_lr_zerlegen(A, True)
-y = lgs_nach_y_loesen(L, b, True)
-x = lgs_nach_x_loesen(R, y, True)
+# Vektor b definieren
+b = np.array([[5200], [3000], [760]])
+
+lr_zerlegung(A, b, True)
+
 # Bei neuem B kann das gleiche L und R verwendet werden von vorher
-y = lgs_nach_y_loesen(L, b_neu, True)
-x = lgs_nach_x_loesen(R, y, True)
+# L, R = a_in_lr_zerlegen(A, True)
+# y = lgs_nach_y_loesen(L, b, True)
+# x = lgs_nach_x_loesen(R, y, True)
+
+# b_neu = np.array([[5720], [3300], [836]])
+# y = lgs_nach_y_loesen(L, b_neu, True)
+# x = lgs_nach_x_loesen(R, y, True)

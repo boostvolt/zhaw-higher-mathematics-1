@@ -77,7 +77,7 @@ def a_in_qr_zerlegen(A, debug=False):
                 Q_result_print += f"Q_{i + 1}.T"
             else:
                 Q_result_print += f" * Q_{i + 1}.T"
-            
+
             R_result_print = "".join([f"Q_{i + 1} * ", R_result_print])
 
     if debug:
@@ -129,16 +129,22 @@ def qr_zerlegung(A, b, debug=False):
     return Q, R, x
 
 
-A = np.array([[2, 2, -1], [1, -1, 0], [2, 0, 1]])
-b = np.array([[-1 / 3], [-11 / 3], [2 / 3]])
-qr_zerlegung(A, b, debug=True)
+########################################################################################
 
+# Matrix A definieren
+A = np.array([[2, 2, -1], [1, -1, 0], [2, 0, 1]])
+
+# Vektor b definieren
+b = np.array([[-1 / 3], [-11 / 3], [2 / 3]])
+
+qr_zerlegung(A, b, True)
+
+# Beispiele aus Zusatzübung
 # A = np.array([[4, 1, 0], [3, 2, 1], [5, 2, -1]])
 # A = np.array([[1, 2, -1], [4, -2, 6], [3, 1, 0]])
 # A = np.array([[0, 1], [2, 3]])
-A = np.array([[3, 1], [4, 2]])
+# A = np.array([[3, 1], [4, 2]])
 # A = np.array([[1, 0, 0], [1, 2, 0], [-np.sqrt(2), -np.sqrt(2), np.sqrt(2)]])
-a_in_qr_zerlegen(A, debug=True)
 
 # Zur Überprüfung von Q und R
 # Q, R = np.linalg.qr(A)
