@@ -14,31 +14,30 @@ def a_in_lr_zerlegen(A, debug=False):
     R = np.copy(A).astype("float64")
 
     if debug:
-        print("-- A = L · R zerlegen")
+        print("-- A in A = L · R zerlegen")
 
     for i in range(n):
         for j in range(i + 1, n):
             if R[j][i] != 0:
                 if debug:
-                    print("---- Nächster Schritt")
-                    print(R)
-                    print(f"Zeile {j + 1} - ({R[j][i]}/{R[i][i]}) · Zeile {i + 1}")
+                    print("--------------------- Nächster Schritt")
+                    print(f"R: \n {R}")
+                    print(f" Zeile {j + 1} - ({R[j][i]}/{R[i][i]}) · Zeile {i + 1}")
 
                 factor = R[j][i] / R[i][i]
                 L[j][i] = factor
                 R[j] = R[j] - factor * R[i]
 
                 if debug:
-                    print(R)
+                    print(f" = \n {R}")
+                    print("---------------------")
+                    print(f"L = \n {L}")
+                    print()
 
     if debug:
-        print()
-        print("---- Abgeschlossene Zerlegung")
-        print("R:")
-        print(R)
-        print("L:")
-        print(L)
-        print("--")
+        print("--------------------- Abgeschlossene Zerlegung")
+        print(f"R = \n {R}")
+        print(f"L = \n {L}")
         print()
 
     return [L, R]
@@ -65,17 +64,17 @@ def lgs_nach_y_loesen(L, b, debug=False):
     for i in range(n):
         if debug:
             if i == 0:
-                print(f"y1 = {b[i]}")
+                print(f"y_1 = {b[i]}")
             else:
                 print(
-                    f"y{i + 1} = ({b[i]} - {y[i - 1]}) / {L[i][i]} = {b[i] - np.sum(L[i] * y.T)}"
+                    f"y_{i + 1} = ({b[i]} - {y[i - 1]}) / {L[i][i]} = {b[i] - np.sum(L[i] * y.T)}"
                 )
 
         y[i] = b[i] - np.sum(L[i] * y.T)
 
     if debug:
         print(f"y = \n {y}")
-        print("--")
+        print()
     return y
 
 
@@ -95,30 +94,54 @@ def lgs_nach_x_loesen(R, y, debug=False):
 
     if debug:
         print("-- LGS R · x = y nach x mit Rückwärtseinsetzen lösen")
-        print("Hier Zwischenschritt aufschreiben -> x3 = .., x2 = .., x1 = ..")
+        # TODO: Zwischenschritte ausgeben
 
     x = np.zeros((n, 1))
     for i in range(n - 1, -1, -1):
         x[i] = (y[i] - np.sum(R[i] * x.T)) / R[i][i]
 
     if debug:
-        print(f"x: \n{x}")
+        print(f"x = \n {x}")
+        print()
 
     return x
 
 
-def auflösen_nach_x(L, R, b, debug=False):
+def lr_zerlegung(A, b, debug=False):
+    A = np.array(A)
+    b = np.array(b)
+
+    if len(A.shape) != 2 or A.shape[0] != A.shape[1]:
+        raise ValueError(
+            "A muss eine quadratische Matrix sein, also die Form (n,n) haben."
+        )
+    if len(b.shape) != 2 or b.shape[1] != 1:
+        raise ValueError("b muss ein Vektor der Form (n,1) sein.")
+    if A.shape[0] != b.shape[0]:
+        raise ValueError("A und b müssen die gleiche Höhe haben")
+
+    L, R = a_in_lr_zerlegen(A, debug)
     y = lgs_nach_y_loesen(L, b, debug)
-    return lgs_nach_x_loesen(R, y, debug)
+    x = lgs_nach_x_loesen(R, y, debug)
+
+    return L, R, y, x
 
 
+########################################################################################
+
+# Matrix A definieren
 A = np.array([[20, 30, 10], [10, 17, 6], [2, 3, 2]])
-b = np.array([[5200], [3000], [760]])
-b_neu = np.array([[5720], [3300], [836]])
 
-L, R = a_in_lr_zerlegen(A, True)
-y = lgs_nach_y_loesen(L, b, True)
-x = lgs_nach_x_loesen(R, y, True)
+# Vektor b definieren
+b = np.array([[5200], [3000], [760]])
+
+lr_zerlegung(A, b, True)
+
 # Bei neuem B kann das gleiche L und R verwendet werden von vorher
-y = lgs_nach_y_loesen(L, b_neu, True)
-x = lgs_nach_x_loesen(R, y, True)
+# L, R = a_in_lr_zerlegen(A, True)
+# y = lgs_nach_y_loesen(L, b, True)
+# x = lgs_nach_x_loesen(R, y, True)
+
+# b_neu = np.array([[5720], [3300], [836]])
+# y = lgs_nach_y_loesen(L, b_neu, True)
+# x = lgs_nach_x_loesen(R, y, True)
