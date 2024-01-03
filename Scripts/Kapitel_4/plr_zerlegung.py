@@ -153,7 +153,12 @@ def plr_zerlegung(A, b, debug=False):
     return lgs_nach_x_loesen(R, y, debug)
 
 
+########################################################################################
+
+# Matrix a definieren
 A = np.array([[2, 1, 0], [4, 0, -1], [2, 3, -1]])
+
+# Vektor b definieren
 b = np.array([[4], [1], [5]])
 
 plr_zerlegung(A, b, True)
