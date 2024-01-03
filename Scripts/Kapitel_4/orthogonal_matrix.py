@@ -11,5 +11,10 @@ def is_orthogonal(A):
 
     return np.allclose(np.dot(A, A.T), np.eye(A.shape[0]))
 
-A = np.array([[2/3, -2/3, -1/3], [1/3, 2/3, -2/3], [2/3, 1/3, 2/3]])
-print(is_orthogonal(A))
+
+########################################################################################
+
+# Matrix A definieren
+A = np.array([[2 / 3, -2 / 3, -1 / 3], [1 / 3, 2 / 3, -2 / 3], [2 / 3, 1 / 3, 2 / 3]])
+
+print(f"Orthogonal: {is_orthogonal(A)}")
