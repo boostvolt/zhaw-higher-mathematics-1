@@ -8,7 +8,7 @@ def a_in_dlr_zerlegen(A, debug=False):
     R = np.triu(A) - D
 
     if debug:
-        print("-- A in D^-1, L, R zerlegen")
+        print("-- A in D^-1, L + R zerlegen")
         print(f"D^-1 = \n {lin.inv(D)}")
         print(f"L + R = \n {L + R}")
         print()
@@ -21,7 +21,7 @@ def dlr_zu_bc(D, L, R, b, debug=False):
     C = lin.inv(D).dot(b.reshape(-1, 1))
 
     if debug:
-        print("-- Von D, L, R zu B, C")
+        print("-- Von D^-1, L + R zu B, C")
         print(f"B = -D^-1 * (L + R) = \n {B}")
         print(f"C = D^-1 * b = \n {C}")
         print()
