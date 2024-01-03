@@ -155,6 +155,8 @@ def plr_zerlegung(A, b, debug=False):
 
 ########################################################################################
 
+# TODO: Besserer Debug Output (an LR-Zerlegung orientieren)
+
 # Matrix a definieren
 A = np.array([[2, 1, 0], [4, 0, -1], [2, 3, -1]])
 

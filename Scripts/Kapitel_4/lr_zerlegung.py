@@ -31,13 +31,13 @@ def a_in_lr_zerlegen(A, debug=False):
                 if debug:
                     print(f" = \n {R}")
                     print("---------------------")
-                    print(f"L: \n {L}")
+                    print(f"L = \n {L}")
                     print()
 
     if debug:
         print("--------------------- Abgeschlossene Zerlegung")
-        print(f"R: \n {R}")
-        print(f"L: \n {L}")
+        print(f"R = \n {R}")
+        print(f"L = \n {L}")
         print()
 
     return [L, R]
@@ -101,7 +101,7 @@ def lgs_nach_x_loesen(R, y, debug=False):
         x[i] = (y[i] - np.sum(R[i] * x.T)) / R[i][i]
 
     if debug:
-        print(f"x= \n {x}")
+        print(f"x = \n {x}")
         print()
 
     return x

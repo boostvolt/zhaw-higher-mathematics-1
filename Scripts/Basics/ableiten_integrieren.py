@@ -28,7 +28,7 @@ print(f"Ableitung: {ableiten(funktion)}")
 # print(f"Ableitung: {ableiten(funktion, 'x')}") # Für Ableitung nach x (bei mehreren freien Variablen
 
 # Werte für Unbekannte definieren
-werte = {"x": 0.8}
+# werte = {"x": 0.8}
 
-print(f"Ergebniss von Ableitung: {ableiten(funktion).subs(werte)}")
-print(f"Ergebniss von Funktion: {sympify(funktion).subs(werte)}")
+# print(f"Ergebniss von Ableitung: {ableiten(funktion).subs(werte)}")
+# print(f"Ergebniss von Funktion: {sympify(funktion).subs(werte)}")
