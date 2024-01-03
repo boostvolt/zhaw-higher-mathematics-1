@@ -54,8 +54,8 @@ def a_in_qr_zerlegen(A, debug=False):
             )  # Unterdrückt die wissenschaftliche Schreibweise
             print()
             print("--------------------- Iteration {}".format(i + 1))
-            print(f"a_{i + 1}: \n {a}")
-            print(f"e_{i + 1}: \n {e}")
+            print(f"a_{i + 1} = \n {a}")
+            print(f"e_{i + 1} = \n {e}")
             print("---------------------")
             betragPrint = "sqrt(" + " + ".join([f"({elem}^2)" for elem in a]) + ")"
             print(
@@ -69,9 +69,9 @@ def a_in_qr_zerlegen(A, debug=False):
                 f"H_{i + 1}: \n {np.identity(u.shape[0])} \n - 2 * \n {u} \n * \n {u.T} \n = \n {H}"
             )
             print("---------------------")
-            print(f"Q_{i + 1}: \n {Q_i}")
+            print(f"Q_{i + 1} = \n {Q_i}")
             print("---------------------")
-            print(f"Q_{i + 1} * A_{i + 1} = A_{i + 2}: \n {A_i}")
+            print(f"Q_{i + 1} * A_{i + 1} = A_{i + 2} = \n {A_i}")
 
             if i == 0:
                 Q_result_print += f"Q_{i + 1}.T"
@@ -83,8 +83,8 @@ def a_in_qr_zerlegen(A, debug=False):
     if debug:
         print()
         print("--------------------- Abgeschlossene Zerlegung")
-        print(f"{Q_result_print}: \n {Q}")
-        print(f"R = {R_result_print}A: \n {R}")
+        print(f"{Q_result_print} = \n {Q}")
+        print(f"R = {R_result_print}A = \n {R}")
 
     return Q, R
 
@@ -97,14 +97,10 @@ def lgs_nach_x_loesen(Q, R, b, debug=False):
     if debug:
         print()
         print("-- LGS R · x = Q^T · b nach x mit Rückwärtseinsetzen lösen")
-        print("Q:")
-        print(Q)
-        print("R:")
-        print(R)
-        print("Q^T * b")
-        print(np.matmul(Q.T, b))
-        print("x:")
-        print(x)
+        print(f"Q = \n {Q}")
+        print(f"R = \n {R}")
+        print(f"Q^T * b = \n {np.matmul(Q.T, b)}")
+        print(f"x = \n {x}")
         print()
 
     return x
