@@ -14,31 +14,31 @@ def a_in_lr_zerlegen(A, debug=False):
     R = np.copy(A).astype("float64")
 
     if debug:
-        print("-- A = L · R zerlegen")
+        print("-- A in A = L · R zerlegen")
 
     for i in range(n):
         for j in range(i + 1, n):
             if R[j][i] != 0:
                 if debug:
-                    print("---- Nächster Schritt")
-                    print(R)
-                    print(f"Zeile {j + 1} - ({R[j][i]}/{R[i][i]}) · Zeile {i + 1}")
+                    print("--------------------- Nächster Schritt")
+                    print(f"R: \n {R}")
+                    print(f" Zeile {j + 1} - ({R[j][i]}/{R[i][i]}) · Zeile {i + 1}")
 
                 factor = R[j][i] / R[i][i]
                 L[j][i] = factor
                 R[j] = R[j] - factor * R[i]
 
                 if debug:
-                    print(R)
+                    print(f" = \n {R}")
+                    print("---------------------")
+                    print(f"L: \n {L}")
+                    print()
 
     if debug:
         print()
-        print("---- Abgeschlossene Zerlegung")
-        print("R:")
-        print(R)
-        print("L:")
-        print(L)
-        print("--")
+        print("--------------------- Abgeschlossene Zerlegung")
+        print(f"R: \n {R}")
+        print(f"L: \n {L}")
         print()
 
     return [L, R]
@@ -65,17 +65,17 @@ def lgs_nach_y_loesen(L, b, debug=False):
     for i in range(n):
         if debug:
             if i == 0:
-                print(f"y1 = {b[i]}")
+                print(f"y_1 = {b[i]}")
             else:
                 print(
-                    f"y{i + 1} = ({b[i]} - {y[i - 1]}) / {L[i][i]} = {b[i] - np.sum(L[i] * y.T)}"
+                    f"y_{i + 1} = ({b[i]} - {y[i - 1]}) / {L[i][i]} = {b[i] - np.sum(L[i] * y.T)}"
                 )
 
         y[i] = b[i] - np.sum(L[i] * y.T)
 
     if debug:
         print(f"y = \n {y}")
-        print("--")
+        print()
     return y
 
 
@@ -95,21 +95,21 @@ def lgs_nach_x_loesen(R, y, debug=False):
 
     if debug:
         print("-- LGS R · x = y nach x mit Rückwärtseinsetzen lösen")
-        print("Hier Zwischenschritt aufschreiben -> x3 = .., x2 = .., x1 = ..")
+        # TODO: Zwischenschritte ausgeben
 
     x = np.zeros((n, 1))
     for i in range(n - 1, -1, -1):
         x[i] = (y[i] - np.sum(R[i] * x.T)) / R[i][i]
 
     if debug:
-        print(f"x: \n{x}")
+        print(f"x= \n {x}")
+        print()
 
     return x
 
 
-def auflösen_nach_x(L, R, b, debug=False):
-    y = lgs_nach_y_loesen(L, b, debug)
-    return lgs_nach_x_loesen(R, y, debug)
+def lr_zerlegung(L, R, b, debug=False):
+    return lgs_nach_x_loesen(R, lgs_nach_y_loesen(L, b, debug), debug)
 
 
 A = np.array([[20, 30, 10], [10, 17, 6], [2, 3, 2]])
