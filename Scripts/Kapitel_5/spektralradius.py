@@ -18,4 +18,4 @@ def spektral_radius(matrix, debug=False):
 # Matrix definieren
 matrix = np.array([[1, 0, 0], [2, 3, 0], [0, 1, 2]])
 
-print(f"Spektralradius: {spektral_radius(matrix, debug=True)}")
+print(f"Spektralradius: {spektral_radius(matrix, True)}")
