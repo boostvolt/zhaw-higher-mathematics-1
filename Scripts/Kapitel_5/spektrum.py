@@ -16,4 +16,4 @@ def spektrum(matrix, debug=False):
 # Matrix definieren
 matrix = np.array([[1, 0, 0], [2, 3, 0], [0, 1, 2]])
 
-print(f"Spektrum: {spektrum(matrix, debug=True)}")
+print(f"Spektrum: {spektrum(matrix, True)}")
