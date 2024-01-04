@@ -16,7 +16,7 @@ def matrix_in_zsf(matrix, debug=False):
     for i in range(n):
         if matrix[i][i] == 0:
             continue
-         
+
         for j in range(i + 1, n):
             if matrix[j][i] != 0:
                 factor = matrix[j][i] / matrix[i][i]
@@ -48,7 +48,9 @@ def geometrische_vielfachheit(A, debug=False, eigenvalues=None):
         eigenvalues = list(np.linalg.eigvals(A))
 
     for eigenvalue in eigenvalues:
-        eigenvalue = round(eigenvalue, 10)
+        if not any(isinstance(eigenvalue, complex) for eigenvalue in eigenvalues):
+            eigenvalue = round(eigenvalue, 10)
+
         diff = A - eigenvalue * np.eye(n)
         rank = matrix_rank(diff)
         geometric_multiplicity = n - rank
@@ -69,7 +71,6 @@ def geometrische_vielfachheit(A, debug=False, eigenvalues=None):
 
 ########################################################################################
 if __name__ == "__main__":
-    
     # Matrix A definieren
     A = np.array([[1, 1, 1], [0, 2, 0], [1, -1, 1]])
 
