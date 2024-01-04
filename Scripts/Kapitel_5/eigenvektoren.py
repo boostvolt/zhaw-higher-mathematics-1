@@ -1,22 +1,22 @@
 import numpy as np
-import sympy as sp
 from geometrische_vielfachheit import geometrische_vielfachheit
 
 
 def eigenvektoren(A, debug=False):
-    data = sp.Matrix(A).eigenvects()
+    eigenvalues, eigenvectors = np.linalg.eig(A)
 
-    for _, values in enumerate(data):
-        geometrische_vielfachheit(A, True, [float(values[0])])
+    for i in range(len(eigenvalues)):
+        eigenvalue = eigenvalues[i]
+        eigenvector = eigenvectors[:, i]
+
+        geometrische_vielfachheit(A, True, [eigenvalue])
 
         if debug:
             print("-- Eigenvektor(en)")
-        for vec in values[2]:
-            if debug:
-                print(f"{np.array(vec)}")
-                print()
+            print(f"{eigenvector.reshape(-1, 1)}")
+            print()
 
-    return data
+    return eigenvectors
 
 
 ########################################################################################
