@@ -1,4 +1,3 @@
-# TODO
 import numpy as np
 import matrix_konditionszahl as cond
 
@@ -150,8 +149,3 @@ geschätzter_relativen_x_fehler(A, A_tilde, b, b_tilde, True)
 
 # b = np.array([1, 1, 0])
 # berechne_epsilon_mit_geschätztem_relativen_fehler(A, A_tilde, 0.01, b, True)
-
-
-
-
-
