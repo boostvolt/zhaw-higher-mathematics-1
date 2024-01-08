@@ -1,4 +1,3 @@
-# TODO
 import matrix_konditionszahl as cond
 import numpy as np
 
