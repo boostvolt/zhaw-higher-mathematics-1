@@ -18,9 +18,6 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
 
-      - name: Set up Conda
-        uses: s-weigand/setup-conda@v1
-
       - name: Lint & Format with Ruff
         run: |
           pip install ruff
