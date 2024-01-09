@@ -154,9 +154,16 @@ def tatsächlicher_relativer_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
     return relativer_fehler
 
 ########################################################################################
+# Diese Funktion hier benutzen, wenn b_tilde gegeben ist
 
 # # Matrix A und A_tilde definieren
 # A = np.array([[1/2, -1/2], [1/6, 1/3]])
+
+# # 1. Option wenn A und Störung von A bekannt
+# störung = 10**(-7)
+# A_tilde = A + störung
+
+# # 2. Option wenn A_tilde bekannt ist
 # A_tilde = np.array([[0.5, -0.5], [0.2, 0.3]])
 
 # # Vektor b definieren
@@ -172,28 +179,23 @@ def tatsächlicher_relativer_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
 # geschätzter_relativer_x_fehler(A, A_tilde, b, b_tilde, True)
 
 ########################################################################################
-# # Diese Funktion hier benutzen, wenn b_tilde mit Parameter berechnet werden soll
-# # Norm definieren (1, 2, np.inf)
-# norm = np.inf
-# A = np.array([[1, 0, 2], [0, 1, 0], [10**(-4), 0, 10**(-4)]])
+# Diese Funktion hier benutzen, wenn b_tilde mit Parameter berechnet werden soll
 
-# # 1. Option wenn A und Störung von A bekannt
-# störung = 10**(-7)
-# A_tilde = A + störung
+# Norm definieren (1, 2, np.inf)
+norm = np.inf
 
-# # 2. Option wenn A_tilde bekannt ist
-# # A_tilde = np.array([[0.5, -0.5], [0.2, 0.3]])
+# Maximaler relativer Fehler definieren
+max_rel_x_Fehler = 0.01
 
-# b = np.array([1, 1, 0])
-# berechne_epsilon_mit_geschätztem_relativen_fehler(A, A_tilde, 0.01, b, True)
-
-################
 # Matrix A definieren
 A = np.array([[1, 0, 2], [0, 1, 0], [10**(-4), 0, 10**(-4)]])
 
 # # 1. Option wenn A und Störung von A bekannt
 störung = 10**(-7)
 A_tilde = A + störung
+
+# # 2. Option wenn A_tilde bekannt ist
+# # A_tilde = np.array([[0.5, -0.5], [0.2, 0.3]])
 
 # Vektor b definieren
 b = np.array([1, 1, 0])
@@ -203,15 +205,8 @@ b = np.array([1, 1, 0])
 b_tilde = np.array([1, 1, ε])
 print(f"Von Hand Norm berechnen von: {b - b_tilde}")
 
-# Norm definieren (1, 2, np.inf)
-norm = np.inf
-
-# Maximaler relativer Fehler definieren
-max_rel_x_Fehler = 0.01
-
 epsilon = berechne_epsilon_mit_geschätztem_relativen_fehler(A, A_tilde, max_rel_x_Fehler, b, True)
 b_tilde = np.array([1, 1, epsilon])
 tatsächlicher_absoluter_fehler(A, A_tilde, b, b_tilde, norm, True)
 tatsächlicher_relativer_fehler(A, A_tilde, b, b_tilde, norm, True)
-# print(f"Geschätzter absoluter Fehler: {geschätzter_absoluter_fehler(A, b, b_tilde, norm, True)}")
 geschätzter_relativer_x_fehler(A, A_tilde, b, b_tilde, norm, True)
