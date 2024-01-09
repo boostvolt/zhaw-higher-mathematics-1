@@ -21,7 +21,15 @@ jobs:
       - name: Set up Conda
         uses: s-weigand/setup-conda@v1
 
-      - name: Lint with Ruff
+      - name: Lint & Format with Ruff
         run: |
           pip install ruff
           ruff --output-format=github .
+          ruff format .
+      
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --quiet; then
+            echo "There are uncommitted changes after running ruff format. Please run 'ruff format' locally and try again."
+            exit 1
+          fi

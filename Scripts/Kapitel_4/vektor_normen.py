@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def vektor_norm(vektor, norm):
     norm_symbol = norm
     if norm == np.inf:
@@ -8,6 +9,7 @@ def vektor_norm(vektor, norm):
     # TODO: Add debug output
 
     return norm_symbol, np.linalg.norm(vektor, norm)
+
 
 ########################################################################################
 

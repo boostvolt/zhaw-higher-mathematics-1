@@ -9,7 +9,7 @@ x = np.linspace(0, 1, 100)
 f1 = sympify("x + log(x)")
 # f2 = sympify("(x - 2) ** 7")
 
-plt.plot(x, np.array([f1.subs('x', val).evalf() for val in x]))
+plt.plot(x, np.array([f1.subs("x", val).evalf() for val in x]))
 # Mehrere Funktionen im gleichen Plot darstellen
 # plt.plot(x, np.array([f2.subs('x', val).evalf() for val in x]))
 plt.xlabel("x axis")
