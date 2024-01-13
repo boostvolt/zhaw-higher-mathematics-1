@@ -136,8 +136,8 @@ def max_epsilon_berechnen(b, max_rel_Fehler, debug=False):
 # Norm definieren (1, 2, np.inf)
 norm = np.inf
 
-# tatsächlicher_absoluter_fehler(A, b, norm, True)
-# tatsächlicher_relativer_fehler(A, b, norm, True)
+# tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, True)
+# tatsächlicher_relativer_fehler(A, b, b_tilde, norm, True)
 # kondition.matrix_konditionszahl(A, norm, True)
 # print(f"Geschätzter absoluter Fehler: {geschätzter_absoluter_fehler(A, b, b_tilde, norm, True)}")
 # print(f"Geschätzter relativer Fehler: {geschätzter_relativer_fehler(A, b, b_tilde, norm, True)}")
