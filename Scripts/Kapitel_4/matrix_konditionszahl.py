@@ -11,17 +11,16 @@ def matrix_konditionszahl(matrix, norm, debug=False):
         norm_symbol = norm
         if norm == np.inf:
             norm_symbol = "∞"
+        print(f"||A||_{norm_symbol} = {matrix_norm}")
+        print()
 
-        print("")
-        print("Konditionszahl-Matrix")
-        print(f"A {norm_symbol}-Norm = {matrix_norm}")
-        print(f"A^-1 = \n{matrix_invertiert}")
-        print(f"A^-1 {norm_symbol}-Norm =  {matrix_invertiert_norm}")
+        print(f"A^-1 = \n {matrix_invertiert}")
+        print(f"||A^-1||_{norm_symbol} = {matrix_invertiert_norm}")
+        print()
+
         print(
-            f"cond(A){norm_symbol} = ||A||{norm_symbol} = ||A||{norm_symbol} * ||A^-1||{norm_symbol} = "
+            f"cond_{norm_symbol}(A) = ||A||_{norm_symbol} * ||A^-1||_{norm_symbol}: \n {matrix_norm} * {matrix_invertiert_norm} \n = {matrix_cond}"
         )
-        print(f"{matrix_norm} * {matrix_invertiert_norm} = {matrix_cond}")
-        print(f"cond(A){norm_symbol} = {matrix_cond}")
         print()
 
     return matrix_cond
@@ -30,10 +29,9 @@ def matrix_konditionszahl(matrix, norm, debug=False):
 ########################################################################################
 
 # Matrix definieren
-# matrix = np.array([[2, 4], [4, 8.1]])
-# matrix = np.array([[1, 0, 2], [0, 1, 0], [10**(-4), 0, 10**(-4)]])
+matrix = np.array([[2, 4], [4, 8.1]])
 
 # Norm definieren (1, 2, np.inf)
 norm = np.inf
 
-# print(f"Konditionszahl: {matrix_konditionszahl(matrix, norm, debug=True)}")
+print(f"Konditionszahl: {matrix_konditionszahl(matrix, norm, debug=True)}")
