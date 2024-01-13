@@ -226,7 +226,7 @@ A = np.array([[1, 0, 2], [0, 1, 0], [10 ** (-4), 0, 10 ** (-4)]])
 störung = 10 ** (-7)
 A_tilde = A + störung
 
-# # 2. Option wenn A_tilde bekannt ist
+# 2. Option wenn A_tilde bekannt ist
 # # A_tilde = np.array([[0.5, -0.5], [0.2, 0.3]])
 
 # Vektor b definieren
