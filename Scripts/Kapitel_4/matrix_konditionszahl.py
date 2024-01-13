@@ -2,19 +2,28 @@ import numpy as np
 
 
 def matrix_konditionszahl(matrix, norm, debug=False):
+    matrix_invertiert = np.linalg.inv(matrix)
     matrix_norm = np.linalg.norm(matrix, norm)
-    matrix_invertiert_norm = np.linalg.norm(np.linalg.inv(matrix), norm)
+    matrix_invertiert_norm = np.linalg.norm(matrix_invertiert, norm)
+    matrix_cond = np.dot(matrix_norm, matrix_invertiert_norm)
 
     if debug:
         norm_symbol = norm
         if norm == np.inf:
             norm_symbol = "∞"
-
-        print(f"Matrix {norm_symbol}-Norm: {matrix_norm}")
-        print(f"Invertierte Matrix {norm_symbol}-Norm: {matrix_invertiert_norm}")
+        print(f"||A||_{norm_symbol} = {matrix_norm}")
         print()
 
-    return np.dot(matrix_norm, matrix_invertiert_norm)
+        print(f"A^-1 = \n {matrix_invertiert}")
+        print(f"||A^-1||_{norm_symbol} = {matrix_invertiert_norm}")
+        print()
+
+        print(
+            f"cond_{norm_symbol}(A) = ||A||_{norm_symbol} * ||A^-1||_{norm_symbol}: \n {matrix_norm} * {matrix_invertiert_norm} \n = {matrix_cond}"
+        )
+        print()
+
+    return matrix_cond
 
 
 ########################################################################################
