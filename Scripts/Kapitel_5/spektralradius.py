@@ -34,32 +34,11 @@ def spektral_radius(matrix, debug=False):
 # Matrix definieren
 A = np.array([[1, 0, 0], [2, 3, 0], [0, 1, 2]])
 
-<<<<<<< HEAD
-print(f"Spektralradius: {spektral_radius(A, debug=True)}")
-
-=======
 print(f"Spektralradius: {spektral_radius(A, True)}")
->>>>>>> 08744ec (add back code which was removed by mistake)
 
 # Wenn Konvergenz von Jacobi oder Gauss-Seidel untersucht werden soll anhand dem Spektralradius
 # Matrix definieren
-A = np.array([[3, 2, 1], [2, 3, 2], [1, 2, 3]])
-L, D, R = a_in_ldr_zerlegen(A)
+# A = np.array([[3, 2, 1], [2, 3, 2], [1, 2, 3]])
 
-# Jacobi
-B = ldr_zu_b_jacobi(
-    L,
-    D,
-    R,
-)
-
-print(f"Spektralradius für Jacobi: {spektral_radius(B, debug=False)}")
-
-# Gauss-Seidel
-B = ldr_zu_b_gauss_seidel(
-    L,
-    D,
-    R,
-)
-
-print(f"Spektralradius für Gauss-Seidel: {spektral_radius(B, debug=False)}")
+# print(f"Spektralradius für Jacobi: {spektral_radius(ldr_zu_b_jacobi(*a_in_ldr_zerlegen(A)), debug=False)}")
+# print(f"Spektralradius für Gauss-Seidel: {spektral_radius(ldr_zu_b_gauss_seidel(*a_in_ldr_zerlegen(A)), debug=False)}")
