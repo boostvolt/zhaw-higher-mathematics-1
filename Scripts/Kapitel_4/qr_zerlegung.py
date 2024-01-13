@@ -53,7 +53,7 @@ def a_in_qr_zerlegen(A, debug=False):
                 suppress=True
             )  # Unterdrückt die wissenschaftliche Schreibweise
             print()
-            print("--------------------- Iteration {}".format(i + 1))
+            print(f"--------------------- Iteration {i + 1}")
             print(f"a_{i + 1} = \n {a}")
             print(f"e_{i + 1} = \n {e}")
             print("---------------------")
