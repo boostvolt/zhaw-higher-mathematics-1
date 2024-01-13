@@ -1,13 +1,15 @@
+import matrix_konditionszahl as kondition
 import numpy as np
 import sympy as sp
-import matrix_konditionszahl as kondition
+
 
 def convert_norm(norm):
     if norm == np.inf:
         return "∞"
     else:
         return norm
-    
+
+
 def berechne_x(A, b, debug=False):
     if debug:
         print(f"A \n=\n{A}")
@@ -15,12 +17,14 @@ def berechne_x(A, b, debug=False):
         print()
     return np.linalg.solve(A, b)
 
+
 def berechne_x_tilde(A, b_tilde, debug=False):
     if debug:
         print(f"A \n=\n{A}")
         print(f"b_tilde \n=\n{b_tilde}")
         print()
     return np.linalg.solve(A, b_tilde)
+
 
 def tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, debug=False):
     norm_symbol = convert_norm(norm)
@@ -33,10 +37,13 @@ def tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, debug=False):
         print(f"x = {x}")
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
-        print(f"Tatsächlicher absoluter Fehler bezüglich der {norm_symbol}-Norm: {absoluter_fehler}")
+        print(
+            f"Tatsächlicher absoluter Fehler bezüglich der {norm_symbol}-Norm: {absoluter_fehler}"
+        )
         print()
 
     return absoluter_fehler
+
 
 def tatsächlicher_relativer_fehler(A, b, b_tilde, norm, debug=False):
     norm_symbol = convert_norm(norm)
@@ -52,10 +59,13 @@ def tatsächlicher_relativer_fehler(A, b, b_tilde, norm, debug=False):
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
         print(f"||x||{norm_symbol} = {x_norm}")
-        print(f"Tatsächlicher relativer Fehler bezüglich der {norm_symbol}-Norm: {relativer_fehler}")
+        print(
+            f"Tatsächlicher relativer Fehler bezüglich der {norm_symbol}-Norm: {relativer_fehler}"
+        )
         print()
 
     return relativer_fehler
+
 
 def geschätzter_absoluter_fehler(A, b, b_tilde, norm, debug=False):
     norm_symbol = convert_norm(norm)
@@ -87,6 +97,7 @@ def geschätzter_relativer_fehler(A, b, b_tilde, norm, debug=False):
 
     return result
 
+
 def max_epsilon_berechnen(b, max_rel_Fehler, debug=False):
     norm_symbol = convert_norm(norm)
     b_norm = np.linalg.norm(b, norm)
@@ -95,11 +106,18 @@ def max_epsilon_berechnen(b, max_rel_Fehler, debug=False):
 
     if debug:
         print("Beweis")
-        print(f"||x̄ - x||{norm_symbol} / ||x||{norm_symbol} <= cond(A){norm_symbol} * (||b - b_tilde||{norm_symbol} / ||b||{norm_symbol} ) <= {max_rel_Fehler}")
-        print(f"||x̄ - x||{norm_symbol} / ||x||{norm_symbol} <= {kondition_A} * ε / {b_norm} <= {max_rel_Fehler}")
+        print(
+            f"||x̄ - x||{norm_symbol} / ||x||{norm_symbol} <= cond(A){norm_symbol} * (||b - b_tilde||{norm_symbol} / ||b||{norm_symbol} ) <= {max_rel_Fehler}"
+        )
+        print(
+            f"||x̄ - x||{norm_symbol} / ||x||{norm_symbol} <= {kondition_A} * ε / {b_norm} <= {max_rel_Fehler}"
+        )
         print(f"ε <= ({max_rel_Fehler} * {b_norm}) / {kondition_A} \n=\n{epsilon}\n")
-        print("ACHTUNG: Wenn ε nicht 1 ist sonder 2ε dann muss Endresultat noch durch zwei geteilt werden!!!\n")
+        print(
+            "ACHTUNG: Wenn ε nicht 1 ist sonder 2ε dann muss Endresultat noch durch zwei geteilt werden!!!\n"
+        )
     return epsilon
+
 
 ########################################################################################
 
@@ -127,7 +145,7 @@ norm = np.inf
 ########################################################################################
 
 # Matrix A definieren
-A = np.array([[1, 0, 2], [0, 1, 0], [10**(-4), 0, 10**(-4)]])
+A = np.array([[1, 0, 2], [0, 1, 0], [10 ** (-4), 0, 10 ** (-4)]])
 
 # Vektor b definieren
 b = np.array([1, 1, 0])
@@ -147,5 +165,9 @@ epsilon = max_epsilon_berechnen(b, max_rel_x_Fehler, True)
 b_tilde = np.array([1, 1, epsilon])
 tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, True)
 tatsächlicher_relativer_fehler(A, b, b_tilde, norm, True)
-print(f"Geschätzter absoluter Fehler: {geschätzter_absoluter_fehler(A, b, b_tilde, norm, True)}")
-print(f"Geschätzter relativer Fehler: {geschätzter_relativer_fehler(A, b, b_tilde, norm, True)}")
+print(
+    f"Geschätzter absoluter Fehler: {geschätzter_absoluter_fehler(A, b, b_tilde, norm, True)}"
+)
+print(
+    f"Geschätzter relativer Fehler: {geschätzter_relativer_fehler(A, b, b_tilde, norm, True)}"
+)
