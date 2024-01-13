@@ -1,13 +1,15 @@
+import matrix_konditionszahl as cond
 import numpy as np
 import sympy as sp
-import matrix_konditionszahl as cond
+
 
 def convert_norm(norm):
     if norm == np.inf:
         return "∞"
     else:
         return f"_{norm}"
-    
+
+
 def berechne_x(A, b, debug=False):
     x = np.linalg.solve(A, b)
     if debug:
@@ -16,6 +18,7 @@ def berechne_x(A, b, debug=False):
         print(f"x = \n {x}")
         print()
     return x
+
 
 def berechne_x_tilde(A_tilde, b_tilde, debug=False):
     x_tilde = np.linalg.solve(A_tilde, b_tilde)
@@ -26,32 +29,45 @@ def berechne_x_tilde(A_tilde, b_tilde, debug=False):
         print()
     return x_tilde
 
-def berechne_epsilon_mit_geschätztem_relativen_fehler(A, A_tilde, rel_x_fehler, b, debug=False):
+
+def berechne_epsilon_mit_geschätztem_relativen_fehler(
+    A, A_tilde, rel_x_fehler, b, debug=False
+):
     A_minus_A_tilde_norm = np.linalg.norm(A - A_tilde, norm)
     b_norm = np.linalg.norm(b, norm)
     A_norm = np.linalg.norm(A, norm)
-    
+
     print("Ist relativer Fehler begrenzt?")
     cond_A = cond.matrix_konditionszahl(A, norm)
     relativer_fehler = cond_A * A_relativer_fehler(A, A_tilde, norm)
 
     # Fehlerabschätzungsbedingung
     if relativer_fehler < 1:
-        epsilon = ((rel_x_fehler * (1 - relativer_fehler) / cond_A) - (A_minus_A_tilde_norm / A_norm)) * b_norm
+        epsilon = (
+            (rel_x_fehler * (1 - relativer_fehler) / cond_A)
+            - (A_minus_A_tilde_norm / A_norm)
+        ) * b_norm
         if debug:
             print("cond(A)∞ * (|||A - Ã||∞ / ||A||∞) < 1")
-            print(f"{cond_A} * ({A_minus_A_tilde_norm} / {A_norm} = {relativer_fehler}) < 1")
+            print(
+                f"{cond_A} * ({A_minus_A_tilde_norm} / {A_norm} = {relativer_fehler}) < 1"
+            )
             print("Relativer Fehler in x ist begrenzt")
             print("")
-            print("||x - x̄||∞ / ||x||∞ <= cond(A)∞ / (1 - cond(A)∞ * (||A - Ã||∞ / ||A||∞)) * (||A - Ã||∞ / ||A||∞  +  ||b - ᵬ||∞ / ||b||∞) ")
-            print(f"{cond_A} / (1 - {cond_A} * {A_tilde}) * (({A_tilde} / {A_norm}) + (ε / {b_norm})) <= 1")
+            print(
+                "||x - x̄||∞ / ||x||∞ <= cond(A)∞ / (1 - cond(A)∞ * (||A - Ã||∞ / ||A||∞)) * (||A - Ã||∞ / ||A||∞  +  ||b - ᵬ||∞ / ||b||∞) "
+            )
+            print(
+                f"{cond_A} / (1 - {cond_A} * {A_tilde}) * (({A_tilde} / {A_norm}) + (ε / {b_norm})) <= 1"
+            )
             print(f"Epsilon: {epsilon}")
 
     else:
         print("Relativer Fehler in x ist NICHT begrenzt")
     return epsilon
 
-def geschätzter_relativer_x_fehler(A, A_tilde, b, b_tilde, norm, debug=False):    
+
+def geschätzter_relativer_x_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
     print("Ist relativer Fehler begrenzt?")
     cond_A = cond.matrix_konditionszahl(A, norm)
     A_rel_fehler = A_relativer_fehler(A, A_tilde, norm)
@@ -62,13 +78,19 @@ def geschätzter_relativer_x_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
     print(f"{cond_A} * {A_rel_fehler} = {relativer_fehler} < 1")
     # Fehlerabschätzungsbedingung
     if relativer_fehler < 1:
-        geschätzter_fehler = (cond_A /(1 - relativer_fehler)) * (A_rel_fehler + b_rel_fehler)
+        geschätzter_fehler = (cond_A / (1 - relativer_fehler)) * (
+            A_rel_fehler + b_rel_fehler
+        )
         if debug:
             print("")
             print("Relativer Fehler in x ist begrenzt")
             print("")
-            print("||x - x̄||∞ / ||x||∞ <= cond(A)∞ / (1 - cond(A)∞ * (||A - Ã||∞ / ||A||∞)) * (||A - Ã||∞ / ||A||∞  +  ||b - ᵬ||∞ / ||b||∞) ")
-            print(f"({cond_A} / (1 - {cond_A} * {relativer_fehler})) * ({A_rel_fehler} + {b_rel_fehler})")
+            print(
+                "||x - x̄||∞ / ||x||∞ <= cond(A)∞ / (1 - cond(A)∞ * (||A - Ã||∞ / ||A||∞)) * (||A - Ã||∞ / ||A||∞  +  ||b - ᵬ||∞ / ||b||∞) "
+            )
+            print(
+                f"({cond_A} / (1 - {cond_A} * {relativer_fehler})) * ({A_rel_fehler} + {b_rel_fehler})"
+            )
             print(f"Geschätzter relativer Fehler: {geschätzter_fehler}")
 
     else:
@@ -76,7 +98,6 @@ def geschätzter_relativer_x_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
 
 
 def A_relativer_fehler(A, A_tilde, norm, debug=False):
-
     norm_symbol = convert_norm(norm)
     A_norm = np.linalg.norm(A, norm)
     A_tilde_A_norm = np.linalg.norm(A - A_tilde, norm)
@@ -85,10 +106,13 @@ def A_relativer_fehler(A, A_tilde, norm, debug=False):
     if debug:
         print(f"A = \n {A}\n")
         print(f"Ã = \n {A_tilde}\n")
-        print(f"Relativer Fehler in A: ||A - Ã||{norm_symbol} / ||A||{norm_symbol} = \n")
+        print(
+            f"Relativer Fehler in A: ||A - Ã||{norm_symbol} / ||A||{norm_symbol} = \n"
+        )
         print(f"||{A - A_tilde}||{norm_symbol} \n/\n||{A}||{norm_symbol}\n=")
         print(f"{A_relativer_fehler}\n")
     return A_relativer_fehler
+
 
 def b_relativer_fehler(b, b_tilde, norm, debug=False):
     norm_symbol = convert_norm(norm)
@@ -104,6 +128,7 @@ def b_relativer_fehler(b, b_tilde, norm, debug=False):
         print(f"{b_relativer_fehler}\n")
     return b_relativer_fehler
 
+
 def x_relativer_fehler(x, x_tilde, norm, debug=False):
     norm_symbol = convert_norm(norm)
     x_norm = np.linalg.norm(x, norm)
@@ -118,6 +143,7 @@ def x_relativer_fehler(x, x_tilde, norm, debug=False):
         print(f"{x_relativer_fehler}\n")
     return x_relativer_fehler
 
+
 def tatsächlicher_absoluter_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
     norm_symbol = convert_norm(norm)
     x = berechne_x(A, b, True)
@@ -129,10 +155,13 @@ def tatsächlicher_absoluter_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
         print(f"x = {x}")
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
-        print(f"Tatsächlicher absoluter Fehler bezüglich der {norm_symbol}-Norm: {absoluter_fehler}")
+        print(
+            f"Tatsächlicher absoluter Fehler bezüglich der {norm_symbol}-Norm: {absoluter_fehler}"
+        )
         print()
 
     return absoluter_fehler
+
 
 def tatsächlicher_relativer_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
     norm_symbol = convert_norm(norm)
@@ -148,10 +177,13 @@ def tatsächlicher_relativer_fehler(A, A_tilde, b, b_tilde, norm, debug=False):
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
         print(f"||x||{norm_symbol} = {x_norm}")
-        print(f"Tatsächlicher relativer Fehler bezüglich der {norm_symbol}-Norm: {relativer_fehler}")
+        print(
+            f"Tatsächlicher relativer Fehler bezüglich der {norm_symbol}-Norm: {relativer_fehler}"
+        )
         print()
 
     return relativer_fehler
+
 
 ########################################################################################
 # Diese Funktion hier benutzen, wenn b_tilde gegeben ist
@@ -188,10 +220,10 @@ norm = np.inf
 max_rel_x_Fehler = 0.01
 
 # Matrix A definieren
-A = np.array([[1, 0, 2], [0, 1, 0], [10**(-4), 0, 10**(-4)]])
+A = np.array([[1, 0, 2], [0, 1, 0], [10 ** (-4), 0, 10 ** (-4)]])
 
 # # 1. Option wenn A und Störung von A bekannt
-störung = 10**(-7)
+störung = 10 ** (-7)
 A_tilde = A + störung
 
 # # 2. Option wenn A_tilde bekannt ist
@@ -205,7 +237,9 @@ b = np.array([1, 1, 0])
 b_tilde = np.array([1, 1, ε])
 print(f"Von Hand Norm berechnen von: {b - b_tilde}")
 
-epsilon = berechne_epsilon_mit_geschätztem_relativen_fehler(A, A_tilde, max_rel_x_Fehler, b, True)
+epsilon = berechne_epsilon_mit_geschätztem_relativen_fehler(
+    A, A_tilde, max_rel_x_Fehler, b, True
+)
 b_tilde = np.array([1, 1, epsilon])
 tatsächlicher_absoluter_fehler(A, A_tilde, b, b_tilde, norm, True)
 tatsächlicher_relativer_fehler(A, A_tilde, b, b_tilde, norm, True)

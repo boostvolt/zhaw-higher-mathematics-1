@@ -20,11 +20,11 @@ def sekanteverfahren_anzahl_iterationen(funktion, x_0, x_1, iterationen, debug=F
         )
 
         if debug:
-           print(f"---- Iteration {i + 1}")
-           print(f"f({symbols[0]}_{i}) = {funktion.subs(x_0).evalf()}")
-           print(f"f({symbols[0]}_{i+1}) = {funktion.subs(x_1).evalf()}")
-           print(f"{symbols[0]}_{i + 2} = {x_1}")
-           print()
+            print(f"---- Iteration {i + 1}")
+            print(f"f({symbols[0]}_{i}) = {funktion.subs(x_0).evalf()}")
+            print(f"f({symbols[0]}_{i+1}) = {funktion.subs(x_1).evalf()}")
+            print(f"{symbols[0]}_{i + 2} = {x_1}")
+            print()
 
     return x_1[str(symbols[0])]
 

@@ -48,4 +48,6 @@ def check_spaltendominanz(cols, debug=False):
 matrix = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
 
 print(f"Strikte Diagonaldominanz: {is_diagonaldominant(matrix, True)}")
-print("Falls A diagonaldominant ist, konvergiert das Gesamtschrittverfahren (Jacobi) und auch das Einzelschrittverfahren (Gauss-Seidel) für Ax = b.")
+print(
+    "Falls A diagonaldominant ist, konvergiert das Gesamtschrittverfahren (Jacobi) und auch das Einzelschrittverfahren (Gauss-Seidel) für Ax = b."
+)

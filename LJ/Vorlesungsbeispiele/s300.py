@@ -26,7 +26,8 @@ def calculate_s300(ascending, n):
         rounded_term = round_to_machine_number(term, n)
         s += rounded_term
 
-    return round_to_machine_number(s,n)
+    return round_to_machine_number(s, n)
+
 
 # Berechnen Sie s300 aufsteigend mit 3-stelliger Genauigkeit
 s300_ascending_3digits = calculate_s300(True, 3)

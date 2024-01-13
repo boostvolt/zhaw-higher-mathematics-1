@@ -1,6 +1,7 @@
 import math
 from scipy.stats import norm
 
+
 def calculate_probability(n, a, b, target_sum):
     # Berechne die Varianz der Gleichverteilung
     variance = ((b - a) * (b - a + 2)) / 12
@@ -17,6 +18,7 @@ def calculate_probability(n, a, b, target_sum):
 
     return probability
 
+
 # Parameter: Anzahl der generierten Zahlen, Bereich (a, b), Zielsumme
 n = 113
 a = 6
@@ -26,4 +28,6 @@ target_sum = 1186
 # Berechne die Wahrscheinlichkeit
 result_probability = calculate_probability(n, a, b, target_sum)
 
-print(f'Die Wahrscheinlichkeit, dass die Summe größer als {target_sum} ist, beträgt etwa {result_probability:.4f}')
+print(
+    f"Die Wahrscheinlichkeit, dass die Summe größer als {target_sum} ist, beträgt etwa {result_probability:.4f}"
+)
