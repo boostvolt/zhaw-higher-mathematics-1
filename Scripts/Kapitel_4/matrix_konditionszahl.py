@@ -17,7 +17,9 @@ def matrix_konditionszahl(matrix, norm, debug=False):
         print(f"A {norm_symbol}-Norm = {matrix_norm}")
         print(f"A^-1 = \n{matrix_invertiert}")
         print(f"A^-1 {norm_symbol}-Norm =  {matrix_invertiert_norm}")
-        print(f"cond(A){norm_symbol} = ||A||{norm_symbol} = ||A||{norm_symbol} * ||A^-1||{norm_symbol} = ")
+        print(
+            f"cond(A){norm_symbol} = ||A||{norm_symbol} = ||A||{norm_symbol} * ||A^-1||{norm_symbol} = "
+        )
         print(f"{matrix_norm} * {matrix_invertiert_norm} = {matrix_cond}")
         print(f"cond(A){norm_symbol} = {matrix_cond}")
         print()
