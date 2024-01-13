@@ -1,4 +1,17 @@
-def machine_number(value, exponent=1, mantissa=5):
+def machine_number(value, exponent=8, mantissa=23):
+    """
+    Diese Funktion berechnet die Maschinenzahl einer Dezimalzahl. \n
+    Die Defaultwerte für Exponent und Mantisse sind 8 und 23.\n
+    Nach IEEE 754 Standard: \n
+    Einzelgenauigkeit (single Precision): 32 Bit (1 Bit Vorzeichen, 8 Bit Exponent, 23 Bit Mantisse) \n
+    Doppelgenauigkeit (double Precision): 64 Bit (1 Bit Vorzeichen, 11 Bit Exponent, 52 Bit Mantisse) \n
+
+    :param value: Die Zahl, die in eine Maschinenzahl umgewandelt werden soll.
+    :param exponent: Exponent der Maschinenzahl
+    :param mantissa: Mantisse der Maschinenzahl
+    :return: Vorzeichen, Exponent, Mantisse, Ergebnis als String
+    """
+
     # Vorzeichen berechnen
     if value > 0:
         sign = "0"
@@ -68,5 +81,5 @@ def convert_fraction_to_binary(fraction):
 
 
 if __name__ == "__main__":
-    result_machine_number = machine_number(value=1.7320508)
+    result_machine_number = machine_number(value=3.5)
     print(result_machine_number[3])
