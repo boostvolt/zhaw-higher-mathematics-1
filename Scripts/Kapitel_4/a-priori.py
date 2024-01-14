@@ -1,6 +1,6 @@
 from math import ceil
 
-import A_Matrix_in_D_L_R_unterteilen
+import gauss_seidel_jacobi_ldr_b_c
 import numpy as np
 import numpy.linalg as lin
 from gauss_seidel import gauss_seidel_mit_anzahl_iterationen
@@ -11,7 +11,7 @@ from sympy import false
 # Jacobi
 def jacobi_a_priori(debug=false):
     B = -lin.inv(D).dot(L + R)
-    x_1 = jacobi_mit_anzahl_iterationen(x_0, 2)[1]
+    x_1 = jacobi_mit_anzahl_iterationen(A, b, x_0, 2)[1]
     if debug:
         print("")
         print("A-Priori von Jacobi mit einzelnen Schritten")
@@ -21,7 +21,7 @@ def jacobi_a_priori(debug=false):
 # Gauss-Seidel a-priori
 def gauss_seidel_a_priori(x_1, debug=false):
     B = -lin.inv(D + L).dot(R)
-    x_1 = gauss_seidel_mit_anzahl_iterationen(x_0, 2)[1]
+    x_1 = gauss_seidel_mit_anzahl_iterationen(A, b, x_0, 2)[1]
     if debug:
         print("")
         print("A-Priori von Gauss-Seidel mit einzelnen Schritten")
@@ -62,7 +62,7 @@ x_0 = np.array([1, -1, 3])
 toleranz = 10 ** (-4)
 A = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
 b = np.array([19, 5, 34])
-[L, R, D] = A_Matrix_in_D_L_R_unterteilen.unterteilen(A)
+[L, R, D] = gauss_seidel_jacobi_ldr_b_c.a_in_ldr_zerlegen(A)
 
 # Jacobi mit Debug Mode
 # jacobi_a_priori(True)
