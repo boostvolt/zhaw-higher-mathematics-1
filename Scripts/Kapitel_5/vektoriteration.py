@@ -75,10 +75,13 @@ A = np.array([[1, 1, 0], [3, -1, 2], [2, -1, 3]])
 v_0 = np.array([1, 0, 0])
 
 # Mit Anzahl Iterationen
-eigenwert, eigenvektor = max_eigenwert_anzahl_iterationen(A, v_0, 3, True)
+# Anzahl Iterationen
+iterationen = 3
 
+eigenwert, eigenvektor = max_eigenwert_anzahl_iterationen(A, v_0, iterationen, True)
+
+# Mit Toleranz
 # Toleranz definieren
 # toleranz = 10**-4
 
-# Mit Toleranz
 # eigenwert, eigenvektor = max_eigenwert_toleranz(A, v_0, toleranz, True)
