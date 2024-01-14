@@ -27,7 +27,6 @@ def start_fixpunktiteration_toleranz(funktion, x_0, toleranz):
 
         print(f"{symbols[0]}_{iteration_count} = {next_x_value}")
 
-    print()
     return next_x_value
 
 
@@ -50,7 +49,6 @@ def start_fixpunktiteration_anzahl_iterationen(funktion, x_0, iterationen):
 
         print(f"{symbols[0]}_{i + 1} = {next_x_value}")
 
-    print()
     return next_x_value
 
 
@@ -66,30 +64,10 @@ x_0 = {"x": 0}
 # Toleranz definieren
 toleranz = 10**-6
 
-print(f"Fixpunkt: {start_fixpunktiteration_toleranz(funktion, x_0, toleranz)}")
+start_fixpunktiteration_toleranz(funktion, x_0, toleranz)
 
 # Fixpunkt mit angegebener Anzahl Iterationen berechnen
 # Anzahl der Iterationen
 # iterationen = 10
 
-# print(
-#     f"Fixpunkt: {start_fixpunktiteration_anzahl_iterationen(funktion, x_0, iterationen)}"
-# )
-
-# Beispiel 1
-# funktion = "exp(-x)"
-# x_0 = {"x": 0.8}
-# iterationen = 3
-# start_fixpunktiteration_anzahl_iterationen(funktion, x_0, iterationen)
-
-# Beispiel 2
-# funktion = "1 + (1 / x) + (1 / x**2)"
-# x_0 = {"x": 1.8}
-# iterationen = 2
-# start_fixpunktiteration_anzahl_iterationen(funktion, x_0, iterationen)
-
-# Beispiel 3
-# funktion = "sqrt(1 - x)"
-# x_0 = {"x": 0.5}
-# iterationen = 2
 # start_fixpunktiteration_anzahl_iterationen(funktion, x_0, iterationen)
