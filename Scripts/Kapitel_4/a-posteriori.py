@@ -1,9 +1,9 @@
+import A_Matrix_in_D_L_R_unterteilen
 import numpy as np
 import numpy.linalg as lin
-from sympy import false
-import A_Matrix_in_D_L_R_unterteilen
-from Jacobi import jacobi_mit_anzahl_iterationen
 from Gauss_Seidel import gauss_seidel_mit_anzahl_iterationen
+from Jacobi import jacobi_mit_anzahl_iterationen
+from sympy import false
 
 
 # Jacobi
