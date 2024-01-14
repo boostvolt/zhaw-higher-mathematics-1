@@ -2,6 +2,7 @@ import numpy as np
 
 
 def matrix_konditionszahl(matrix, norm, debug=False):
+    print(f"************{matrix}")
     matrix_invertiert = np.linalg.inv(matrix)
     matrix_norm = np.linalg.norm(matrix, norm)
     matrix_invertiert_norm = np.linalg.norm(matrix_invertiert, norm)
@@ -27,11 +28,11 @@ def matrix_konditionszahl(matrix, norm, debug=False):
 
 
 ########################################################################################
+if __name__ == "__main__":
+    # Matrix definieren
+    matrix = np.array([[2, 4], [4, 8.1]])
 
-# Matrix definieren
-matrix = np.array([[2, 4], [4, 8.1]])
+    # Norm definieren (1, 2, np.inf)
+    norm = np.inf
 
-# Norm definieren (1, 2, np.inf)
-norm = np.inf
-
-print(f"Konditionszahl: {matrix_konditionszahl(matrix, norm, debug=True)}")
+    print(f"Konditionszahl: {matrix_konditionszahl(matrix, norm, debug=True)}")

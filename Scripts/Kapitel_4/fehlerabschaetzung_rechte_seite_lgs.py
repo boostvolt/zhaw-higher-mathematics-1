@@ -34,9 +34,11 @@ def tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, debug=False):
     absoluter_fehler = np.linalg.norm(x_minus_x_tilde, norm)
 
     if debug:
+        print("---------- Tatsächlicher absoluter Fehler ----------")
         print(f"x = {x}")
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
+        print(f"|| x - x~||{norm_symbol}")
         print(
             f"Tatsächlicher absoluter Fehler bezüglich der {norm_symbol}-Norm: {absoluter_fehler}"
         )
@@ -55,10 +57,12 @@ def tatsächlicher_relativer_fehler(A, b, b_tilde, norm, debug=False):
     relativer_fehler = x_minus_x_tilde_norm / x_norm
 
     if debug:
+        print("---------- Tatsächlicher relativer Fehler ----------")
         print(f"x = {x}")
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
         print(f"||x||{norm_symbol} = {x_norm}")
+        print(f"|| x - x~||{norm_symbol} / || x ||{norm_symbol}")
         print(
             f"Tatsächlicher relativer Fehler bezüglich der {norm_symbol}-Norm: {relativer_fehler}"
         )
@@ -74,10 +78,12 @@ def geschätzter_absoluter_fehler(A, b, b_tilde, norm, debug=False):
     b_b_tilde_norm = np.linalg.norm(b - b_tilde, norm)
 
     if debug:
+        print("---------- Geschätzter absoluter Fehler ----------")
         print(f"A^-1 \n=\n{A_invertiert}")
         print(f"A^-1 {norm_symbol}-Norm =  {A_invertiert_norm}")
+        print(f"b - b_tilde \n=\n{(b - b_tilde).reshape(-1, 1)}")
         print(f"b - b_tilde {norm_symbol}-Norm = {b_b_tilde_norm}")
-        print()
+        print(f"|| x - x~||{norm_symbol} <= ||A^-1||{norm_symbol} * ||b-b~||{norm_symbol}")
 
     return np.dot(A_invertiert_norm, b_b_tilde_norm)
 
@@ -90,9 +96,12 @@ def geschätzter_relativer_fehler(A, b, b_tilde, norm, debug=False):
     result = A_konditionszahl * (b_b_tile_norm / b_norm)
 
     if debug:
+        print()
+        print("---------- Geschätzter relativer Fehler ----------")
         print(f"cond(A) = {A_konditionszahl}")
         print(f"b - b_tilde {norm_symbol}-Norm = {b_b_tile_norm}")
         print(f"b {norm_symbol}-Norm = {b_norm}")
+        print(f"||A||{norm_symbol} * ||A^-1||{norm_symbol} * ||b-b~||{norm_symbol} / ||b||{norm_symbol}")
         print()
 
     return result
@@ -145,26 +154,28 @@ norm = np.inf
 ########################################################################################
 
 # Matrix A definieren
-A = np.array([[1, 0, 2], [0, 1, 0], [10 ** (-4), 0, 10 ** (-4)]])
+A = np.array([[240,120,80], [60,180,170], [60,90,500]])
 
 # Vektor b definieren
-b = np.array([1, 1, 0])
+b = np.array([3080,4070,5030])
 
 # 1. Wenn b_tilde mit parameter berechnet werden soll, muss Norm von Hand gerechnet werden
-ε = sp.symbols("ε")
-b_tilde = np.array([1, 1, ε])
-print(f"Von Hand Norm berechnen von: {b - b_tilde}")
+# ε = sp.symbols("ε")
+# b_tilde = np.array([1, 1, ε])
+# print(f"Von Hand Norm berechnen von: {b - b_tilde}")
 
 # Norm definieren (1, 2, np.inf)
 norm = np.inf
 
 # Maximaler relativer Fehler definieren
 max_rel_x_Fehler = 0.01
+b_fehler = 1.05
+b_tilde = b * b_fehler
 
-epsilon = max_epsilon_berechnen(b, max_rel_x_Fehler, True)
-b_tilde = np.array([1, 1, epsilon])
-tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, True)
-tatsächlicher_relativer_fehler(A, b, b_tilde, norm, True)
+# epsilon = max_epsilon_berechnen(b, max_rel_x_Fehler, True)
+# b_tilde = np.array([1, 1, epsilon])
+# tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, True)
+# tatsächlicher_relativer_fehler(A, b, b_tilde, norm, True)
 print(
     f"Geschätzter absoluter Fehler: {geschätzter_absoluter_fehler(A, b, b_tilde, norm, True)}"
 )
