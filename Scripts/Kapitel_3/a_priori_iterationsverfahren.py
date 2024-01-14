@@ -50,22 +50,3 @@ anzahl_schritte = a_priori_mit_bekannter_toleranz(
     toleranz,
 )
 print(f"Anzahl Iterationsschritte: {anzahl_schritte} bzw. {ceil(anzahl_schritte)}")
-
-# Andere Beispiele aus den Aufgaben
-# Beispiel 1
-# funktion = "(230 * x**4 + 18 * x**3 + 9 * x**2 - 9) / 221"
-# werte = {"x": 0}
-# interval = [-0.5, 0.5]
-# toleranz = 10**-9
-
-# Beispiel 2
-# funktion = "sqrt(1 - x)"
-# werte = {"x": 0.5}
-# interval = [0.5, 0.71]
-# toleranz = 10**-6
-
-# Beispiel 3
-# funktion = "2 * exp(-x / 2)"
-# werte = {"x": 0.8}
-# interval = [0.8, 1.4]
-# toleranz = 10**-6
