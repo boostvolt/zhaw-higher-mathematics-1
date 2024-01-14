@@ -11,7 +11,7 @@ def newtonverfahren_toleranz(funktion, x_0, toleranz, debug=False):
     abgeleitete_funktion = diff(funktion)
 
     x_n = x_0[str(symbols[0])]
-    i = 0 
+    i = 0
     while True:
         x_n_minus_1 = x_n
         x_n = x_n_minus_1 - (
@@ -33,7 +33,7 @@ def newtonverfahren_toleranz(funktion, x_0, toleranz, debug=False):
         if abs(x_n - x_n_minus_1) < toleranz:
             break
 
-        i += 1 
+        i += 1
 
     return x_n
 
@@ -83,4 +83,3 @@ newtonverfahren_toleranz(funktion, x_0, toleranz, True)
 # iterationen = 5
 
 # newtonverfahren_anzahl_iterationen(funktion, x_0, iterationen, True)
-
