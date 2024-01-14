@@ -82,7 +82,9 @@ def geschätzter_absoluter_fehler(A, b, b_tilde, norm, debug=False):
         print(f"A^-1 {norm_symbol}-Norm =  {A_invertiert_norm}")
         print(f"b - b_tilde \n=\n{(b - b_tilde).reshape(-1, 1)}")
         print(f"b - b_tilde {norm_symbol}-Norm = {b_b_tilde_norm}")
-        print(f"|| x - x~||{norm_symbol} <= ||A^-1||{norm_symbol} * ||b-b~||{norm_symbol}")
+        print(
+            f"|| x - x~||{norm_symbol} <= ||A^-1||{norm_symbol} * ||b-b~||{norm_symbol}"
+        )
 
     return np.dot(A_invertiert_norm, b_b_tilde_norm)
 
@@ -100,7 +102,9 @@ def geschätzter_relativer_fehler(A, b, b_tilde, norm, debug=False):
         print(f"cond(A) = {A_konditionszahl}")
         print(f"b - b_tilde {norm_symbol}-Norm = {b_b_tile_norm}")
         print(f"b {norm_symbol}-Norm = {b_norm}")
-        print(f"||A||{norm_symbol} * ||A^-1||{norm_symbol} * ||b-b~||{norm_symbol} / ||b||{norm_symbol}")
+        print(
+            f"||A||{norm_symbol} * ||A^-1||{norm_symbol} * ||b-b~||{norm_symbol} / ||b||{norm_symbol}"
+        )
         print()
 
     return result
@@ -153,10 +157,10 @@ norm = np.inf
 ########################################################################################
 
 # Matrix A definieren
-A = np.array([[240,120,80], [60,180,170], [60,90,500]])
+A = np.array([[240, 120, 80], [60, 180, 170], [60, 90, 500]])
 
 # Vektor b definieren
-b = np.array([3080,4070,5030])
+b = np.array([3080, 4070, 5030])
 
 # 1. Wenn b_tilde mit parameter berechnet werden soll, muss Norm von Hand gerechnet werden
 ε = sp.symbols("ε")
