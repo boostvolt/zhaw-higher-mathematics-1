@@ -94,7 +94,6 @@ def lgs_nach_x_loesen(R, y, debug=False):
 
     if debug:
         print("-- LGS R · x = y nach x mit Rückwärtseinsetzen lösen")
-        # TODO: Zwischenschritte ausgeben
 
     x = np.zeros((n, 1))
     for i in range(n - 1, -1, -1):

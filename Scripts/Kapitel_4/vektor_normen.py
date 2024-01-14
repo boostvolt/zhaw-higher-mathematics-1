@@ -6,8 +6,6 @@ def vektor_norm(vektor, norm):
     if norm == np.inf:
         norm_symbol = "∞"
 
-    # TODO: Add debug output
-
     return norm_symbol, np.linalg.norm(vektor, norm)
 
 
