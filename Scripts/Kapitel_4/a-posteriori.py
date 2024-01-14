@@ -63,7 +63,9 @@ x_0 = np.array([1, -1, 3])
 anzahl_iterationen = 3
 A = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
 b = np.array([19, 5, 34])
-[L, R, D] = A_Matrix_in_D_L_R_unterteilen.unterteilen(A)
+[L, R, D] = A_Matrix_in_D_L_R_unterteilen.unterteilen(
+    A
+)  # TODO: gauss_seidel_jacobi_ldr_b_c
 
 # Jacobi mit Debug Mode
 # jacobi_a_posteriori(True)
