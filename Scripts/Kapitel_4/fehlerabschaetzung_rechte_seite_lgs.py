@@ -38,7 +38,6 @@ def tatsächlicher_absoluter_fehler(A, b, b_tilde, norm, debug=False):
         print(f"x = {x}")
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
-        print(f"|| x - x~||{norm_symbol}")
         print(
             f"Tatsächlicher absoluter Fehler bezüglich der {norm_symbol}-Norm: {absoluter_fehler}"
         )
@@ -62,7 +61,7 @@ def tatsächlicher_relativer_fehler(A, b, b_tilde, norm, debug=False):
         print(f"x̄ = {x_tilde}")
         print(f"||x̄ - x||{norm_symbol} \n=\n{x_minus_x_tilde}")
         print(f"||x||{norm_symbol} = {x_norm}")
-        print(f"|| x - x~||{norm_symbol} / || x ||{norm_symbol}")
+        print(f"||x̄ - x||{norm_symbol} / || x ||{norm_symbol}")
         print(
             f"Tatsächlicher relativer Fehler bezüglich der {norm_symbol}-Norm: {relativer_fehler}"
         )
