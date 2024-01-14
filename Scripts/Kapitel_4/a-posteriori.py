@@ -1,8 +1,8 @@
-import A_Matrix_in_D_L_R_unterteilen
+import gauss_seidel_jacobi_ldr_b_c
 import numpy as np
 import numpy.linalg as lin
-from Gauss_Seidel import gauss_seidel_mit_anzahl_iterationen
-from Jacobi import jacobi_mit_anzahl_iterationen
+from gauss_seidel import gauss_seidel_mit_anzahl_iterationen
+from jacobi import jacobi_mit_anzahl_iterationen
 from sympy import false
 
 
@@ -63,9 +63,7 @@ x_0 = np.array([1, -1, 3])
 anzahl_iterationen = 3
 A = np.array([[8, 5, 2], [5, 9, 1], [4, 2, 7]])
 b = np.array([19, 5, 34])
-[L, R, D] = A_Matrix_in_D_L_R_unterteilen.unterteilen(
-    A
-)  # TODO: gauss_seidel_jacobi_ldr_b_c
+[L, R, D] = gauss_seidel_jacobi_ldr_b_c.a_in_ldr_zerlegen(A)
 
 # Jacobi mit Debug Mode
 # jacobi_a_posteriori(True)
