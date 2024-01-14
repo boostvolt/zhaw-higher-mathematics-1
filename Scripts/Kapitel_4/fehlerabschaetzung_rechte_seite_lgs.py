@@ -160,7 +160,7 @@ A = np.array([[240,120,80], [60,180,170], [60,90,500]])
 b = np.array([3080,4070,5030])
 
 # 1. Wenn b_tilde mit parameter berechnet werden soll, muss Norm von Hand gerechnet werden
-# ε = sp.symbols("ε")
+ε = sp.symbols("ε")
 # b_tilde = np.array([1, 1, ε])
 # print(f"Von Hand Norm berechnen von: {b - b_tilde}")
 
