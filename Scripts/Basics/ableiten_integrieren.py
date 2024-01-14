@@ -30,5 +30,5 @@ print(f"Ableitung: {ableiten(funktion)}")
 # Werte für Unbekannte definieren
 # werte = {"x": 0.8}
 
-# print(f"Ergebniss von Ableitung: {ableiten(funktion).subs(werte)}")
-# print(f"Ergebniss von Funktion: {sympify(funktion).subs(werte)}")
+# print(f"Ergebniss von Ableitung: {ableiten(funktion).subs(werte).evalf()}")
+# print(f"Ergebniss von Funktion: {sympify(funktion).subs(werte).evalf()}")
