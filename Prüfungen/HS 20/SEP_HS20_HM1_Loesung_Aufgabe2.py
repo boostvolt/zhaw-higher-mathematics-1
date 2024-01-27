@@ -23,6 +23,7 @@
 #
 # |x-x0| <= 0.1/K(x0)*x0                                   1 P
 
+import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -51,8 +52,6 @@ print([K(10**-n) for n in range(1, 6)])
 # ==================================================       1 P
 
 # TEILAUFGABE d)
-
-import matplotlib.pyplot as plt
 
 x = np.arange(-2 * np.pi, 3 * np.pi, 10**-4)
 plt.semilogy(x, K(x))

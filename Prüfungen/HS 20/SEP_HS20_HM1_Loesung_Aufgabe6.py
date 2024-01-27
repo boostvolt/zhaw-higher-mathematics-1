@@ -7,9 +7,8 @@ Created on Sun Jan  3 13:17:53 2021
 @author: beer
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 A = np.array([[13, -4], [30, -9]], dtype=np.float64)
 
@@ -56,11 +55,11 @@ err_l = np.zeros([max_iter, 1], dtype=np.float64)
 
 for k in range(max_iter):
     v = A @ v / np.linalg.norm(A @ v)
-    l = v.transpose() @ A @ v / (v.transpose() @ v)
-    err_l[k] = np.abs(l - D[0, 0])
+    lambda_val = v.transpose() @ A @ v / (v.transpose() @ v)
+    err_l[k] = np.abs(lambda_val - D[0, 0])
 
 print("v = ", v)
-print("lambda = ", l)
+print("lambda = ", lambda_val)
 
 plt.figure(1)
 plt.semilogy(err_l)

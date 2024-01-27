@@ -1,12 +1,24 @@
 import numpy as np
 
-g = lambda x: np.exp(x)
-h = lambda x: np.sqrt(x) + 2
+
+def g(x):
+    return np.exp(x)
+
+
+def h(x):
+    return np.sqrt(x) + 2
+
 
 # a) 5P
 
-f = lambda x: g(x) - h(x)
-df = lambda x: np.exp(x) - 0.5 / np.sqrt(x)
+
+def f(x):
+    return g(x) - h(x)
+
+
+def df(x):
+    return np.exp(x) - 0.5 / np.sqrt(x)
+
 
 x0 = 0.5
 tol = 1e-7
@@ -22,9 +34,12 @@ print("Schnittpunkt=", x0, ", niter=", niter)
 
 # b) 5P
 
+
 # 1.
 # exp(x) = sqrt(x) + 2 => x = ln(sqrt(x) + 2) =: F(x)
-F = lambda x: np.log(np.sqrt(x) + 2)
+def F(x):
+    return np.log(np.sqrt(x) + 2)
+
 
 # 2. F(x) ist monoton zunehmende Funktion
 # [a,b] = [0.5,1.5]

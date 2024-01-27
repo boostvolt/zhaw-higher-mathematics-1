@@ -1,0 +1,1 @@
+Copyright © 2024 Jan Kott. All rights reserved.
